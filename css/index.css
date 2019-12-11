@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import url("https://cdn.kernvalley.us/css/core-css/theme/default/index.css");
+@import url("https://cdn.kernvalley.us/css/normalize/normalize.css");
+@import url("https://cdn.kernvalley.us/css/core-css/rem.css");
+@import url("https://cdn.kernvalley.us/css/core-css/viewport.css");
+@import url("https://cdn.kernvalley.us/css/core-css/element.css");
+@import url("https://cdn.kernvalley.us/css/core-css/class-rules.css");
+@import url("https://cdn.kernvalley.us/css/core-css/fonts.css");
+@import url("https://cdn.kernvalley.us/css/animate.css/animate.css");
+@import url("https://cdn.kernvalley.us/css/core-css/animations.css");
+@import url("./layout.css");
+
+input[hidden] + label[for].btn-toggle {
+	background-color: var(--button-disabled-background);
+	margin: 0.3rem;
+	transition: background-color 300ms ease-in-out;
+}
+
+input[hidden]:checked + label[for].btn-toggle {
+	background-color: var(--button-background);
+}
+
+input[hidden]:not(:checked) + label[for].btn-toggle .when-checked {
+	display: none;
+}
+
+input[hidden]:checked + label[for].btn-toggle .when-unchecked {
+	display: none;
+}
+
+img.avatar {
+	vertical-align: middle;
+	margin-left: 1.2em;
+}

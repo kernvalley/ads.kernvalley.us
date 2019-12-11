@@ -1,0 +1,115 @@
+@import url("./header.css");
+@import url("./nav.css");
+@import url("./sidebar.css");
+@import url("./main.css");
+@import url("./footer.css");
+@import url("https://cdn.kernvalley.us/css/core-css/layout/index.css");
+
+.content {
+	margin: 1.2em;
+	padding: 0.4em 1.4em;
+}
+
+.overflow-x-auto {
+	overflow-x: auto;
+}
+
+fieldset {
+	padding: 2.3em;
+}
+
+legend {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+dialog {
+	max-height: var(--dialog-max-height, 90vh);
+	max-width: var(--dialog-max-width, 90vw);
+	overflow: auto;
+}
+
+.no-margins {
+	margin: 0;
+}
+
+.icon-3vw {
+	height: 3vw;
+	width: 3vw;
+}
+
+.icon-3vmax {
+	height: 3vmax;
+	width: 3vmax;
+}
+
+.form-group {
+	border: 2px solid #b6b6b3;
+	border-radius: 6px;
+	padding: 2px;
+}
+
+.form-group > input {
+	border: none;
+	max-width: 80%;
+}
+
+button[is="share-button"] {
+	bottom: 1rem;
+	right: 1rem;
+	border-radius: 50%;
+	padding: 0.8rem;
+	font-size: 1.5rem;
+}
+
+@media (max-width: 800px) {
+	.mobile-hidden {
+		display: none;
+	}
+}
+
+@media (min-width: 800px) {
+	body.grid {
+		grid-column-gap: 1.5rem;
+	}
+}
+
+[data-flex-grow="0"] {
+	flex-grow: 0;
+}
+
+[data-flex-grow="1"] {
+	flex-grow: 1;
+}
+
+[data-flex-grow="2"] {
+	flex-grow: 2;
+}
+
+[data-flex-grow="3"] {
+	flex-grow: 3;
+}
+
+[data-flex-grow="4"] {
+	flex-grow: 4;
+}
+
+[data-flex-shrink="0"] {
+	flex-shrink: 0;
+}
+
+[data-flex-shrink="1"] {
+	flex-shrink: 1;
+}
+
+[data-flex-shrink="2"] {
+	flex-shrink: 2;
+}
+
+[data-flex-shrink="3"] {
+	flex-shrink: 3;
+}
+
+[data-flex-shrink="4"] {
+	flex-shrink: 4;
+}

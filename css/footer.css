@@ -1,0 +1,22 @@
+#footer {
+	padding: 1.4em;
+	background-color: #232323;
+	color: #fafafa;
+}
+
+.social-links {
+	font-size: 1.3rem;
+}
+
+.social-links .cols {
+	padding: 0 1.5rem;
+}
+
+.social-links a svg {
+	display: inline-block;
+	transition: transform 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.social-links a:hover svg {
+	transform: rotate(1turn) scale(1.3);
+}

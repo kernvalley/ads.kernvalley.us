@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js border-box smooth-scroll" data-layout="right-sidebar" data-theme="auto" data-service-worker="/service-worker.js" prefix="og: http://ogp.me/ns#" itemtype="https://schema.org/WebPage" itemscope="">
+	<head>
+		<base href="/" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="robots" content="follow,index" />
+		<meta name="description" content="" />
+		<meta itemprop="description" content="" />
+		<meta name="keywords" content="" />
+		<meta itemprop="keywords" content="" />
+		<meta name="referrer" content="origin-when-cross-origin"/>
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta itemprop="thumbnailUrl" content="" />
+		<!-- Social data -->
+		<!-- Facebook | OpenGraph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:url" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:keywords" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:image:height" content="" />
+		<meta property="og:image:width" content="" />
+		<!-- /Facebook | OpenGraph -->
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:creator" content="" />
+		<meta name="twitter:description" content="" />
+		<meta name="twitter:image" content="" />
+		<!-- /Twitter -->
+		<!-- /Social data -->
+		<meta name="msapplication-TileColor" content="#528ff9" />
+		<meta name="msapplication-config" content="/browserconfig.xml" />
+		<meta name="theme-color" content="#528ff9" />
+		<title itemprop="headline"></title>
+		<script type="module" src="/js/index.js" async=""></script>
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="license" href="/LICENSE" />
+		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml" sizes="any" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/img/icon-32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/img/icon-16.png" />
+		<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#528ff9" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="preload" href="/img/icons.svg" as="image" type="image/svg+xml" />
+		<link rel="stylesheet" href="/css/index.css" media="all" />
+	</head>
+	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
+		<header id="header" class="background-cover background-fixed"></header>
+		<nav id="nav" class="sticky top shadow background-accent color-alt z-3">
+			<button is="login-button" title="Sign In" class="btn btn-accept" hidden="">Sign In</button>
+			<button is="logout-button" title="Sign Out" class="btn btn-reject" hidden="">Sign Out</button>
+		</nav>
+		<main id="main" class="card shadow">
+			<article>
+				<header>
+					<h2 class="center">Bacon Ipsum</h2>
+					<details>
+						<summary>By <b>Chris Zuber</b><img is="gravatar-img" hash="43578597e449298f5488c2407c8a8ae5" class="round avatar" alt="Gravatar" sizes="2rem" /></summary>
+						<div>Published on <time>Oct. 26, 2019</time></div>
+					</details>
+				</header>
+				<section data-columns="auto">
+					<bacon-ipsum paras="8"></bacon-ipsum>
+				</section>
+			</article>
+		</main>
+		<aside id="sidebar" class="card shadow"></aside>
+		<footer id="footer">
+			<div class="social-links cols-2">
+				<div class="cols inline-block">
+					<a class="block" href="https://github.com/shgysk8zer0/" target="_blank" rel="external noopener">
+						<svg class="current-color icon social-icon">
+							<use xlink:href="/img/icons.svg#mark-github" />
+						</svg>
+						<span>GitHub Profile</span>
+					</a>
+					<a class="block" href="https://github.com/shgysk8zer0/static-template" target="_blank" rel="external noopener">
+						<svg class="current-color icon social-icon">
+							<use xlink:href="/img/icons.svg#repo" />
+						</svg>
+						<span>GitHub Repo</span>
+					</a>
+					<a class="block" href="https://github.com/shgysk8zer0/static-template/issues" target="_blank" rel="external noopener">
+						<svg class="current-color icon social-icon">
+							<use xlink:href="/img/icons.svg#issue-opened" />
+						</svg>
+						<span>Report a Problem</span>
+					</a>
+				</div>
+				<div class="cols inline-block">
+					<a class="block" href="https://shgysk8zer0.github.io" target="_blank" rel="external noopener" itemprop="sameAs">
+						<svg class="current-color icon social-icon">
+							<use xlink:href="/img/icons.svg#web-browser" />
+						</svg>
+						<span>My Website</span>
+					</a>
+					<a class="block" href="https://twitter.com/shgysk8zer0" target="_blank" rel="external noopener" itemprop="sameAs">
+						<svg class="icon social-icon">
+							<use xlink:href="/img/icons.svg#twitter" />
+						</svg>
+						<span>On Twitter</span>
+					</a>
+					<a class="block" href="https://www.linkedin.com/in/chris-zuber-455346141/" target="_blank" rel="external noopener" itemprop="sameAs">
+						<svg class="icon social-icon">
+							<use xlink:href="/img/icons.svg#linkedin" />
+						</svg>
+						<span>LinkedIn</span>
+					</a>
+				</div>
+			</div>
+			<hr />
+			<div class="copyright">
+				<span>&copy;</span>
+				<time itemprop="copyrightYear" is="current-year">2019</time>
+				<span itemprop="copyrightHolder" itemtype="https://schema.org/Person" itemscope="">
+					<a href="https://shgysk8zer0.github.io" target="_blank" rel="external noopener" itemprop="url">
+						<span itemprop="givenName">Chris</span>
+						<span itemprop="familyName">Zuber</span>
+					</a>
+				</span>
+			</div>
+		</footer>
+		<button type="button" is="share-button" class="round shadow fixed z-4" aria-label="Share">
+			<svg class="current-color icon">
+				<use xlink:href="/img/icons.svg#public-share"></use>
+			</svg>
+		</button>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+main {
+	--link-color: #049ccf;
+	--link-decoration: underline;
+}
+
+.breach.card {
+	background: #c8c8c8;
+}
+
+.breach.card.is-verified {
+	background: #f7c8c8;
+}
+
+.breach-tag {
+	font-size: 0.8rem;
+	padding: 0.2rem;
+	background: #ab3434;
+	color: #fafafa;
+	display: inline-block;
+	border-radius: 4px;
+	margin: 0.1rem;
+}
+
+a.breach-url[href="#"] {
+	pointer-events: none;
+	cursor: default;
+}
+
+a.breach-url[href="#"] .breach-title {
+	text-decoration: none;
+}
+
+a.breach-url[href="#"] .icon {
+	display: none;
+}
+
+article p:first-letter {
+	margin-left: 2em;
+}
