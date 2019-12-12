@@ -33,8 +33,9 @@
 		<meta name="msapplication-TileColor" content="#528ff9" />
 		<meta name="msapplication-config" content="/browserconfig.xml" />
 		<meta name="theme-color" content="#528ff9" />
-		<title itemprop="headline"></title>
+		<title itemprop="headline">Kern Valley Ads</title>
 		<script type="module" src="/js/index.js" async=""></script>
+		<script type="module" src="https://cdn.kernvalley.us/components/ad-block.js" async=""></script>
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="license" href="/LICENSE" />
 		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml" sizes="any" />
@@ -53,18 +54,53 @@
 			<button is="logout-button" title="Sign Out" class="btn btn-reject" hidden="">Sign Out</button>
 		</nav>
 		<main id="main" class="card shadow">
-			<article>
-				<header>
-					<h2 class="center">Bacon Ipsum</h2>
-					<details>
-						<summary>By <b>Chris Zuber</b><img is="gravatar-img" hash="43578597e449298f5488c2407c8a8ae5" class="round avatar" alt="Gravatar" sizes="2rem" /></summary>
-						<div>Published on <time>Oct. 26, 2019</time></div>
-					</details>
-				</header>
-				<section data-columns="auto">
-					<bacon-ipsum paras="8"></bacon-ipsum>
-				</section>
-			</article>
+			<form name="ad">
+				<ad-block>
+					<label for="ad-label" slot="label">Ad label / title</label>
+					<label for="ad-image" slot="image" class="inline-block">
+						<svg class="current-color" viewBox="0 0 12 16">
+							<path fill-rule="evenodd" d="M6 5h2v2H6V5zm6-.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v11l3-5 2 4 2-2 3 3V5z"/>
+						</svg>
+					</label>
+					<label for="ad-description" slot="description">Enter ad description here</label>
+					<label for="ad-calltoaction" slot="calltoaction">Call to Action</label>
+				</ad-block>
+				<fieldset>
+					<legend>Build Your Ad</legend>
+					<div class="input-group">
+						<label for="ad-url" class="block">
+							<span>URL</span>
+						</label>
+						<input type="url" name="url" id="ad-url" placeholder="https://example.com/your-url" />
+					</div>
+					<div class="input-group">
+						<label for="ad-label" class="block">
+							<span>Label/Title</span>
+						</label>
+						<input type="text" id="ad-label" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" />
+					</div>
+					<div class="input-group">
+						<label for="ad-description" class="block">
+							<span>Descrition</span>
+						</label>
+						<textarea name="description" id="ad-description" maxlength="80" placeholder="Ad description" required=""></textarea>
+					</div>
+					<div class="input-group">
+						<label for="ad-calltoaction" class="block">
+							<span>Call-to-Action</span>
+						</label>
+						<input type="text" id="ad-calltoaction" name="calltoaction" pattern="[\w'?\.: ]+" maxlength="35" placeholder="Call to action" />
+					</div>
+					<div class="input-group">
+						<label for="ad-image" class="block">
+							<span>Image</span>
+						</label>
+						<input type="file" id="ad-image" accept="image/*" name="image" required="" />
+					</div>
+				</fieldset>
+				<button type="submit" class="btn btn-accept">Submit</button>
+				<button type="reset" class="btn btn-reject">Reset</button>
+			</form>
 		</main>
 		<aside id="sidebar" class="card shadow"></aside>
 		<footer id="footer">

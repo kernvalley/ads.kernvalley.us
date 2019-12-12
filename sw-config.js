@@ -14,7 +14,6 @@ const config = {
 		'/css/footer.css',
 		'/img/icons.svg',
 		'/img/neon.svg',
-		'https://baconipsum.com/api/?paras=8&format=json&type=all-meat',
 		// '/img/apple-touch-icon.png',
 		// '/img/icon-192.png',
 		// '/img/favicon.svg',
