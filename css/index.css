@@ -13,6 +13,7 @@
 body {
 	--accent-color: #008080;
 	--button-background: #008080;
+	--sidebar-max-width: 30vw;
 }
 
 input[hidden] + label[for].btn-toggle {
