@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const config = {
-	version: '1.0.0',
+	version: '1.0.1',
 	fresh: [
 		'/',
 		'/js/index.js',
@@ -16,6 +16,7 @@ const config = {
 		'/img/neon.svg',
 		'/img/apple-touch-icon.png',
 		'/img/icon-192.png',
+		'/img/icon-32.png',
 		'/img/favicon.svg',
 	].map(url => new URL(url, location.origin).href),
 	stale: [
