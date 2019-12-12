@@ -31,9 +31,9 @@ ready().then(async () => {
 						file.text().then(async svg  => {
 							const parser = new DOMParser();
 							const {documentElement} = parser.parseFromString(svg, 'image/svg+xml');
-							if (! documentElement.hasAttribute('viewBox')) {
+							if (! documentElement.hasAttribute('viewBox') && ['width', 'height'].every(attr => documentElement.hasAttribute(attr))) {
 								const {width, height} = documentElement;
-								documentElement.setAttribute('viewBox', `0 0 ${width.value} ${height.value}`);
+								documentElement.setAttribute('viewBox', `0 0 ${parseInt(width.value) || 16} ${parseInt(height.value) || 16}`);
 							}
 							$('[style]', documentElement).each(el => el.removeAttribute('style'));
 							documentElement.removeAttribute('height');
