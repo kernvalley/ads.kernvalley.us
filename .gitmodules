@@ -1,0 +1,9 @@
+[submodule "img/adwaita-icons"]
+	path = img/adwaita-icons
+	url = https://github.com/shgysk8zer0/adwaita-icons.git
+[submodule "img/octicons"]
+	path = img/octicons
+	url = https://github.com/shgysk8zer0/octicons-svg.git
+[submodule "img/logos"]
+	path = img/logos
+	url = https://github.com/shgysk8zer0/logos.git
