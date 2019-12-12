@@ -10,6 +10,8 @@ import 'https://cdn.kernvalley.us/components/bacon-ipsum.js';
 import {$, ready, registerServiceWorker} from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 
+setTimeout(() => document.getElementById('terms').show(), 1200);
+
 if (! ('PaymentRequest' in window)) {
 	window.PaymentRequest = PaymentRequestShim;
 }
@@ -98,8 +100,8 @@ document.body.classList.toggle('no-dialog', document.createElement('dialog') ins
 document.body.classList.toggle('no-details', document.createElement('details') instanceof HTMLUnknownElement);
 
 ready().then(async () => {
-	const $ad = $('ad-block');
-	$ad.on('drop', console.info);
+	const $ads = $('ad-block');
+
 	document.forms.ad.reset();
 	$('input, textarea', document.forms.ad).input(async ({target}) => {
 		if (target instanceof HTMLInputElement) {
@@ -122,9 +124,10 @@ ready().then(async () => {
 							documentElement.removeAttribute('width');
 							documentElement.classList.add('current-color');
 							documentElement.slot = 'image';
-							const ad = document.querySelector('ad-block');
-							await $('[slot="image"]', ad).remove();
-							ad.append(documentElement);
+							$ads.each(async ad => {
+								await $('[slot="image"]', ad).remove();
+								ad.append(documentElement.cloneNode(true));
+							});
 						});
 						break;
 
@@ -137,11 +140,12 @@ ready().then(async () => {
 							img.addEventListener('error', console.error);
 							img.src = blob;
 							img.slot = 'image';
-							const ad = document.querySelector('ad-block');
 							await img.decode();
 
-							await $('[slot="image"]', ad).remove();
-							ad.append(img);
+							$ads.each(async ad => {
+								await $('[slot="image"]', ad).remove();
+								ad.append(img.cloneNode());
+							});
 						});
 						break;
 
@@ -153,11 +157,18 @@ ready().then(async () => {
 				}
 				break;
 
-			default: $(`[slot="${target.name}"]`).text(target.value);
+			default:
+				$ads.each(async ad => {
+					console.info({ad, name: target.name, value: target.value});
+					await $(`[slot="${target.name.toLowerCase()}"]`, ad).remove();
+					ad[target.name] = target.value;
+				});
 			}
-
 		} else {
-			$(`[slot="${target.name}"]`).text(target.value);
+			$ads.each(async ad => {
+				await $(`[slot="${target.name}"]`, ad).remove();
+				ad[target.name] = target.value;
+			});
 		}
 	});
 
