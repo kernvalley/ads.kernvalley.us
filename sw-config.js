@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const config = {
-	version: '1.0.1',
+	version: '1.0.2',
 	fresh: [
 		'/',
 		'/js/index.js',
