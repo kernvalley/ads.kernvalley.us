@@ -1,6 +1,6 @@
 'use strict';
 /*eslint no-undef: 0*/
-/* 2019-12-03T10:27 */
+/* 2019-12-11T18:42 */
 self.importScripts('/sw-config.js');
 
 self.addEventListener('install', async event => {
@@ -32,6 +32,13 @@ self.addEventListener('fetch', event => {
 				const cached = await caches.match(url);
 				if (cached instanceof Response) {
 					return cached;
+				} else {
+					const resp = await fetch(event.request);
+					if (resp.ok) {
+						const cache = await caches.open(config.version);
+						cache.put(event.request, resp.clone());
+						return resp;
+					}
 				}
 			} else if (Array.isArray(config.fresh) && config.fresh.includes(url.href)) {
 				if (navigator.onLine) {
@@ -40,8 +47,10 @@ self.addEventListener('fetch', event => {
 
 					if (resp.ok) {
 						cache.put(event.request, resp.clone());
+						return resp;
+					} else {
+						return caches.match(event.request.url);
 					}
-					return resp;
 				} else {
 					return caches.match(event.request.url);
 				}
@@ -70,7 +79,6 @@ self.addEventListener('fetch', event => {
 					console.error('Offline');
 				}
 			} else {
-				console.info(`Making request for ${event.request.url}`);
 				return fetch(event.request.url);
 			}
 		})());
