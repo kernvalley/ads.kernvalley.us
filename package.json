@@ -2,7 +2,7 @@
   "name": "static-template",
   "version": "1.0.0",
   "private": true,
-  "description": "A template repository for static sites, including skeleton JS, CSS, SVGs, fonts, etc.",
+  "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
   "config": {
     "serve": {
       "domain": "localhost",
@@ -21,13 +21,11 @@
     "url": "git+https://github.com/kernvalley/ads.kernvalley.us.git"
   },
   "keywords": [
-    "static",
-    "template",
-    "ecmascript",
-    "javascript",
-    "css",
-    "svg",
-    "icons"
+    "ads",
+    "advertise",
+    "kern valley",
+    "kern river valley",
+    "whiskey flat days"
   ],
   "author": "Chris Zuber <admin@kernvalley.us>",
   "license": "MIT",
