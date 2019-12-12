@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Kern Valley Ads",
+  "short_name": "KV Ads",
   "version": "1.0.0",
   "start_url": "/",
   "lang": "en",
@@ -19,15 +19,15 @@
     "type": "image/png"
   }],
   "screenshots": [{
-    "src": "url",
-    "sizes": "wxh",
-    "type": "image/*"
+    "src": "https://i.imgur.com/rywt9g3.png",
+    "sizes": "457x207",
+    "type": "image/png"
   }],
-  "theme_color": "#528ff9",
-  "background_color": "#fefefe",
+  "theme_color": "#008080",
+  "background_color": "#343434",
   "display": "standalone",
   "developer": {
 		"name": "Chris Zuber",
-		"url": "http://shgysk8zer0.github.io"
+		"url": "https://kernvalley.us"
 	}
 }
