@@ -10,6 +10,11 @@
 @import url("https://cdn.kernvalley.us/css/core-css/animations.css");
 @import url("./layout.css");
 
+body {
+	--accent-color: #008080;
+	--button-background: #008080;
+}
+
 input[hidden] + label[for].btn-toggle {
 	background-color: var(--button-disabled-background);
 	margin: 0.3rem;
@@ -31,4 +36,12 @@ input[hidden]:checked + label[for].btn-toggle .when-unchecked {
 img.avatar {
 	vertical-align: middle;
 	margin-left: 1.2em;
+}
+
+.input-group input, .input-group textarea {
+	background: inherit;
+	color: inherit;
+	border: none;
+	border-bottom: 1px solid currentColor;
+	margin-bottom: 1.6em;
 }

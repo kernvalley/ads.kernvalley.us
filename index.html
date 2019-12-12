@@ -5,43 +5,44 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="robots" content="follow,index" />
-		<meta name="description" content="" />
-		<meta itemprop="description" content="" />
-		<meta name="keywords" content="" />
-		<meta itemprop="keywords" content="" />
+		<meta name="description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
+		<meta itemprop="description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
+		<meta name="keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
+		<meta itemprop="keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
 		<meta name="referrer" content="origin-when-cross-origin"/>
 		<meta name="mobile-web-app-capable" content="yes" />
-		<meta itemprop="thumbnailUrl" content="" />
+		<meta itemprop="thumbnailUrl" content="https://i.imgur.com/rywt9g3.png" />
 		<!-- Social data -->
 		<!-- Facebook | OpenGraph -->
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="" />
-		<meta property="og:url" content="" />
-		<meta property="og:description" content="" />
-		<meta property="og:keywords" content="" />
-		<meta property="og:image" content="" />
-		<meta property="og:image:height" content="" />
-		<meta property="og:image:width" content="" />
+		<meta property="og:title" content="Kern Valley Ads" />
+		<meta property="og:url" content="https://ads.kernvalley.us" />
+		<meta property="og:description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
+		<meta property="og:keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
+		<meta property="og:image" content="https://i.imgur.com/rywt9g3.png" />
+		<meta property="og:image:height" content="207" />
+		<meta property="og:image:width" content="457" />
 		<!-- /Facebook | OpenGraph -->
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:creator" content="" />
-		<meta name="twitter:description" content="" />
-		<meta name="twitter:image" content="" />
+		<meta name="twitter:creator" content="kern_valley" />
+		<meta name="twitter:description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
+		<meta name="twitter:image" content="https://i.imgur.com/rywt9g3.png" />
 		<!-- /Twitter -->
 		<!-- /Social data -->
-		<meta name="msapplication-TileColor" content="#528ff9" />
+		<meta name="msapplication-TileColor" content="#008080" />
 		<meta name="msapplication-config" content="/browserconfig.xml" />
-		<meta name="theme-color" content="#528ff9" />
-		<title itemprop="headline"></title>
+		<meta name="theme-color" content="#008080" />
+		<title itemprop="headline">Kern Valley Ads</title>
 		<script type="module" src="/js/index.js" async=""></script>
+		<script type="module" src="https://cdn.kernvalley.us/components/ad-block.js" async=""></script>
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="license" href="/LICENSE" />
 		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml" sizes="any" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/img/icon-32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/img/icon-16.png" />
-		<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#528ff9" />
+		<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#008080" />
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="preload" href="/img/icons.svg" as="image" type="image/svg+xml" />
 		<link rel="stylesheet" href="/css/index.css" media="all" />
@@ -53,58 +54,93 @@
 			<button is="logout-button" title="Sign Out" class="btn btn-reject" hidden="">Sign Out</button>
 		</nav>
 		<main id="main" class="card shadow">
-			<article>
-				<header>
-					<h2 class="center">Bacon Ipsum</h2>
-					<details>
-						<summary>By <b>Chris Zuber</b><img is="gravatar-img" hash="43578597e449298f5488c2407c8a8ae5" class="round avatar" alt="Gravatar" sizes="2rem" /></summary>
-						<div>Published on <time>Oct. 26, 2019</time></div>
-					</details>
-				</header>
-				<section data-columns="auto">
-					<bacon-ipsum paras="8"></bacon-ipsum>
-				</section>
-			</article>
+			<form name="ad">
+				<ad-block>
+					<label for="ad-label" slot="label">Ad label / title</label>
+					<label for="ad-image" slot="image" class="inline-block">
+						<svg class="current-color" viewBox="0 0 12 16">
+							<path fill-rule="evenodd" d="M6 5h2v2H6V5zm6-.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v11l3-5 2 4 2-2 3 3V5z"/>
+						</svg>
+					</label>
+					<label for="ad-description" slot="description">Enter ad description here</label>
+					<label for="ad-calltoaction" slot="calltoaction">Call to Action</label>
+				</ad-block>
+				<fieldset>
+					<legend>Build Your Ad</legend>
+					<div class="input-group">
+						<label for="ad-url" class="block">
+							<b>URL</b>
+						</label>
+						<input type="url" name="url" id="ad-url" placeholder="https://example.com/your-url" />
+					</div>
+					<div class="input-group">
+						<label for="ad-label" class="block">
+							<b>Label/Title</b>
+						</label>
+						<input type="text" id="ad-label" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" />
+					</div>
+					<div class="input-group">
+						<label for="ad-description" class="block">
+							<b>Descrition</b>
+						</label>
+						<textarea name="description" id="ad-description" maxlength="80" placeholder="Ad description" required=""></textarea>
+					</div>
+					<div class="input-group">
+						<label for="ad-calltoaction" class="block">
+							<b>Call-to-Action</b>
+						</label>
+						<input type="text" id="ad-calltoaction" name="calltoaction" pattern="[\w'?\.: ]+" maxlength="35" placeholder="Call to action" />
+					</div>
+					<div class="input-group">
+						<label for="ad-image" class="block">
+							<b>Image</b>
+						</label>
+						<input type="file" id="ad-image" accept="image/*" name="image" required="" />
+					</div>
+				</fieldset>
+				<button type="submit" class="btn btn-accept">Submit</button>
+				<button type="reset" class="btn btn-reject">Reset</button>
+			</form>
 		</main>
 		<aside id="sidebar" class="card shadow"></aside>
 		<footer id="footer">
 			<div class="social-links cols-2">
 				<div class="cols inline-block">
-					<a class="block" href="https://github.com/shgysk8zer0/" target="_blank" rel="external noopener">
+					<a class="block" href="https://github.com/kernvalley/" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon">
-							<use xlink:href="/img/icons.svg#mark-github" />
+							<use xlink:href="/img/icons.svg#mark-github"></use>
 						</svg>
 						<span>GitHub Profile</span>
 					</a>
-					<a class="block" href="https://github.com/shgysk8zer0/static-template" target="_blank" rel="external noopener">
+					<a class="block" href="https://github.com/kernvalley/weather.kernvalley.us" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon">
-							<use xlink:href="/img/icons.svg#repo" />
+							<use xlink:href="/img/icons.svg#repo"></use>
 						</svg>
 						<span>GitHub Repo</span>
 					</a>
-					<a class="block" href="https://github.com/shgysk8zer0/static-template/issues" target="_blank" rel="external noopener">
+					<a class="block" href="https://github.com/kernvalley/weather.kernvalley.us/issues" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon">
-							<use xlink:href="/img/icons.svg#issue-opened" />
+							<use xlink:href="/img/icons.svg#issue-opened"></use>
 						</svg>
 						<span>Report a Problem</span>
 					</a>
 				</div>
 				<div class="cols inline-block">
-					<a class="block" href="https://shgysk8zer0.github.io" target="_blank" rel="external noopener" itemprop="sameAs">
+					<a class="block" href="https://kernvalley.us" target="_blank" rel="external noopener" itemprop="sameAs">
 						<svg class="current-color icon social-icon">
-							<use xlink:href="/img/icons.svg#web-browser" />
+							<use xlink:href="/img/icons.svg#web-browser"></use>
 						</svg>
-						<span>My Website</span>
+						<span>Website</span>
 					</a>
-					<a class="block" href="https://twitter.com/shgysk8zer0" target="_blank" rel="external noopener" itemprop="sameAs">
+					<a class="block" href="https://twitter.com/kern_valley" target="_blank" rel="external noopener" itemprop="sameAs">
 						<svg class="icon social-icon">
-							<use xlink:href="/img/icons.svg#twitter" />
+							<use xlink:href="/img/icons.svg#twitter"></use>
 						</svg>
 						<span>On Twitter</span>
 					</a>
-					<a class="block" href="https://www.linkedin.com/in/chris-zuber-455346141/" target="_blank" rel="external noopener" itemprop="sameAs">
+					<a class="block" href="https://www.linkedin.com/company/kernvalley-us/" target="_blank" rel="external noopener" itemprop="sameAs">
 						<svg class="icon social-icon">
-							<use xlink:href="/img/icons.svg#linkedin" />
+							<use xlink:href="/img/icons.svg#linkedin"></use>
 						</svg>
 						<span>LinkedIn</span>
 					</a>
@@ -112,20 +148,57 @@
 			</div>
 			<hr />
 			<div class="copyright">
-				<span>&copy;</span>
-				<time itemprop="copyrightYear" is="current-year">2019</time>
-				<span itemprop="copyrightHolder" itemtype="https://schema.org/Person" itemscope="">
-					<a href="https://shgysk8zer0.github.io" target="_blank" rel="external noopener" itemprop="url">
-						<span itemprop="givenName">Chris</span>
-						<span itemprop="familyName">Zuber</span>
+				<span>©</span>
+				<time itemprop="copyrightYear" is="current-year" datetime="2019-12-12T01:57:17.314Z">2019</time>
+				<span itemprop="copyrightHolder" itemtype="https://schema.org/Organization" itemscope="">
+					<a href="https://kernvalley.us" target="_blank" rel="external noopener" itemprop="url">
+						<span itemprop="name">KernValley.US</span>
+						<meta itemprop="logo" content="https://kernvalley.us/img/icon-192.png" />
 					</a>
 				</span>
 			</div>
 		</footer>
-		<button type="button" is="share-button" class="round shadow fixed z-4" aria-label="Share">
+		<button type="button" is="share-button" class="round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App, KernValley.US sites and more!">
 			<svg class="current-color icon">
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
 		</button>
+		<toast-message id="terms" open="">
+			<div slot="content">
+				<h2 class="center">Currently not Avaialble</h2>
+				<p>This site is currently under development and nothing will be submitted <b>(Your credit card will not be charged)</b>.</p>
+				<p>Upon official launch, this site will be used to create ads for:</p>
+				<ul>
+					<li>The Whiskey Flat Days App</li>
+					<li>The Whiskey Flat Days Info Booth</li>
+					<li>The Kern River Courier</li>
+					<li>
+						<a href="https://kernvalley.us" class="underline" rel="external noopener">KernValley.US</a>
+					</li>
+					<li>
+						<a href="https://events.kernvalley.us" class="underline" rel="external noopener">Kern Valley Events</a>
+					</li>
+					<li>
+						<a href="https://maps.kernvalley.us" class="underline" rel="external noopener">Kern Valley Maps</a>
+					</li>
+					<li>
+						<a href="https://weather.kernvalley.us" class="underline" rel="external noopener">Kern Valley Weather</a>
+					</li>
+					<li>
+						<a href="https://rafting.kernvalley.us" class="underline" rel="external noopener">Kern Valley Rafting</a>
+					</li>
+					<li>
+						<a href="https://dining.kernvalley.us" class="underline" rel="external noopener">Kern Valley Dining</a>
+					</li>
+					<li>
+						<a href="https://new.kernvalley.us" class="underline" rel="external noopener">Kern Valley News</a>
+					</li>
+					<li>Kern Valley Camping</li>
+					<li>Kern Valley Lodging</li>
+					<li>&hellip;&amp; more!</li>
+				</ul>
+				<p>Feel free to check out the ad builder and plan your design for when it is available</p>
+			</div>
+		</toast-message>
 	</body>
 </html>

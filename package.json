@@ -2,7 +2,7 @@
   "name": "static-template",
   "version": "1.0.0",
   "private": true,
-  "description": "A template repository for static sites, including skeleton JS, CSS, SVGs, fonts, etc.",
+  "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
   "config": {
     "serve": {
       "domain": "localhost",
@@ -18,27 +18,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shgysk8zer0/static-template.git"
+    "url": "git+https://github.com/kernvalley/ads.kernvalley.us.git"
   },
   "keywords": [
-    "static",
-    "template",
-    "ecmascript",
-    "javascript",
-    "css",
-    "svg",
-    "icons"
+    "ads",
+    "advertise",
+    "kern valley",
+    "kern river valley",
+    "whiskey flat days"
   ],
-  "author": "Chris Zuber <shgysk8zer0@gmail.com>",
+  "author": "Chris Zuber <admin@kernvalley.us>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shgysk8zer0/static-template/issues"
+    "url": "https://github.com/kernvalley/ads.kernvalley.us/issues"
   },
-  "homepage": "https://github.com/shgysk8zer0/static-template",
+  "homepage": "https://github.com/kernvalley/ads.kernvalley.us",
   "scripts": {
     "preinstall": "if [ -f '.gitmodules' ]; then git submodule update --recursive --init; fi",
     "postinstall": "npm run build:icons",
-    "start": "npm run netlify:serve",
+    "start": "npm run netlify:live",
     "test": "npm run lint:js && npm run lint:css",
     "fix": "npm run fix:js && npm run fix:css",
     "build": "npm run build:icons",
