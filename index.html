@@ -89,7 +89,7 @@
 						<label for="ad-calltoaction" class="block">
 							<b>Call-to-Action</b>
 						</label>
-						<input type="text" id="ad-calltoaction" name="calltoaction" pattern="[\w'?\.: ]+" maxlength="35" placeholder="Call to action" />
+						<input type="text" id="ad-calltoaction" name="callToAction" maxlength="35" placeholder="Call to action" />
 					</div>
 					<div class="input-group">
 						<label for="ad-image" class="block">
@@ -102,7 +102,14 @@
 				<button type="reset" class="btn btn-reject">Reset</button>
 			</form>
 		</main>
-		<aside id="sidebar" class="card shadow"></aside>
+		<aside id="sidebar" class="card shadow">
+			<h2>Previews</h2>
+			<h3 class="center">Dark Theme</h3>
+			<ad-block theme="dark"></ad-block>
+			<hr />
+			<h3 class="center">Light Theme</h3>
+			<ad-block theme="light"></ad-block>
+		</aside>
 		<footer id="footer">
 			<div class="social-links cols-2">
 				<div class="cols inline-block">
@@ -163,7 +170,7 @@
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
 		</button>
-		<toast-message id="terms" open="">
+		<toast-message id="terms">
 			<div slot="content">
 				<h2 class="center">Currently not Avaialble</h2>
 				<p>This site is currently under development and nothing will be submitted <b>(Your credit card will not be charged)</b>.</p>
