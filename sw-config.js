@@ -14,10 +14,12 @@ const config = {
 		'/img/icon-32.png',
 		'/img/favicon.svg',
 		'https://cdn.kernvalley.us/components/toast-message.html',
+		'https://cdn.kernvalley.us/components/login-form/login-form.html',
 		'https://cdn.kernvalley.us/components/pwa/prompt.html',
 		'https://cdn.kernvalley.us/components/github/user.html',
 		'https://cdn.kernvalley.us/components/github/user.css',
 		'https://cdn.kernvalley.us/components/toast-message.css',
+		'https://cdn.kernvalley.us/components/login-form/login-form.css',
 		'https://cdn.kernvalley.us/components/pwa/prompt.css',
 		'https://cdn.kernvalley.us/components/ad-block.css',
 		/* Social Icons for Web Share API shim */

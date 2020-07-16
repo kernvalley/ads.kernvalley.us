@@ -8,7 +8,9 @@
 @import url("https://cdn.kernvalley.us/css/core-css/cdn-fonts.css");
 @import url("https://cdn.kernvalley.us/css/animate.css/animate.css");
 @import url("https://cdn.kernvalley.us/css/core-css/animations.css");
+@import url("https://cdn.kernvalley.us/css/core-css/scrollbar.css");
 @import url("./layout.css");
+@import url("./vars.css");
 
 body {
 	--accent-color: #008080;
