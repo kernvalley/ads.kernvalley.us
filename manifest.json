@@ -36,6 +36,16 @@
     "WYSIWYG ad editor with dark and light mode previews"
   ],
   "shortcuts": [],
+  "share_target": {
+    "title": "Create Ad",
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
   "theme_color": "#228282",
   "background_color": "#343434",
   "display": "standalone",

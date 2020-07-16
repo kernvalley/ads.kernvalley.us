@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<button is="pwa-install">`
 - `<github-user>`
 - `.nvmrc` for Node versioning
+- Implement as `share_target`
 
 ### Updated
 - Update linting to lint all resources
