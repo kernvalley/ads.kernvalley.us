@@ -9,7 +9,9 @@
         "sourceType": "module",
         "ecmaVersion": 2018
     },
-    "plugins": ["async-await"],
+    "plugins": [
+      "async-await"
+    ],
     "rules": {
         "indent": [
             2,
@@ -24,6 +26,7 @@
             "always"
         ],
         "no-console": 0,
+        "no-prototype-builtins": 0,
         "async-await/space-after-async": 2,
         "async-await/space-after-await": 2,
         "generator-star-spacing": ["error", {
@@ -33,11 +36,5 @@
             "method": {"before": true, "after": false}
         }]
     },
-    "globals": {
-        "URLSearchParams": false,
-        "ga": false,
-        "skipWaiting": false,
-        "clients": false,
-        "PasswordCredential": false
-    }
+    "globals": {}
 }

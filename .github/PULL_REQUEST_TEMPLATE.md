@@ -1,6 +1,7 @@
-## Description and issue
+# Description and issue
 
-### List of significant changes made
+> Please add relevant sections (Added, removed, changed, fixed) to `CHANGELOG.md`
+
+## List of significant changes made
 -  
 -  
-
