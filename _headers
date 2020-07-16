@@ -1,0 +1,2 @@
+/*
+  Content-Security-Policy: default-src 'self'; style-src 'self' https://cdn.kernvalley.us https://unpkg.com/@webcomponents/; script-src 'self' https://cdn.kernvalley.us https://cdn.polyfill.io https://unpkg.com/@webcomponents/; img-src * blob:; font-src https://cdn.kernvalley.us/; connect-src 'self' https://cdn.kernvalley.us https://api.kernvalley.us https://api.github.com/users/ https://secure.gravatar.com/avatar/ https://*.githubusercontent.com/u/ https://i.imgur.com; manifest-src 'self';

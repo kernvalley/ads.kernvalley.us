@@ -1,3 +1,4 @@
+import 'https://unpkg.com/@webcomponents/custom-elements@1.4.1/custom-elements.min.js';
 import 'https://cdn.kernvalley.us/js/std-js/deprefixer.js';
 import 'https://cdn.kernvalley.us/js/std-js/shims.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
@@ -6,8 +7,10 @@ import 'https://cdn.kernvalley.us/components/gravatar-img.js';
 import 'https://cdn.kernvalley.us/components/login-button.js';
 import 'https://cdn.kernvalley.us/components/logout-button.js';
 import 'https://cdn.kernvalley.us/components/toast-message.js';
-import 'https://cdn.kernvalley.us/components/bacon-ipsum.js';
-import {$, ready, registerServiceWorker} from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+import 'https://cdn.kernvalley.us/components/pwa/install.js';
+import 'https://cdn.kernvalley.us/components/github/user.js';
+import 'https://cdn.kernvalley.us/components/ad-block.js';
+import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 
 setTimeout(() => document.getElementById('terms').show(), 1200);
@@ -57,6 +60,7 @@ async function pay({views = 500, price = 0.05} = {}) {
 	});
 
 	await customElements.whenDefined('toast-message');
+	navigator.setAppBadge(1).catch(console.error);
 	await terms.show();
 	await terms.closed;
 
@@ -89,10 +93,7 @@ async function pay({views = 500, price = 0.05} = {}) {
 			$('#payment-dialog').remove();
 		}
 	}
-}
-
-if (document.documentElement.dataset.hasOwnProperty('serviceWorker')) {
-	registerServiceWorker(document.documentElement.dataset.serviceWorker).catch(console.error);
+	navigator.clearApBadge().catch(console.error);
 }
 
 document.documentElement.classList.replace('no-js', 'js');
@@ -101,6 +102,28 @@ document.body.classList.toggle('no-details', document.createElement('details') i
 
 ready().then(async () => {
 	const $ads = $('ad-block');
+
+	$('output[for]').each(output => {
+		output.htmlFor.forEach(id => {
+			$(`#${CSS.escape(id)}`).change(({target}) => {
+				console.info(target);
+				switch(target.type) {
+				case 'file':
+					if (target.files.length === 0) {
+						output.value = 'Nothing Selected';
+					} else {
+						output.value = target.files[0].name;
+					}
+					break;
+
+				default:
+					output.value = target.value;
+				}
+			}, {
+				passive: true,
+			});
+		});
+	});
 
 	document.forms.ad.reset();
 	$('input, textarea', document.forms.ad).input(async ({target}) => {

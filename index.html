@@ -30,22 +30,23 @@
 		<meta name="twitter:image" content="https://i.imgur.com/rywt9g3.png" />
 		<!-- /Twitter -->
 		<!-- /Social data -->
-		<meta name="msapplication-TileColor" content="#008080" />
+		<meta name="msapplication-TileColor" content="#228282" />
 		<meta name="msapplication-config" content="/browserconfig.xml" />
-		<meta name="theme-color" content="#008080" />
+		<meta name="theme-color" content="#228282" />
 		<title itemprop="headline">Kern Valley Ads</title>
-		<script type="module" src="/js/index.js" async=""></script>
-		<script type="module" src="https://cdn.kernvalley.us/components/ad-block.js" async=""></script>
+		<!-- <script type="module" src="/js/index.js" async=""></script> -->
+		<script src="/js/index.min.js" async=""></script>
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="license" href="/LICENSE" />
 		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml" sizes="any" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/img/icon-32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/img/icon-16.png" />
-		<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#008080" />
+		<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#228282" />
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="preload" href="/img/icons.svg" as="image" type="image/svg+xml" />
-		<link rel="stylesheet" href="/css/index.css" media="all" />
+		<!-- <link rel="stylesheet" href="/css/index.css" media="all" /> -->
+		<link rel="stylesheet" href="/css/index.min.css" media="all" />
 	</head>
 	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
 		<header id="header" class="background-cover background-fixed"></header>
@@ -95,7 +96,8 @@
 						<label for="ad-image" class="block">
 							<b>Image</b>
 						</label>
-						<input type="file" id="ad-image" accept="image/*" name="image" required="" />
+						<input type="file" id="ad-image" accept="image/*" name="image" required="" hidden="" />
+						<output for="ad-image" value="Nothing selected">Nothing Selected</output>
 					</div>
 				</fieldset>
 				<button type="submit" class="btn btn-accept">Submit</button>
@@ -153,16 +155,26 @@
 					</a>
 				</div>
 			</div>
+			<button is="pwa-install" class="btn btn-primary btn-big btn-wide" src="/service-worker.js" scope="/" title="Install Web App" reloadonupdate="">
+				<svg class="icon current-color" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#system-software-install"></use>
+				</svg>
+				<span>Install</span>
+			</button>
 			<hr />
 			<div class="copyright">
-				<span>©</span>
-				<time itemprop="copyrightYear" is="current-year" datetime="2019-12-12T01:57:17.314Z">2019</time>
-				<span itemprop="copyrightHolder" itemtype="https://schema.org/Organization" itemscope="">
-					<a href="https://kernvalley.us" target="_blank" rel="external noopener" itemprop="url">
-						<span itemprop="name">KernValley.US</span>
-						<meta itemprop="logo" content="https://kernvalley.us/img/icon-192.png" />
-					</a>
-				</span>
+				<github-user user="kernvalley">
+					<h3 slot="header" class="center">Created By</h3>
+					<div slot="footer">
+						<span>©</span>
+						<time itemprop="copyrightYear">2020</time>
+						<span itemprop="copyrightHolder" itemtype="https://schema.org/Organization" itemscope="" hidden="">
+							<a href="https://kernvalley.us" target="_blank" rel="external noopener" itemprop="url">
+								<span itemprop="name">KernValley.US</span>
+							</a>
+						</span>
+					</div>
+				</github-user>
 			</div>
 		</footer>
 		<button type="button" is="share-button" class="round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App, KernValley.US sites and more!">
@@ -170,7 +182,7 @@
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
 		</button>
-		<toast-message id="terms">
+		<toast-message id="terms" backdrop="">
 			<div slot="content">
 				<h2 class="center">Currently not Avaialble</h2>
 				<p>This site is currently under development and nothing will be submitted <b>(Your credit card will not be charged)</b>.</p>
