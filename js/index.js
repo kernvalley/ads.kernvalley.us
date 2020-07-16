@@ -103,6 +103,28 @@ document.body.classList.toggle('no-details', document.createElement('details') i
 ready().then(async () => {
 	const $ads = $('ad-block');
 
+	$('output[for]').each(output => {
+		output.htmlFor.forEach(id => {
+			$(`#${CSS.escape(id)}`).change(({target}) => {
+				console.info(target);
+				switch(target.type) {
+				case 'file':
+					if (target.files.length === 0) {
+						output.value = 'Nothing Selected';
+					} else {
+						output.value = target.files[0].name;
+					}
+					break;
+
+				default:
+					output.value = target.value;
+				}
+			}, {
+				passive: true,
+			});
+		});
+	});
+
 	document.forms.ad.reset();
 	$('input, textarea', document.forms.ad).input(async ({target}) => {
 		if (target instanceof HTMLInputElement) {

@@ -3,38 +3,3 @@
   base = "./"
   publish = "./"
   command = "npm run build"
-  [build.environment]
-    GIT_LFS_ENABLED = "1"
-[[headers]]
-  for="/*"
-  [headers.values]
-    Link = '''
-      </css/index.css>; rel=preload; as=style, \
-      </js/index.js>; rel=preload; as=script, \
-      </img/icons.svg>; rel=preload; as=image
-    '''
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=31536000"
-    Content-Security-Policy = '''
-      default-src 'self';
-      base-uri 'self';
-      img-src 'self' blob: https://secure.gravatar.com/avatar/ https://i.imgur.com/ https://cdn.kernvalley.us;
-      script-src 'self' https://cdn.kernvalley.us;
-      style-src 'self' https://cdn.kernvalley.us;
-      connect-src 'self' https://cdn.kernvalley.us https://api.kernvalley.us;
-      worker-src: 'self';
-      font-src 'self' https://cdn.kernvalley.us;
-      media-src 'none';
-      object-src: 'none';
-      manifest-src 'self';
-      form-action 'self';
-      reflected-xss block;
-      block-all-mixed-content;
-      upgrade-insecure-requests;
-      disown-opener;'''
-# [[redirects]]
-  # from = ""
-  # to = ""
