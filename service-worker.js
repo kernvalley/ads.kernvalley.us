@@ -1,8 +1,8 @@
 'use strict';
 /* global config */
 /* eslint-env serviceworker */
-/* 1.0.1 */
-/* 2020-07-16T10:17 */
+/* 1.0.2 */
+/* 2020-07-16T13:48 */
 
 self.importScripts('/sw-config.js');
 
@@ -88,7 +88,6 @@ self.addEventListener('fetch', event => {
 self.addEventListener('push', event => {
 	const data = event.data.json();
 	if (('notification' in data) && Array.isArray(data.notification) && Notification.permission === 'granted') {
-
 		this.registration.showNotification(...data.notification);
 	}
 });
