@@ -106,7 +106,6 @@ ready().then(async () => {
 	$('output[for]').each(output => {
 		output.htmlFor.forEach(id => {
 			$(`#${CSS.escape(id)}`).change(({target}) => {
-				console.info(target);
 				switch(target.type) {
 				case 'file':
 					if (target.files.length === 0) {
@@ -182,7 +181,6 @@ ready().then(async () => {
 
 			default:
 				$ads.each(async ad => {
-					console.info({ad, name: target.name, value: target.value});
 					await $(`[slot="${target.name.toLowerCase()}"]`, ad).remove();
 					ad[target.name] = target.value;
 				});
@@ -206,4 +204,41 @@ ready().then(async () => {
 			callToAction: data.get('calltoaction'),
 		});
 	});
+
+	if (location.search !== '') {
+		const params = new URLSearchParams(location.search);
+		history.replaceState({}, document.title, location.origin);
+		console.info([...document.querySelectorAll('toast-message')].map(el => el.outerHTML));
+		customElements.whenDefined('toast-message').then(async () => {
+			console.info('<toast-message> defined');
+			console.info({form: document.forms.ad});
+			await Promise.all([...document.querySelectorAll('toast-message')].map(async el => {
+				await el.opened;
+				await el.closed;
+			}));
+
+			requestAnimationFrame(() => document.forms.ad.scrollIntoView({block: 'start', behavior: 'smooth'}));
+			console.info('Requested scroll');
+		});
+
+		$('input[name], textarea[name]', document.forms.ad).each(input => {
+			switch(input.name) {
+			case 'label':
+				input.value = params.get('title');
+				input.dispatchEvent(new Event('input'));
+				break;
+
+			case 'description':
+				input.value = params.get('text');
+				input.dispatchEvent(new Event('input'));
+				break;
+
+			case 'url':
+				input.value = params.get('url');
+				input.dispatchEvent(new Event('input'));
+				break;
+			}
+
+		});
+	}
 });
