@@ -1,0 +1,9 @@
+:root {
+	--accent-color-light: #228282;
+	--accent-color-dark: var(--accent-color-light);
+	--button-active-background: #006060;
+	--sidebar-max-width: 30vw;
+	--scrollbar-color: var(--accent-color);
+	--scrollbar-track: var(--primary-color);
+	--scrollbar-width: auto;
+}

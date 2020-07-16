@@ -1,11 +1,14 @@
+/* eslint-env node */
 module.exports = {
-	"map": {inline: false},
-	"plugins": [
-		require("postcss-import"),
-		require("postcss-url"),
+	map: {inline: false},
+	plugins: [
+		require('postcss-import'),
+		require('postcss-url'),
 		require('postcss-import-url'),
-		// require("postcss-cssnext"),
-		require("postcss-discard-comments"),
-		require("cssnano"),
+		require('postcss-preset-env'),
+		require('postcss-discard-comments'),
+		require('postcss-custom-properties'),
+		require('postcss-media-minmax'),
+		require('cssnano'),
 	]
 };

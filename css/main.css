@@ -3,6 +3,10 @@ main {
 	--link-decoration: underline;
 }
 
+form, fieldset {
+	overflow: auto;
+}
+
 .breach.card {
 	background: #c8c8c8;
 }
