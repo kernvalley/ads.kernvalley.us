@@ -65,7 +65,7 @@
     "babel-eslint": "^10.1.0",
     "cssnano": "^4.1.10",
     "cssnano-preset-default": "^4.0.7",
-    "eslint": "^7.6.0",
+    "eslint": "^7.7.0",
     "eslint-plugin-async-await": "0.0.0",
     "eslint-plugin-babel": "^5.3.1",
     "netlify-cli": "^2.59.0",
