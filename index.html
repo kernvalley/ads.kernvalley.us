@@ -72,25 +72,25 @@
 						<label for="ad-url" class="block">
 							<b>URL</b>
 						</label>
-						<input type="url" name="url" id="ad-url" placeholder="https://example.com/your-url" />
+						<input type="url" name="url" id="ad-url" class="input" placeholder="https://example.com/your-url" />
 					</div>
 					<div class="input-group">
 						<label for="ad-label" class="block">
 							<b>Label/Title</b>
 						</label>
-						<input type="text" id="ad-label" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" />
+						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" />
 					</div>
 					<div class="input-group">
 						<label for="ad-description" class="block">
 							<b>Descrition</b>
 						</label>
-						<textarea name="description" id="ad-description" maxlength="80" placeholder="Ad description" required=""></textarea>
+						<textarea name="description" id="ad-description" class="input" maxlength="80" placeholder="Ad description" required=""></textarea>
 					</div>
 					<div class="input-group">
 						<label for="ad-calltoaction" class="block">
 							<b>Call-to-Action</b>
 						</label>
-						<input type="text" id="ad-calltoaction" name="callToAction" maxlength="35" placeholder="Call to action" />
+						<input type="text" id="ad-calltoaction" class="input" name="callToAction" maxlength="35" placeholder="Call to action" />
 					</div>
 					<div class="input-group">
 						<label for="ad-image" class="block">
@@ -177,7 +177,7 @@
 				</github-user>
 			</div>
 		</footer>
-		<button type="button" is="share-button" class="round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App, KernValley.US sites and more!">
+		<button type="button" is="share-button" class="btn btn-primary round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App, KernValley.US sites and more!">
 			<svg class="current-color icon">
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
@@ -212,7 +212,9 @@
 					<li>
 						<a href="https://news.kernvalley.us" class="underline" rel="external noopener">Kern Valley News</a>
 					</li>
-					<li>Kern Valley Camping</li>
+					<li>
+						<a href="https://camping.kernvalley.us/" class="underline" rel="external noopener">Kern Valley Camping</a>
+					</li>
 					<li>Kern Valley Lodging</li>
 					<li>&hellip;&amp; more!</li>
 				</ul>
