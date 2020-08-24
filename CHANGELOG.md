@@ -15,10 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<github-user>`
 - `.nvmrc` for Node versioning
 - Implement as `share_target`
+- Google Anaytics
+- `htmlhint`
 
-### Updated
+### Changed
+- Dynamically load polyfill and Google Analytics scripts
 - Update linting to lint all resources
-- 
+-
 
 ### Fixed
 <!-- markdownlint-restore -->
