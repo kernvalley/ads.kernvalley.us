@@ -1,4 +1,4 @@
-import 'https://unpkg.com/@webcomponents/custom-elements@1.4.1/custom-elements.min.js';
+import 'https://unpkg.com/@webcomponents/custom-elements@1.4.2/custom-elements.min.js';
 import 'https://cdn.kernvalley.us/js/std-js/deprefixer.js';
 import 'https://cdn.kernvalley.us/js/std-js/shims.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
@@ -11,7 +11,15 @@ import 'https://cdn.kernvalley.us/components/pwa/install.js';
 import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/ad-block.js';
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+import { loadScript } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
+import { importGa } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
+import { pay } from './functions.js';
+import { GA } from './consts.js';
+
+if (typeof GA === 'string' && GA.length !== 0) {
+	importGa(GA);
+}
 
 setTimeout(() => document.getElementById('terms').show(), 1200);
 
@@ -19,88 +27,14 @@ if (! ('PaymentRequest' in window)) {
 	window.PaymentRequest = PaymentRequestShim;
 }
 
-async function pay({views = 500, price = 0.05} = {}) {
-	const terms = document.getElementById('terms');
-	const displayItems = [{
-		label: 'Ad design submission',
-		amount: {
-			currency: 'USD',
-			value: (views * price).toFixed(2),
-		}
-	},];
-	const paymentRequest = new PaymentRequest([{
-		supportedMethods: 'basic-card',
-		data: {
-			supportedNetworks: ['visa', 'mastercard','discover'],
-			supportedTypes: ['credit', 'debit']
-		}
-	}], {
-		displayItems,
-		total: {
-			label: 'Total Cost',
-			amount: {
-				currency: 'USD',
-				value: displayItems.reduce((sum, item) => sum + item.amount.value, 0),
-			}
-		},
-		// shippingOptions: [{
-		// 	id: 'standard',
-		// 	label: 'Standard shipping',
-		// 	amount: {
-		// 		currency: 'USD',
-		// 		value: '0.00'
-		// 	},
-		// 	selected: true
-		// }]
-	}, {
-		requestPayerName: true,
-		requestPayerEmail: true,
-		requestPayerPhone: true,
-		// requestShipping: true,
-	});
-
-	await customElements.whenDefined('toast-message');
-	navigator.setAppBadge(1).catch(console.error);
-	await terms.show();
-	await terms.closed;
-
-	if (await paymentRequest.canMakePayment()) {
-		try {
-			const paymentResponse = await paymentRequest.show();
-			paymentResponse.complete('success');
-			$('#payment-dialog').remove();
-			console.log(paymentResponse);
-			await customElements.whenDefined('toast-message');
-
-			// const resp = await fetch('http://localhost:8080/payment/', {
-			// 	method: 'POST',
-			// 	headers: new Headers({
-			// 		Accept: 'application/json',
-			// 		'Content-Type': 'application/json'
-			// 	}),
-			// 	mode: 'cors',
-			// 	body: JSON.stringify({paymentResponse, paymentRequest}),
-			// });
-			// const parsed = await resp.json();
-			console.info(paymentResponse);
-		} catch(err) {
-			console.error(err);
-			$('#payment-dialog').remove();
-			await customElements.whenDefined('toast-message');
-			const Toast = customElements.get('toast-message');
-			Toast.toast(err.message);
-		} finally {
-			$('#payment-dialog').remove();
-		}
-	}
-	navigator.clearApBadge().catch(console.error);
-}
-
 document.documentElement.classList.replace('no-js', 'js');
 document.body.classList.toggle('no-dialog', document.createElement('dialog') instanceof HTMLUnknownElement);
 document.body.classList.toggle('no-details', document.createElement('details') instanceof HTMLUnknownElement);
 
-ready().then(async () => {
+Promise.allSettled([
+	ready(),
+	loadScript('https://cdn.polyfill.io/v3/polyfill.min.js'),
+]).then(async () => {
 	const $ads = $('ad-block');
 
 	$('output[for]').each(output => {
