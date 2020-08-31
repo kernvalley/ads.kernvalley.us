@@ -73,7 +73,7 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-frontmatter": "0.0.8",
     "htmlhint": "^0.14.1",
-    "netlify-cli": "^2.59.1",
+    "netlify-cli": "^2.59.3",
     "postcss": "^7.0.32",
     "postcss-cli": "^7.1.1",
     "postcss-cssnext": "^3.1.0",
