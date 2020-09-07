@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.4]
+
 ### Added
 - Basic site setup
 - Dependabot
@@ -17,11 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement as `share_target`
 - Google Anaytics
 - `htmlhint`
+- Enable preloading of assets
 
 ### Changed
 - Dynamically load polyfill and Google Analytics scripts
 - Update linting to lint all resources
--
+
+### Fixed
+- Fix CSS for dark mode in build scripts
 
 ### Fixed
 <!-- markdownlint-restore -->
