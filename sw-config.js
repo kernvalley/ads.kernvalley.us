@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const config = {
-	version: '1.0.3',
+	version: '1.0.4',
 	fresh: [
 		'/',
 	].map(url => new URL(url, location.origin).href),
