@@ -18,7 +18,36 @@ import { pay } from './functions.js';
 import { GA } from './consts.js';
 
 if (typeof GA === 'string' && GA.length !== 0) {
-	importGa(GA);
+	importGa(GA).then(async () => {
+		/* global ga */
+		ga('create', GA, 'auto');
+		ga('set', 'transport', 'beacon');
+		ga('send', 'pageview');
+
+		function outbound() {
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'outbound',
+				eventAction: 'click',
+				eventLabel: this.href,
+				transport: 'beacon',
+			});
+		}
+
+		function madeCall() {
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'call',
+				eventLabel: 'Called',
+				transport: 'beacon',
+			});
+		}
+
+		await ready();
+
+		$('a[rel~="external"]').click(outbound, { passive: true, capture: true });
+		$('a[href^="tel:"]').click(madeCall, { passive: true, capture: true });
+	});
 }
 
 setTimeout(() => document.getElementById('terms').show(), 1200);
@@ -172,7 +201,6 @@ Promise.allSettled([
 				input.dispatchEvent(new Event('input'));
 				break;
 			}
-
 		});
 	}
 });
