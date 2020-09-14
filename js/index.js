@@ -16,41 +16,25 @@ import { importGa } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.j
 import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 import { pay } from './functions.js';
 import { GA } from './consts.js';
+import { outbound, madeCall } from './analytics.js';
 
 if (typeof GA === 'string' && GA.length !== 0) {
-	importGa(GA).then(async () => {
-		/* global ga */
-		ga('create', GA, 'auto');
-		ga('set', 'transport', 'beacon');
-		ga('send', 'pageview');
+	requestIdleCallback(() => {
+		importGa(GA).then(async () => {
+			/* global ga */
+			ga('create', GA, 'auto');
+			ga('set', 'transport', 'beacon');
+			ga('send', 'pageview');
 
-		function outbound() {
-			ga('send', {
-				hitType: 'event',
-				eventCategory: 'outbound',
-				eventAction: 'click',
-				eventLabel: this.href,
-				transport: 'beacon',
-			});
-		}
+			await ready();
 
-		function madeCall() {
-			ga('send', {
-				hitType: 'event',
-				eventCategory: 'call',
-				eventLabel: 'Called',
-				transport: 'beacon',
-			});
-		}
-
-		await ready();
-
-		$('a[rel~="external"]').click(outbound, { passive: true, capture: true });
-		$('a[href^="tel:"]').click(madeCall, { passive: true, capture: true });
+			$('a[rel~="external"]').click(outbound, { passive: true, capture: true });
+			$('a[href^="tel:"]').click(madeCall, { passive: true, capture: true });
+		});
 	});
 }
 
-setTimeout(() => document.getElementById('terms').show(), 1200);
+requestIdleCallback(() => document.getElementById('terms').show());
 
 if (! ('PaymentRequest' in window)) {
 	window.PaymentRequest = PaymentRequestShim;
@@ -171,7 +155,6 @@ Promise.allSettled([
 	if (location.search !== '') {
 		const params = new URLSearchParams(location.search);
 		history.replaceState({}, document.title, location.origin);
-		console.info([...document.querySelectorAll('toast-message')].map(el => el.outerHTML));
 		customElements.whenDefined('toast-message').then(async () => {
 			console.info('<toast-message> defined');
 			console.info({form: document.forms.ad});
