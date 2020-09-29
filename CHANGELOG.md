@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.5]
+
+### Added
+- Make submission form a `<form is="share-target">`
+
+### Changed
+- Use newer `<ad-block>` component
+
+### Fixed
+- Use updated rules for `eslint` (fixes `switch` indentation)
+
 ## [v1.0.4]
 
 ### Added
