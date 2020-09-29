@@ -1,7 +1,7 @@
 {
-  "name": "Kern Valley Ads",
-  "short_name": "KRV Ads",
-  "version": "1.0.1",
+  "name": "Test Kern Valley Ads",
+  "short_name": "Test KRV Ads",
+  "version": "1.0.2",
   "start_url": "/",
   "lang": "en",
   "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
@@ -24,8 +24,7 @@
   "screenshots": [{
     "src": "https://i.imgur.com/LRogmtyl.png",
     "sizes": "640x313",
-    "type": "image/png",
-    "purpose":"maskable any"
+    "type": "image/png"
   }],
   "categories": [
     "business",
@@ -37,9 +36,9 @@
   ],
   "shortcuts": [],
   "share_target": {
-    "title": "Create Ad",
-    "action": "/",
     "method": "GET",
+    "action": "/",
+    "enctype": "application/x-www-form-urlencoded",
     "params": {
       "title": "title",
       "text": "text",

@@ -10,12 +10,16 @@
         "ecmaVersion": 2018
     },
     "plugins": [
-      "async-await"
+      "async-await",
+      "frontmatter"
     ],
     "rules": {
         "indent": [
             2,
-            "tab"
+            "tab",
+            {
+              "SwitchCase": 1
+            }
         ],
         "quotes": [
             2,
