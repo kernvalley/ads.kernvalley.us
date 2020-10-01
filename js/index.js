@@ -73,14 +73,19 @@ Promise.allSettled([
 		});
 	});
 
+	$('select').change(({ target }) => {
+		$('ad-block img[slot="image"]').each(img => img.dataset[target.name] = target.value);
+	});
+
 	$('input, textarea', document.forms.ad).input(async ({ target }) => {
 		switch(target.name) {
 			case 'image':
 				loadImage(target.value).then(async img => {
 					await img.decode();
-					console.info(img.complete);
 					img.height = img.naturalHeight;
 					img.width = img.naturalWidth;
+					img.dataset.fit = document.getElementById('object-fit').value;
+					img.dataset.position = document.getElementById('object-position').value;
 					$ads.each(ad => ad.image = img.cloneNode());
 				});
 				break;
@@ -104,10 +109,16 @@ Promise.allSettled([
 		// await pay();
 		const data = new FormData(event.target);
 		const HTMLAdBlockElement = customElements.get('ad-block');
+		const img = await loadImage(data.get('image'));
+		await img.decode();
+		img.height = img.naturalHeight;
+		img.width = img.naturalWidth;
+		img.dataset.fit = data.get('fit');
+		img.dataset.position = data.get('position');
 		const ad = new HTMLAdBlockElement({
 			label: data.get('label'),
 			description: data.get('description'),
-			image: data.get('image'),
+			image: img,
 			callToAction: data.get('callToAction'),
 		});
 		ad.url = data.get('url');
@@ -117,8 +128,14 @@ Promise.allSettled([
 				body: 'What next?',
 				icon: '/img/favicon.svg',
 				vibrate: [500, 0, 500],
+				requireInteraction: true,
 				data: {
 					html: ad.outerHTML,
+					label: data.get('label'),
+					url: data.get('url'),
+					description: data.get('description'),
+					callToAction: data.get('callToAction'),
+					image: data.get('image'),
 				},
 				actions: [{
 					title: 'Copy',
@@ -127,15 +144,19 @@ Promise.allSettled([
 					title: 'Download',
 					action: 'download',
 				}, {
+					title: 'Share',
+					action: 'share',
+				}, {
 					title: 'Close',
 					action: 'close',
 				}]
 			}).addEventListener('notificationclick', ({ action, target }) => {
+				const { html, label } = target.data;
+
 				switch(action) {
 					case 'copy':
-						Promise.resolve(target.data.html).then(async html => {
+						Promise.resolve(html).then(async html => {
 							await navigator.clipboard.writeText(html);
-							target.close();
 							alert('HTML for ad copied to clipboard');
 						}).catch(err => {
 							console.error(err);
@@ -144,7 +165,7 @@ Promise.allSettled([
 						break;
 
 					case 'download':
-						Promise.resolve(target.data.html).then(async html => {
+						Promise.resolve(html).then(async html => {
 							const file = new File([html], 'ad.html', { type: 'text/html' });
 							const url = URL.createObjectURL(file);
 							const a = document.createElement('a');
@@ -156,13 +177,31 @@ Promise.allSettled([
 							try {
 								a.click();
 								a.remove();
-								target.close();
 							} catch(err) {
 								console.error(err);
 							}
 						}).catch(err => {
 							console.error(err);
 							alert('Error saving HTML for ad');
+						});
+						break;
+
+					case 'share':
+						Promise.resolve({
+							title: label,
+							text: html,
+							files: [new File([html], 'ad.html', { type: 'text/html' })],
+						}).then(async ({ title, text, files }) => {
+							if (! (navigator.canShare instanceof Function)) {
+								throw new Error('Share API not supported');
+							} else if (navigator.canShare({ title, text, files })) {
+								await navigator.share({ title, text, files });
+							} else {
+								await navigator.share({ title, text });
+							}
+						}).catch(err => {
+							console.error(err);
+							alert('Share failed');
 						});
 						break;
 

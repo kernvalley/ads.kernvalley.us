@@ -76,35 +76,58 @@
 				</ad-block>
 				<fieldset>
 					<legend>Build Your Ad</legend>
-					<div class="input-group">
+					<div class="form-group">
 						<label for="ad-url" class="block">
 							<b>URL</b>
 						</label>
 						<input type="url" name="url" id="ad-url" class="input" placeholder="https://example.com/your-url" data-share-field="url" />
 					</div>
-					<div class="input-group">
+					<div class="form-group">
 						<label for="ad-label" class="block">
 							<b>Label/Title</b>
 						</label>
 						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" data-share-field="title" />
 					</div>
-					<div class="input-group">
+					<div class="form-group">
 						<label for="ad-description" class="block">
 							<b>Descrition</b>
 						</label>
 						<textarea name="description" id="ad-description" class="input" maxlength="150" placeholder="Ad description" data-share-field="text" rows="5" required=""></textarea>
 					</div>
-					<div class="input-group">
+					<div class="form-group">
 						<label for="ad-calltoaction" class="block">
 							<b>Call-to-Action</b>
 						</label>
 						<input type="text" id="ad-calltoaction" class="input" name="callToAction" maxlength="35" placeholder="Call to action" />
 					</div>
-					<div class="input-group">
+					<div class="form-group">
 						<label for="ad-image" class="block">
-							<b>Image</b>
+							<b>Image URL</b>
 						</label>
-						<input type="url" id="ad-image" name="image" placeholder="https://example.com/img.jpg" required="" />
+						<input type="url" id="ad-image" class="input" name="image" placeholder="https://example.com/img.jpg" required="" />
+					</div>
+					<div class="form-group">
+						<label for="object-fit" class="block">
+							<b>Image Fit</b>
+						</label>
+						<select name="fit" id="object-fit" class="input" required="">
+							<option value="contain">Contain</option>
+							<option value="cover" checked="">Cover</option>
+							<option value="fill">Fill</option>
+							<option value="scale-down">Scale Down</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="object-position" class="block">
+							<b>Image Position</b>
+						</label>
+						<select name="position" id="object-position" class="input" required="">
+							<option value="center" checked="">Center</option>
+							<option value="top">Top</option>
+							<option value="bottom">Bottom</option>
+							<option value="left">Left</option>
+							<option value="right">Right</option>
+						</select>
 					</div>
 				</fieldset>
 				<button type="submit" class="btn btn-accept">Submit</button>
