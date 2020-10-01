@@ -73,14 +73,19 @@ Promise.allSettled([
 		});
 	});
 
+	$('select').change(({ target }) => {
+		$('ad-block img[slot="image"]').each(img => img.dataset[target.name] = target.value);
+	});
+
 	$('input, textarea', document.forms.ad).input(async ({ target }) => {
 		switch(target.name) {
 			case 'image':
 				loadImage(target.value).then(async img => {
 					await img.decode();
-					console.info(img.complete);
 					img.height = img.naturalHeight;
 					img.width = img.naturalWidth;
+					img.dataset.fit = document.getElementById('object-fit').value;
+					img.dataset.position = document.getElementById('object-position').value;
 					$ads.each(ad => ad.image = img.cloneNode());
 				});
 				break;
@@ -104,10 +109,16 @@ Promise.allSettled([
 		// await pay();
 		const data = new FormData(event.target);
 		const HTMLAdBlockElement = customElements.get('ad-block');
+		const img = await loadImage(data.get('image'));
+		await img.decode();
+		img.height = img.naturalHeight;
+		img.width = img.naturalWidth;
+		img.dataset.fit = data.get('fit');
+		img.dataset.position = data.get('position');
 		const ad = new HTMLAdBlockElement({
 			label: data.get('label'),
 			description: data.get('description'),
-			image: data.get('image'),
+			image: img,
 			callToAction: data.get('callToAction'),
 		});
 		ad.url = data.get('url');
