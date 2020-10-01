@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.1] - 2020-10-01
+
+### Added
+- Handle fitting and positioning of `<ad-block>` images
+- Add option to share (with file where supported) on form submission
+
 ## [v1.1.0]
 
 ### Changed
