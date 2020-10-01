@@ -157,7 +157,6 @@ Promise.allSettled([
 					case 'copy':
 						Promise.resolve(html).then(async html => {
 							await navigator.clipboard.writeText(html);
-							target.close();
 							alert('HTML for ad copied to clipboard');
 						}).catch(err => {
 							console.error(err);
@@ -178,7 +177,6 @@ Promise.allSettled([
 							try {
 								a.click();
 								a.remove();
-								target.close();
 							} catch(err) {
 								console.error(err);
 							}
