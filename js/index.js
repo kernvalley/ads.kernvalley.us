@@ -128,6 +128,7 @@ Promise.allSettled([
 				body: 'What next?',
 				icon: '/img/favicon.svg',
 				vibrate: [500, 0, 500],
+				requireInteraction: true,
 				data: {
 					html: ad.outerHTML,
 				},
@@ -138,13 +139,18 @@ Promise.allSettled([
 					title: 'Download',
 					action: 'download',
 				}, {
+					title: 'Share',
+					action: 'share',
+				}, {
 					title: 'Close',
 					action: 'close',
 				}]
 			}).addEventListener('notificationclick', ({ action, target }) => {
+				const html = target.data.html;
+
 				switch(action) {
 					case 'copy':
-						Promise.resolve(target.data.html).then(async html => {
+						Promise.resolve(html).then(async html => {
 							await navigator.clipboard.writeText(html);
 							target.close();
 							alert('HTML for ad copied to clipboard');
@@ -155,7 +161,7 @@ Promise.allSettled([
 						break;
 
 					case 'download':
-						Promise.resolve(target.data.html).then(async html => {
+						Promise.resolve(html).then(async html => {
 							const file = new File([html], 'ad.html', { type: 'text/html' });
 							const url = URL.createObjectURL(file);
 							const a = document.createElement('a');
@@ -174,6 +180,25 @@ Promise.allSettled([
 						}).catch(err => {
 							console.error(err);
 							alert('Error saving HTML for ad');
+						});
+						break;
+
+					case 'share':
+						Promise.resolve({
+							title: data.get('label'),
+							text: html,
+							files: [new File([html], 'ad.html', { type: 'text/html' })],
+						}).then(async ({ title, text, files }) => {
+							if (! (navigator.canShare instanceof Function)) {
+								throw new Error('Share API not supported');
+							} else if (navigator.canShare({ title, text, files })) {
+								await navigator.share({ title, text, files });
+							} else {
+								await navigator.share({ title, text });
+							}
+						}).catch(err => {
+							console.error(err);
+							alert('Share failed');
 						});
 						break;
 
