@@ -13,7 +13,7 @@ import 'https://cdn.kernvalley.us/components/ad/block.js';
 import 'https://cdn.kernvalley.us/components/share-target.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
-import { loadScript } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
+import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
@@ -73,71 +73,12 @@ Promise.allSettled([
 		});
 	});
 
-	$('input, textarea', document.forms.ad).input(async ({target}) => {
-		if (target instanceof HTMLInputElement) {
-			switch(target.type) {
-				case 'file':
-					if (target.files.length === 1) {
-						const file = target.files.item(0);
-
-						switch(file.type) {
-							case 'image/svg+xml':
-								file.text().then(async svg  => {
-									const parser = new DOMParser();
-									const {documentElement} = parser.parseFromString(svg, 'image/svg+xml');
-									if (! documentElement.hasAttribute('viewBox') && ['width', 'height'].every(attr => documentElement.hasAttribute(attr))) {
-										const {width, height} = documentElement;
-										documentElement.setAttribute('viewBox', `0 0 ${parseInt(width.value) || 16} ${parseInt(height.value) || 16}`);
-									}
-									$('[style]', documentElement).each(el => el.removeAttribute('style'));
-									documentElement.removeAttribute('height');
-									documentElement.removeAttribute('width');
-									documentElement.classList.add('current-color');
-									documentElement.slot = 'image';
-									$ads.each(async ad => {
-										await $('[slot="image"]', ad).remove();
-										ad.append(documentElement.cloneNode(true));
-									});
-								});
-								break;
-
-							case 'image/jpeg':
-							case 'image/png':
-							case 'image/webp':
-								file.arrayBuffer().then(async buffer => {
-									const blob = URL.createObjectURL(new Blob([buffer], {type: file.type}));
-									const img = new Image();
-									img.addEventListener('error', console.error);
-									img.src = blob;
-									img.slot = 'image';
-									await img.decode();
-
-									$ads.each(async ad => {
-										await $('[slot="image"]', ad).remove();
-										ad.append(img.cloneNode());
-									});
-								});
-								break;
-
-							default:
-								alert(`Invalid image type: ${file.type}`);
-								target.value = '';
-								target.focus();
-						}
-					}
-					break;
-
-				default:
-					$ads.each(async ad => {
-						await $(`[slot="${target.name.toLowerCase()}"]`, ad).remove();
-						ad[target.name] = target.value;
-					});
-			}
+	$('input, textarea', document.forms.ad).input(async ({ target }) => {
+		if (target.name === 'image') {
+			const img = await loadImage(target.value);
+			$ads.each(ad => ad.image = img.cloneNode());
 		} else {
-			$ads.each(async ad => {
-				await $(`[slot="${target.name}"]`, ad).remove();
-				ad[target.name] = target.value;
-			});
+			$ads.each(async ad => ad[target.name] = target.value);
 		}
 	});
 

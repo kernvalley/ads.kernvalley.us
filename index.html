@@ -92,7 +92,7 @@
 						<label for="ad-description" class="block">
 							<b>Descrition</b>
 						</label>
-						<textarea name="description" id="ad-description" class="input" maxlength="80" placeholder="Ad description" data-share-field="text" required=""></textarea>
+						<textarea name="description" id="ad-description" class="input" maxlength="150" placeholder="Ad description" data-share-field="text" rows="5" required=""></textarea>
 					</div>
 					<div class="input-group">
 						<label for="ad-calltoaction" class="block">
@@ -104,8 +104,7 @@
 						<label for="ad-image" class="block">
 							<b>Image</b>
 						</label>
-						<input type="file" id="ad-image" accept="image/*" name="image" required="" hidden="" />
-						<output for="ad-image" value="Nothing selected">Nothing Selected</output>
+						<input type="url" id="ad-image"  name="image" required="" />
 					</div>
 				</fieldset>
 				<button type="submit" class="btn btn-accept">Submit</button>
