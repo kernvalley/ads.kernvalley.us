@@ -74,11 +74,28 @@ Promise.allSettled([
 	});
 
 	$('input, textarea', document.forms.ad).input(async ({ target }) => {
-		if (target.name === 'image') {
-			const img = await loadImage(target.value);
-			$ads.each(ad => ad.image = img.cloneNode());
-		} else {
-			$ads.each(async ad => ad[target.name] = target.value);
+		switch(target.name) {
+			case 'image':
+				loadImage(target.value).then(async img => {
+					await img.decode();
+					console.info(img.complete);
+					img.height = img.naturalHeight;
+					img.width = img.naturalWidth;
+					$ads.each(ad => ad.image = img.cloneNode());
+				});
+				break;
+
+			case 'url':
+				Promise.resolve(new URL(target.value)).then(url => {
+					url.searchParams.set('utm_source', 'kv-ad');
+					url.searchParams.set('utm_medium', 'web');
+					url.searchParams.set('utm_campaign', 'kv-ad');
+					$ads.each(ad => ad.url = url);
+				});
+				break;
+
+			default:
+				$ads.each(async ad => ad[target.name] = target.value);
 		}
 	});
 
