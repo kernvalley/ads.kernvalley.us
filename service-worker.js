@@ -2,7 +2,7 @@
 /* global config */
 /* eslint-env serviceworker */
 /* 1.0.2 */
-/* 2020-07-16T13:48 */
+/* 2020-10-01T12:12 */
 
 self.importScripts('/sw-config.js');
 
