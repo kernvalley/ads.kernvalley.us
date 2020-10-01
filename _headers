@@ -3,3 +3,4 @@
 
 /service-worker.js
   Content-Security-Policy: default-src 'self'; connect-src *;
+  Link: </sw-config.js> rel=preload; as=script
