@@ -131,6 +131,11 @@ Promise.allSettled([
 				requireInteraction: true,
 				data: {
 					html: ad.outerHTML,
+					label: data.get('label'),
+					url: data.get('url'),
+					description: data.get('description'),
+					callToAction: data.get('callToAction'),
+					image: data.get('image'),
 				},
 				actions: [{
 					title: 'Copy',
@@ -146,7 +151,7 @@ Promise.allSettled([
 					action: 'close',
 				}]
 			}).addEventListener('notificationclick', ({ action, target }) => {
-				const html = target.data.html;
+				const { html, label } = target.data;
 
 				switch(action) {
 					case 'copy':
@@ -185,7 +190,7 @@ Promise.allSettled([
 
 					case 'share':
 						Promise.resolve({
-							title: data.get('label'),
+							title: label,
 							text: html,
 							files: [new File([html], 'ad.html', { type: 'text/html' })],
 						}).then(async ({ title, text, files }) => {
