@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.0]
+
+### Changed
+- Update to use new `<ad-block>` component
+- Set ad image by URL
+- Update CSP and preloading
+
 ## [v1.0.5]
 
 ### Added
