@@ -64,7 +64,7 @@
 		</nav>
 		<main id="main" class="card shadow">
 			<form name="ad" is="share-target">
-				<ad-block>
+				<ad-block id="main-preview">
 					<label for="ad-label" slot="label">Ad label / title</label>
 					<label for="ad-image" slot="image" class="block">
 						<svg class="current-color" viewBox="0 0 12 16" height="80" fill="currentColor">
@@ -101,6 +101,22 @@
 						<input type="text" id="ad-calltoaction" class="input" name="callToAction" maxlength="35" placeholder="Call to action" />
 					</div>
 					<div class="form-group">
+						<label for="layout" class="block">Layout</label>
+						<select name="layout" id="layout" class="input" required="">
+							<option value="card" checked="">Card</option>
+							<option value="stack">Stacked</option>
+							<option value="text">Text Only</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="theme" class="block">Theme</label>
+						<select name="theme" id="theme" class="input" required="">
+							<option value="auto" checked="">Auto</option>
+							<option value="light">Light</option>
+							<option value="dark">Dark</option>
+						</select>
+					</div>
+					<div class="form-group">
 						<label for="ad-image" class="block">
 							<b>Image URL</b>
 						</label>
@@ -110,7 +126,7 @@
 						<label for="object-fit" class="block">
 							<b>Image Fit</b>
 						</label>
-						<select name="fit" id="object-fit" class="input" required="">
+						<select name="imageFit" id="object-fit" class="input" required="">
 							<option value="contain">Contain</option>
 							<option value="cover" checked="">Cover</option>
 							<option value="fill">Fill</option>
@@ -121,7 +137,7 @@
 						<label for="object-position" class="block">
 							<b>Image Position</b>
 						</label>
-						<select name="position" id="object-position" class="input" required="">
+						<select name="imagePosition" id="object-position" class="input" required="">
 							<option value="center" checked="">Center</option>
 							<option value="top">Top</option>
 							<option value="bottom">Bottom</option>
@@ -137,10 +153,10 @@
 		<aside id="sidebar" class="card shadow">
 			<h2>Previews</h2>
 			<h3 class="center">Dark Theme</h3>
-			<ad-block theme="dark"></ad-block>
+			<ad-block theme="dark" id="dark-preview"></ad-block>
 			<hr />
 			<h3 class="center">Light Theme</h3>
-			<ad-block theme="light"></ad-block>
+			<ad-block theme="light" id="light-preview"></ad-block>
 		</aside>
 		<footer id="footer">
 			<div class="social-links cols-2">

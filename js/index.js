@@ -77,30 +77,31 @@ Promise.allSettled([
 		$('ad-block img[slot="image"]').each(img => img.dataset[target.name] = target.value);
 	});
 
-	$('input, textarea', document.forms.ad).input(async ({ target }) => {
-		switch(target.name) {
-			case 'image':
-				loadImage(target.value).then(async img => {
-					await img.decode();
-					img.height = img.naturalHeight;
-					img.width = img.naturalWidth;
-					img.dataset.fit = document.getElementById('object-fit').value;
-					img.dataset.position = document.getElementById('object-position').value;
-					$ads.each(ad => ad.image = img.cloneNode());
-				});
-				break;
+	$('input, textarea, select', document.forms.ad).input(async ({ target }) => {
+		if (target.name === 'layout') {
+			console.info({ target });
+			$('#ad-image').attr({
+				disabled: target.value === 'text',
+				required: target.value !== 'text',
+			});
 
-			case 'url':
-				Promise.resolve(new URL(target.value)).then(url => {
-					url.searchParams.set('utm_source', 'kv-ad');
-					url.searchParams.set('utm_medium', 'web');
-					url.searchParams.set('utm_campaign', 'kv-ad');
-					$ads.each(ad => ad.url = url);
-				});
-				break;
+			$('#object-fit').attr({
+				disabled: target.value === 'text',
+				required: target.value !== 'text',
+			});
 
-			default:
-				$ads.each(async ad => ad[target.name] = target.value);
+			$('#object-position').attr({
+				disabled: target.value === 'text',
+				required: target.value !== 'text',
+			});
+
+			$ads.each(async ad => ad[target.name] = target.value);
+		} else if (target.name === 'theme' && target.value === 'auto') {
+			$('#dark-preview').attr({ theme: 'dark' });
+			$('#light-preview').attr({ theme: 'light' });
+			$('#main-preview').attr({ theme: 'auto' });
+		} else {
+			$ads.each(async ad => ad[target.name] = target.value);
 		}
 	});
 
@@ -109,19 +110,31 @@ Promise.allSettled([
 		// await pay();
 		const data = new FormData(event.target);
 		const HTMLAdBlockElement = customElements.get('ad-block');
-		const img = await loadImage(data.get('image'));
-		await img.decode();
-		img.height = img.naturalHeight;
-		img.width = img.naturalWidth;
-		img.dataset.fit = data.get('fit');
-		img.dataset.position = data.get('position');
+
 		const ad = new HTMLAdBlockElement({
 			label: data.get('label'),
 			description: data.get('description'),
-			image: img,
 			callToAction: data.get('callToAction'),
+			theme: data.get('theme'),
+			layout: data.get('layout'),
+			imagePosition: data.get('imagePosition'),
+			imageFit: data.get('imageFit'),
 		});
+
 		ad.url = data.get('url');
+		ad.layout = data.get('layout');
+		ad.theme = data.get('theme');
+
+		if (data.has('image') && data.get('layout') !== 'text') {
+			ad.imagePosition = data.get('imagePosition');
+			ad.imageFit = data.get('imageFit');
+			const img = await loadImage(data.get('image'));
+			await img.decode();
+			img.height = img.naturalHeight;
+			img.width = img.naturalWidth;
+			ad.image = img;
+		}
+
 		await ad.ready;
 		setTimeout(() => {
 			new HTMLNotificationElement('Ad Created', {
