@@ -24,10 +24,10 @@ img.avatar {
 	margin-left: 1.2em;
 }
 
-.input-group input, .input-group textarea {
-	background: inherit;
-	color: inherit;
+.input:disabled {
+	opacity: 0.7;
+}
+
+.form-group {
 	border: none;
-	border-bottom: 1px solid currentColor;
-	margin-bottom: 1.6em;
 }

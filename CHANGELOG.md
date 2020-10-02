@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.2] - 2020-10-02
+
+### Added
+- Handle theme and layout options
+
+### Changed
+- Update image fit & position propertry handling
+
 ## [v1.1.1] - 2020-10-01
 
 ### Added
