@@ -125,7 +125,7 @@ Promise.allSettled([
 		ad.layout = data.get('layout');
 		ad.theme = data.get('theme');
 
-		if (data.get('image') && data.get('layout') !== 'text') {
+		if (data.has('image') && data.get('layout') !== 'text') {
 			ad.imagePosition = data.get('imagePosition');
 			ad.imageFit = data.get('imageFit');
 			const img = await loadImage(data.get('image'));
