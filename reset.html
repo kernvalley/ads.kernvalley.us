@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="robots" content="nofollow,noindex" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Web App Reset</title>
+		<script src="/js/reset.js" referrerpolicy="no-referrer" async="" defer=""></script>
+	</head>
+	<body>
+		<div id="container">
+			<h1>Web App Reset</h1>
+			<blockquote>
+				This page is exclusively for clearing data saved by this web app.
+				If you were instructed to navigate to this page, it is most likely because
+				your browser was storing data that resulted in errors that could not be resolved
+				without clearing that data.
+			</blockquote>
+			<p>If supported, simply by visiting this page your browser has already cleared:</p>
+			<ul>
+				<li>Cookies</li>
+				<li>Local &amp; Session Storage</li>
+				<li>HTTP Cache</li>
+				<li>Any Registered Service Workers</li>
+				<li>Service Worker Cache</li>
+				<li>IndexedDB databases</li>
+			</ul>
+			<p>
+				<b>Note:</b> If you are using a browser that supports the <code>Clear-Site-Data</code>
+				HTTP header, you do not need to take any further action. As of <time datetime="2020-10-03">Oct. 2020</time>, this is supported in the latest versions of:
+				<ul>
+					<li>Google Chrome 61+</li>
+					<li>Mozilla Firefox 63+</li>
+					<li>Microsoft Edge 79+ (<i>based on Chromium</i>)</li>
+				</ul>
+				It is not supported in:
+				<ul>
+					<li>Safari (<i>any version</i>)</li>
+					<li>Internet Explorer (<i>all versions</i>)</li>
+					<li>Chrome &lt; 61 (<i>Sep. 2017</i>)</li>
+					<li>Firefox &lt; 63 (<i>Sep. 2018/</i>)</li>
+					<li>Edge &lt; 79 (<i>Jan. 2020</i>)</li>
+				</ul>
+			</p>
+			<div>
+				<p>
+					If you are using an unsupported browser or you'd simply like to
+					be extra sure data is cleared, you may manually clear some data by clicking the
+					button below.
+				</p>
+				<div>
+					<button id="reset-btn" disabled="">Clear storage &amp; Service Worker</button>
+					<span>or</span>
+					<a href="/" title="Go Home">Go to Home Page</a>
+				</div>
+			</div>
+		</div>
+		<noscript>
+			<p>
+				It appears that you have JavaScript disabled. Please enable JavaScript for
+				your browser or go back to the <a href="/" title="Home Page">Home Page</a>.
+			</p>
+		</noscript>
+	</body>
+</html> 
