@@ -1,6 +1,10 @@
 /
   Content-Security-Policy: default-src 'self'; style-src 'self' https://cdn.kernvalley.us https://unpkg.com/@webcomponents/; script-src 'self' https://cdn.kernvalley.us https://cdn.polyfill.io/v3/polyfill.min.js https://unpkg.com/@webcomponents/; img-src https: blob:; font-src https://cdn.kernvalley.us/; connect-src 'self' https://cdn.kernvalley.us https://api.kernvalley.us https://api.github.com/users/; manifest-src 'self';
 
+/reset
+  Clear-Site-Data: *
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.kernvalley.us;
+
 /service-worker.js
   Content-Security-Policy: default-src 'self'; connect-src *;
   Link: </sw-config.js> rel=preload; as=script
