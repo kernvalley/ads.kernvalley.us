@@ -15,7 +15,7 @@ import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/no
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
-import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
+// import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
 import { GA } from './consts.js';
 import { outbound, madeCall } from './analytics.js';
@@ -38,9 +38,9 @@ if (typeof GA === 'string' && GA.length !== 0) {
 
 // requestIdleCallback(() => document.getElementById('terms').show());
 
-if (! ('PaymentRequest' in window)) {
-	window.PaymentRequest = PaymentRequestShim;
-}
+// if (! ('PaymentRequest' in window)) {
+// 	window.PaymentRequest = PaymentRequestShim;
+// }
 
 document.documentElement.classList.replace('no-js', 'js');
 document.body.classList.toggle('no-dialog', document.createElement('dialog') instanceof HTMLUnknownElement);
@@ -79,7 +79,6 @@ Promise.allSettled([
 
 	$('input, textarea, select', document.forms.ad).input(async ({ target }) => {
 		if (target.name === 'layout') {
-			console.info({ target });
 			$('#ad-image').attr({
 				disabled: target.value === 'text',
 				required: target.value !== 'text',
@@ -93,6 +92,21 @@ Promise.allSettled([
 			$('#object-position').attr({
 				disabled: target.value === 'text',
 				required: target.value !== 'text',
+			});
+
+			$('#ad-label').attr({
+				disabled: target.value === 'image',
+				required: target.value !== 'image',
+			});
+
+			$('#ad-description').attr({
+				disabled: target.value === 'image',
+				required: target.value !== 'image',
+			});
+
+			$('#ad-calltoaction').attr({
+				disabled: target.value === 'image',
+				required: target.value !== 'image',
 			});
 
 			$ads.each(async ad => ad[target.name] = target.value);
@@ -132,10 +146,13 @@ Promise.allSettled([
 			await img.decode();
 			img.height = img.naturalHeight;
 			img.width = img.naturalWidth;
+			img.loading = 'lazy';
 			ad.image = img;
 		}
 
 		await ad.ready;
+
+		await $('[part]', ad).attr({ part: null });
 		setTimeout(() => {
 			new HTMLNotificationElement('Ad Created', {
 				body: 'What next?',
