@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.3] - 2020-10-04
+
 ### Added
 - `/reset` page for clearing all data
+
+### Changed
+- Misc. updates to work with `<ad-block>` updates
 
 ## [v1.1.2] - 2020-10-02
 
