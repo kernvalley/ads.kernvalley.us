@@ -77,9 +77,27 @@ Promise.allSettled([
 		$('ad-block img[slot="image"]').each(img => img.dataset[target.name] = target.value);
 	});
 
+	$('#ad-image-file').change(({ target }) => {
+		if (target.files.length === 1) {
+			const reader = new FileReader();
+			reader.addEventListener('load', ({ target: { result }}) => {
+				const img = document.getElementById('ad-image');
+				img.value = result;
+				target.value = null;
+				$ads.each(ad => ad.image = result);
+			});
+			reader.readAsDataURL(target.files.item(0));
+		}
+	});
+
 	$('input, textarea, select', document.forms.ad).input(async ({ target }) => {
 		if (target.name === 'layout') {
 			$('#ad-image').attr({
+				disabled: target.value === 'text',
+				required: target.value !== 'text',
+			});
+
+			$('#ad-image-file').attr({
 				disabled: target.value === 'text',
 				required: target.value !== 'text',
 			});
@@ -114,6 +132,8 @@ Promise.allSettled([
 			$('#dark-preview').attr({ theme: 'dark' });
 			$('#light-preview').attr({ theme: 'light' });
 			$('#main-preview').attr({ theme: 'auto' });
+		} else if (target.name === 'url') {
+			// Do nothing.
 		} else {
 			$ads.each(async ad => ad[target.name] = target.value);
 		}
