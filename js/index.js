@@ -129,6 +129,18 @@ Promise.allSettled([
 		}
 	});
 
+	$('form[name="ad"]').reset(() => {
+		$('.ad-preview > [slot]').remove();
+		$('#light-preview').attr({ theme: 'light' });
+		$('#dark-preview').attr({ theme: 'dark' });
+		$('#main-preview').attr({ theme: 'auto' });
+		$ads.attr({
+			layout: 'card',
+			imagefit: 'cover',
+			imageposition: 'center',
+		});
+	});
+
 	$('form[name="ad"]').submit(async event => {
 		event.preventDefault();
 		// await pay();
@@ -253,14 +265,14 @@ Promise.allSettled([
 	});
 
 	Promise.resolve(new FormData(document.forms.ad)).then(data => {
-		$ads.each(ad => ad.image = data.get('image'));
-		$ads.each(ad => ad.imageFit = data.get('imageFit'));
-		$ads.each(ad => ad.imagePosition = data.get('imagePosition'));
-		$ads.each(ad => ad.callToActoin = data.get('callToAction'));
+		$ads.each(ad => ad.image = data.get('image') || null);
+		$ads.each(ad => ad.imageFit = data.get('imageFit') || null);
+		$ads.each(ad => ad.imagePosition = data.get('imagePosition') || null);
+		$ads.each(ad => ad.callToActoin = data.get('callToAction') || null);
 		$ads.each(ad => ad.layout = data.get('layout'));
 
 		if (data.get('theme') !== 'auto') {
-			$ads.each(ad => ad.theme = data.get('theme'));
+			$ads.each(ad => ad.theme = data.get('theme') || null);
 		}
 	});
 });

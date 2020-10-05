@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `<input type="file">` for handling images by file instead of URL
+- Handle resetting for ad form
 
 ### Changed
 - Update app screenshot
