@@ -77,46 +77,69 @@ Promise.allSettled([
 		$('ad-block img[slot="image"]').each(img => img.dataset[target.name] = target.value);
 	});
 
-	$('input, textarea, select', document.forms.ad).input(async ({ target }) => {
-		if (target.name === 'layout') {
-			$('#ad-image').attr({
-				disabled: target.value === 'text',
-				required: target.value !== 'text',
+	$('#ad-image-file').change(({ target }) => {
+		if (target.files.length === 1) {
+			$('#ad-image').attr({ type: 'text' });
+			const worker = new Worker('/js/imgWorker.js');
+			worker.postMessage({
+				type: 'update',
+				file: target.files.item(0),
 			});
 
-			$('#object-fit').attr({
-				disabled: target.value === 'text',
-				required: target.value !== 'text',
+			worker.addEventListener('message', ({ data }) => {
+				const img = document.getElementById('ad-image');
+				img.value = data.dataUri;
+				target.value = null;
+				$ads.each(ad => ad.image = data.objectUrl);
+				worker.terminate();
 			});
-
-			$('#object-position').attr({
-				disabled: target.value === 'text',
-				required: target.value !== 'text',
-			});
-
-			$('#ad-label').attr({
-				disabled: target.value === 'image',
-				required: target.value !== 'image',
-			});
-
-			$('#ad-description').attr({
-				disabled: target.value === 'image',
-				required: target.value !== 'image',
-			});
-
-			$('#ad-calltoaction').attr({
-				disabled: target.value === 'image',
-				required: target.value !== 'image',
-			});
-
-			$ads.each(async ad => ad[target.name] = target.value);
-		} else if (target.name === 'theme' && target.value === 'auto') {
-			$('#dark-preview').attr({ theme: 'dark' });
-			$('#light-preview').attr({ theme: 'light' });
-			$('#main-preview').attr({ theme: 'auto' });
-		} else {
-			$ads.each(async ad => ad[target.name] = target.value);
 		}
+	});
+
+	$('input[name], textarea[name], select[name]', document.forms.ad).input(async ({ target }) => {
+		switch(target.name) {
+			case 'layout':
+				$('#ad-image').attr({ disabled: target.value === 'text' });
+				$('#ad-image-file').attr({ disabled: target.value === 'text' });
+				$('#object-fit').attr({ disabled: target.value === 'text' });
+				$('#object-position').attr({ disabled: target.value === 'text' });
+				$('#ad-label').attr({ disabled: target.value === 'image' });
+				$('#ad-description').attr({ disabled: target.value === 'image' });
+				$('#ad-calltoaction').attr({ disabled: target.value === 'image' });
+
+				$ads.each(async ad => ad[target.name] = target.value);
+				break;
+
+			case 'theme':
+				if (target.value === 'auto') {
+					$('#dark-preview').attr({ theme: 'dark' });
+					$('#light-preview').attr({ theme: 'light' });
+					$('#main-preview').attr({ theme: 'auto' });
+				} else {
+					$ads.each(async ad => ad[target.name] = target.value);
+				}
+				break;
+
+			case 'url':
+				// No-op
+				break;
+
+			default:
+				$ads.each(async ad => ad[target.name] = target.value);
+		}
+	});
+
+	$('form[name="ad"]').reset(() => {
+		$('.ad-preview > [slot]').remove();
+		$('#light-preview').attr({ theme: 'light' });
+		$('#dark-preview').attr({ theme: 'dark' });
+		$('#main-preview').attr({ theme: 'auto' });
+		$('#ad-url').attr({ type: 'url' });
+		$ads.attr({
+			layout: 'card',
+			imagefit: 'cover',
+			imageposition: 'center',
+		});
 	});
 
 	$('form[name="ad"]').submit(async event => {
@@ -240,5 +263,17 @@ Promise.allSettled([
 				}
 			});
 		}, 20);
+	});
+
+	Promise.resolve(new FormData(document.forms.ad)).then(data => {
+		$ads.each(ad => ad.image = data.get('image') || null);
+		$ads.each(ad => ad.imageFit = data.get('imageFit') || null);
+		$ads.each(ad => ad.imagePosition = data.get('imagePosition') || null);
+		$ads.each(ad => ad.callToActoin = data.get('callToAction') || null);
+		$ads.each(ad => ad.layout = data.get('layout'));
+
+		if (data.get('theme') !== 'auto') {
+			$ads.each(ad => ad.theme = data.get('theme') || null);
+		}
 	});
 });

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `<input type="file">` for handling images by file instead of URL
+- Handle resetting for ad form
+
+### Changed
+- Update app screenshot
+- Handle form values on reload (not anything valid for ShareTargetAPI though)
+
 ## [v1.1.3] - 2020-10-04
 
 ### Added
