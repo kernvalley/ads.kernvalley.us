@@ -6,6 +6,7 @@ const config = {
 	].map(url => new URL(url, location.origin).href),
 	stale: [
 		'/js/index.min.js',
+		'/js/imgWorker.js',
 		'/css/index.min.css',
 		'/img/icons.svg',
 		'/img/neon.svg',

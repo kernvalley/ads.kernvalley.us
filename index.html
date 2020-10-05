@@ -64,16 +64,7 @@
 		</nav>
 		<main id="main" class="card shadow">
 			<form name="ad" is="share-target">
-				<ad-block id="main-preview">
-					<label for="ad-label" slot="label">Ad label / title</label>
-					<label for="ad-image" slot="image" class="block">
-						<svg class="current-color" viewBox="0 0 12 16" height="80" fill="currentColor">
-							<path fill-rule="evenodd" d="M6 5h2v2H6V5zm6-.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v11l3-5 2 4 2-2 3 3V5z"/>
-						</svg>
-					</label>
-					<label for="ad-description" slot="description">Enter ad description here</label>
-					<label for="ad-calltoaction" slot="calltoaction">Call to Action</label>
-				</ad-block>
+				<ad-block id="main-preview" theme="auto" layout="card" imagefit="cover" imageposition="center"></ad-block>
 				<fieldset>
 					<legend>Build Your Ad</legend>
 					<div class="form-group">
@@ -161,10 +152,10 @@
 		<aside id="sidebar" class="card shadow">
 			<h2>Previews</h2>
 			<h3 class="center">Dark Theme</h3>
-			<ad-block theme="dark" id="dark-preview"></ad-block>
+			<ad-block theme="dark" id="dark-preview" layout="card" imagefit="cover" imageposition="center"></ad-block>
 			<hr />
 			<h3 class="center">Light Theme</h3>
-			<ad-block theme="light" id="light-preview"></ad-block>
+			<ad-block theme="light" id="light-preview" layout="card" imagefit="cover" imageposition="center"></ad-block>
 		</aside>
 		<footer id="footer">
 			<div class="social-links cols-2">
