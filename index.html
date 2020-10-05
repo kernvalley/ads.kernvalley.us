@@ -71,29 +71,29 @@
 						<label for="ad-url" class="block">
 							<b>URL</b>
 						</label>
-						<input type="url" name="url" id="ad-url" class="input" placeholder="https://example.com/your-url" data-share-field="url" />
+						<input type="url" name="url" id="ad-url" class="input" placeholder="https://example.com/your-url" autocomplete="off" data-share-field="url" />
 					</div>
 					<div class="form-group">
 						<label for="ad-label" class="block">
 							<b>Label/Title</b>
 						</label>
-						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" data-share-field="title" />
+						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" autocomplete="off" autocapitalize="words" data-share-field="title" />
 					</div>
 					<div class="form-group">
 						<label for="ad-description" class="block">
 							<b>Descrition</b>
 						</label>
-						<textarea name="description" id="ad-description" class="input" maxlength="150" placeholder="Ad description" data-share-field="text" rows="5" required=""></textarea>
+						<textarea name="description" id="ad-description" class="input" maxlength="150" placeholder="Ad description" data-share-field="text" rows="5" autocomplete="off" required=""></textarea>
 					</div>
 					<div class="form-group">
 						<label for="ad-calltoaction" class="block">
 							<b>Call-to-Action</b>
 						</label>
-						<input type="text" id="ad-calltoaction" class="input" name="callToAction" maxlength="35" placeholder="Call to action" />
+						<input type="text" id="ad-calltoaction" class="input" name="callToAction" maxlength="35" autocomplete="off" autocapitalize="words" placeholder="Call to action" />
 					</div>
 					<div class="form-group">
 						<label for="layout" class="block">Layout</label>
-						<select name="layout" id="layout" class="input" required="">
+						<select name="layout" id="layout" class="input" autocomplete="off" required="">
 							<option value="card" checked="">Card</option>
 							<option value="stack">Stacked</option>
 							<option value="text">Text Only</option>
@@ -102,7 +102,7 @@
 					</div>
 					<div class="form-group">
 						<label for="theme" class="block">Theme</label>
-						<select name="theme" id="theme" class="input" required="">
+						<select name="theme" id="theme" class="input" autocomplete="off" required="">
 							<option value="auto" checked="">Auto</option>
 							<option value="light">Light</option>
 							<option value="dark">Dark</option>
@@ -112,7 +112,7 @@
 						<label for="ad-image" class="block">
 							<b>Image URL</b>
 						</label>
-						<input type="url" id="ad-image" class="input" name="image" placeholder="https://example.com/img.jpg" required="" />
+						<input type="url" id="ad-image" class="input" name="image" placeholder="https://example.com/img.jpg" autocomplete="off" required="" />
 					</div>
 					<div class="form-group">
 						<label for="ad-image-file" class="block">
@@ -125,7 +125,7 @@
 						<label for="object-fit" class="block">
 							<b>Image Fit</b>
 						</label>
-						<select name="imageFit" id="object-fit" class="input" required="">
+						<select name="imageFit" id="object-fit" class="input" autocomplete="off" required="">
 							<option value="contain">Contain</option>
 							<option value="cover" checked="">Cover</option>
 							<option value="fill">Fill</option>
@@ -136,7 +136,7 @@
 						<label for="object-position" class="block">
 							<b>Image Position</b>
 						</label>
-						<select name="imagePosition" id="object-position" class="input" required="">
+						<select name="imagePosition" id="object-position" class="input" autocomplete="off" required="">
 							<option value="center" checked="">Center</option>
 							<option value="top">Top</option>
 							<option value="bottom">Bottom</option>
@@ -146,6 +146,7 @@
 					</div>
 				</fieldset>
 				<button type="submit" class="btn btn-accept">Submit</button>
+				<span>&nbsp;</span>
 				<button type="reset" class="btn btn-reject">Reset</button>
 			</form>
 		</main>

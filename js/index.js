@@ -134,6 +134,7 @@ Promise.allSettled([
 		$('#light-preview').attr({ theme: 'light' });
 		$('#dark-preview').attr({ theme: 'dark' });
 		$('#main-preview').attr({ theme: 'auto' });
+		$('#ad-url').attr({ type: 'url' });
 		$ads.attr({
 			layout: 'card',
 			imagefit: 'cover',
