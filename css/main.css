@@ -3,6 +3,15 @@ main {
 	--link-decoration: underline;
 }
 
+.form-group .input:not(:invalid) + .status-box {
+	display: none;
+}
+
+.form-group .input:required:invalid:placeholder-shown + .status-box,
+.form-group .input:focus + .status-box, .form-group .input:disabled + .status-box {
+	display: none;
+}
+
 article p:first-letter {
 	margin-left: 2em;
 }

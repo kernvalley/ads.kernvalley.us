@@ -34,7 +34,6 @@
 		<meta name="msapplication-config" content="/browserconfig.xml" />
 		<meta name="theme-color" content="#228282" />
 		<title itemprop="headline">Kern Valley Ads</title>
-		<!-- <script type="module" src="/js/index.js" async=""></script> -->
 		<link rel="preconnect" href="https://api.github.com/" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="preload" href="https://cdn.polyfill.io/v3/polyfill.min.js" as="script" type="text/javascript" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" />
 		<link rel="preload" href="https://cdn.kernvalley.us/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin="anonymous" importance="high" />
@@ -64,35 +63,47 @@
 		</nav>
 		<main id="main" class="card shadow">
 			<form name="ad" is="share-target">
-				<ad-block id="main-preview" class="ad-preview" theme="auto" layout="card" imagefit="cover" imageposition="center"></ad-block>
+				<div class="center">
+					<ad-block id="main-preview" class="ad-preview" theme="auto" layout="card" imagefit="cover" imageposition="center"></ad-block>
+				</div>
 				<fieldset>
 					<legend>Build Your Ad</legend>
+					<div class="status-box info">
+						<span><q>*</q> indicates that a field is required.</span><br />
+						<span><b>Note:</b> Required fields may change i.e. when changing layout.</span>
+					</div>
 					<div class="form-group">
-						<label for="ad-url" class="block">
+						<label for="ad-url" class="block input-label">
 							<b>URL</b>
 						</label>
-						<input type="url" name="url" id="ad-url" class="input" placeholder="https://example.com/your-url" autocomplete="off" data-share-field="url" />
+						<input type="url" name="url" id="ad-url" class="input" placeholder="https://example.com/your-url" autocomplete="off" title="Valid URL beginning with https://" data-share-field="url" />
+						<div class="status-box alert">
+							Please enter a valid URL beginning with <q>https://</q>
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="ad-label" class="block">
+						<label for="ad-label" class="block input-label required">
 							<b>Label/Title</b>
 						</label>
-						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\. ]+" maxlength="20" placeholder="Ad label" autocomplete="off" spellcheck="true" autocapitalize="words" data-share-field="title" />
+						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\. ]+" minlength="3" maxlength="20" placeholder="Ad label" autocomplete="off" spellcheck="true" autocapitalize="words" data-share-field="title" title="3 - 20 characters" required="" />
+						<div class="status-box alert">Please enter 3 - 20 characters</div>
 					</div>
 					<div class="form-group">
-						<label for="ad-description" class="block">
+						<label for="ad-description" class="block input-label required">
 							<b>Descrition</b>
 						</label>
-						<textarea name="description" id="ad-description" class="input" maxlength="150" placeholder="Ad description" data-share-field="text" rows="5" autocomplete="off" spellcheck="true" required=""></textarea>
+						<textarea name="description" id="ad-description" class="input" placeholder="Ad description" data-share-field="text" rows="5" minlength="25" maxlength="100" autocomplete="off" spellcheck="true" title="25 - 100 characters" required=""></textarea>
+						<div class="status-box alert">Please enter 25 - 100 characters</div>
 					</div>
 					<div class="form-group">
-						<label for="ad-calltoaction" class="block">
+						<label for="ad-calltoaction" class="block input-label required">
 							<b>Call-to-Action</b>
 						</label>
-						<input type="text" id="ad-calltoaction" class="input" name="callToAction" maxlength="35" autocomplete="off" autocapitalize="words" placeholder="Call to action" spellcheck="true" />
+						<input type="text" id="ad-calltoaction" class="input" name="callToAction" minlength ="8" maxlength="25" autocomplete="off" autocapitalize="words" placeholder="Call to action" spellcheck="true" title="8 - 25 characters" required="" />
+						<div class="status-box alert">Please enter 8 - 25 characters</div>
 					</div>
 					<div class="form-group">
-						<label for="layout" class="block">Layout</label>
+						<label for="layout" class="block input-label required">Layout</label>
 						<select name="layout" id="layout" class="input" autocomplete="off" required="">
 							<option value="card" checked="">Card</option>
 							<option value="stack">Stacked</option>
@@ -101,7 +112,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="theme" class="block">Theme</label>
+						<label for="theme" class="block input-label required">Theme</label>
 						<select name="theme" id="theme" class="input" autocomplete="off" required="">
 							<option value="auto" checked="">Auto</option>
 							<option value="light">Light</option>
@@ -109,20 +120,23 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="ad-image" class="block">
+						<label for="ad-image" class="block input-label required">
 							<b>Image URL</b>
 						</label>
-						<input type="url" id="ad-image" class="input" name="image" placeholder="https://example.com/img.jpg" autocomplete="off" required="" />
+						<input type="url" id="ad-image" class="input" name="image" placeholder="https://example.com/img.jpg" autocomplete="off" title="Image URL beginning with https://" required="" />
+						<div class="status-box alert">Please enter a valid URL beginning with <q>https://</q></div>
 					</div>
 					<div class="form-group">
-						<label for="ad-image-file" class="block">
-							<span>Or</span>
-							<b>Image File</b>
+						<label role="button" for="ad-image-file" class="btn btn-primary">
+							<svg class="current-color icon" fill="currentColor" width="16" height="16">
+								<use xlink:href="/img/icons.svg#cloud-upload"></use>
+							</svg>
+							<span>Upload File</span>
 						</label>
-						<input type="file" id="ad-image-file" accept="image/*" class="input"  />
+						<input type="file" id="ad-image-file" accept="image/*" hidden=""  />
 					</div>
 					<div class="form-group">
-						<label for="object-fit" class="block">
+						<label for="object-fit" class="block input-label required">
 							<b>Image Fit</b>
 						</label>
 						<select name="imageFit" id="object-fit" class="input" autocomplete="off" required="">
@@ -133,7 +147,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="object-position" class="block">
+						<label for="object-position" class="block input-label required">
 							<b>Image Position</b>
 						</label>
 						<select name="imagePosition" id="object-position" class="input" autocomplete="off" required="">
@@ -233,7 +247,7 @@ referrerpolicy="no-referrer" width="256" height="282" />
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
 		</button>
-		<toast-message id="terms" backdrop="">
+		<toast-message id="terms" class="custom-element if-defined" backdrop="" hidden="">
 			<div slot="content">
 				<h2 class="center">Currently not Avaialble</h2>
 				<p>This site is currently under development and nothing will be submitted <b>(Your credit card will not be charged)</b>.</p>
