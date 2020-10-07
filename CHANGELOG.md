@@ -7,13 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.4] - 2020-10-07
+
 ### Added
 - `<input type="file">` for handling images by file instead of URL
 - Handle resetting for ad form
+- Form validation and UX improvements
+- `.status-box.alert` warnings for invalid fields
 
 ### Changed
 - Update app screenshot
 - Handle form values on reload (not anything valid for ShareTargetAPI though)
+- File downloads + shares now include ad label and datetime
 
 ## [v1.1.3] - 2020-10-04
 
