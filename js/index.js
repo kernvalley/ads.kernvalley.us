@@ -4,8 +4,8 @@ import 'https://cdn.kernvalley.us/js/std-js/shims.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
 import 'https://cdn.kernvalley.us/components/current-year.js';
 import 'https://cdn.kernvalley.us/components/gravatar-img.js';
-import 'https://cdn.kernvalley.us/components/login-button.js';
-import 'https://cdn.kernvalley.us/components/logout-button.js';
+// import 'https://cdn.kernvalley.us/components/login-button.js';
+// import 'https://cdn.kernvalley.us/components/logout-button.js';
 import 'https://cdn.kernvalley.us/components/toast-message.js';
 import 'https://cdn.kernvalley.us/components/pwa/install.js';
 import 'https://cdn.kernvalley.us/components/github/user.js';
@@ -30,8 +30,17 @@ async function updateForm(form, value) {
 		$('#ad-image-file', form).attr({ disabled: value === 'text' }),
 		$('#object-fit', form).attr({ disabled: value === 'text' }),
 		$('#object-position', form).attr({ disabled: value === 'text' }),
-		$('#ad-description', form).attr({ disabled: value === 'image' }),
-		$('#ad-calltoaction', form).attr({ disabled: value === 'image' }),
+		$('#ad-description', form).attr({
+			disabled: value === 'image',
+			maxlength: (value === 'full-width') ? 400 : 100,
+		}),
+		$('#ad-calltoaction', form).attr({
+			disabled: value === 'image',
+			maxlength: (value === 'full-width') ? 50 : 25,
+		}),
+		$('#ad-label', form).attr({
+			maxlength: (value === 'ful-width') ? 80 : 20,
+		}),
 	]);
 
 	updateRequired(form);
@@ -100,7 +109,6 @@ Promise.allSettled([
 		const form = target.form;
 		switch(target.name) {
 			case 'layout':
-
 				updateForm(form, target.value);
 				$ads.each(async ad => ad[target.name] = target.value);
 				break;
