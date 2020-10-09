@@ -1,5 +1,5 @@
 /
-  Content-Security-Policy: default-src 'self'; style-src 'self' https://cdn.kernvalley.us https://unpkg.com/@webcomponents/; script-src 'self' https://cdn.kernvalley.us https://cdn.polyfill.io/v3/polyfill.min.js https://unpkg.com/@webcomponents/ https://www.googletagmanager.com/gtag/js https://www.google-analytics.com/analytics.js; img-src https: blob: data:; font-src https://cdn.kernvalley.us/; connect-src 'self' https://cdn.kernvalley.us https://api.kernvalley.us https://api.github.com/users/ https://www.google-analytics.com/*/collect  https://www.google-analytics.com/collect; manifest-src 'self';
+  Content-Security-Policy: default-src 'self'; style-src 'self' https://cdn.kernvalley.us https://unpkg.com/@webcomponents/; script-src 'self' https://cdn.kernvalley.us https://cdn.polyfill.io/v3/polyfill.min.js https://unpkg.com/@webcomponents/ https://www.googletagmanager.com/gtag/js https://www.google-analytics.com/analytics.js; img-src https: blob: data:; font-src https://cdn.kernvalley.us/; connect-src 'self' https://cdn.kernvalley.us https://api.kernvalley.us https://api.github.com/users/ https://www.google-analytics.com/*/  https://www.google-analytics.com/; manifest-src 'self';
 
 /reset
   Clear-Site-Data: "*"
@@ -8,3 +8,6 @@
 /service-worker.js
   Content-Security-Policy: default-src 'self'; connect-src *;
   Link: </sw-config.js> rel=preload; as=script
+
+/img/*
+  Access-Control-Allow-Origin: *
