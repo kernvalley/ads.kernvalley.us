@@ -38,9 +38,9 @@
 		<link rel="preload" href="https://cdn.polyfill.io/v3/polyfill.min.js" as="script" type="text/javascript" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" />
 		<link rel="preload" href="https://cdn.kernvalley.us/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin="anonymous" importance="high" />
 		<link rel="preload" href="/img/neon.svg" as="image" type="image/svg+xml" referrerpolicy="no-referrer" importance="high" />
-		<link rel="preload" href="https://cdn.kernvalley.us/components/ad/block.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" />
+		<!-- <link rel="preload" href="https://cdn.kernvalley.us/components/ad/block.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" /> -->
 		<link rel="preload" href="https://cdn.kernvalley.us/components/ad/block.css" as="style" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" />
-		<link rel="preload" href="https://cdn.kernvalley.us/components/github/user.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" />
+		<!-- <link rel="preload" href="https://cdn.kernvalley.us/components/github/user.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" /> -->
 		<link rel="preload" href="https://cdn.kernvalley.us/components/github/user.css" as="style" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" />
 		<!-- <script type="module" src="/js/index.js" async=""></script> -->
 		<script src="/js/index.min.js" referrerpolicy="no-referrer" async=""></script>
@@ -188,9 +188,12 @@
 						</select>
 					</div>
 				</fieldset>
-				<button type="submit" class="btn btn-accept">Submit</button>
-				<span>&nbsp;</span>
-				<button type="reset" class="btn btn-reject">Reset</button>
+				<br />
+				<div>
+					<button type="submit" class="btn btn-accept">Submit</button>
+					<span>&nbsp;</span>
+					<button type="reset" class="btn btn-reject">Reset</button>
+				</div>
 			</form>
 		</main>
 		<aside id="sidebar" class="card shadow center">
