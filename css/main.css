@@ -15,3 +15,14 @@ main {
 article p:first-letter {
 	margin-left: 2em;
 }
+
+#layout-options {
+	justify-content: space-around;
+}
+
+.layout-option .btn-toggle {
+	display: inline-block;
+	text-align: center;
+	color: var(--alt-color);
+	padding: 8px;
+}

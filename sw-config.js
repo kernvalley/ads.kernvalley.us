@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const config = {
-	version: '1.1.4',
+	version: '1.1.5',
 	fresh: [
 		'/',
 	].map(url => new URL(url, location.origin).href),
@@ -24,6 +24,10 @@ const config = {
 		'https://cdn.kernvalley.us/components/pwa/prompt.css',
 		'https://cdn.kernvalley.us/components/ad/block.html',
 		'https://cdn.kernvalley.us/components/ad/block.css',
+		'/img/ad-layouts/card.svg',
+		'/img/ad-layouts/stack.svg',
+		'/img/ad-layouts/image.svg',
+		'/img/ad-layouts/text.svg',
 		/* Social Icons for Web Share API shim */
 		'https://cdn.kernvalley.us/img/octicons/mail.svg',
 		'https://cdn.kernvalley.us/img/logos/facebook.svg',
