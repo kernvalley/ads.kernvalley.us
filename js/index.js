@@ -32,7 +32,7 @@ async function updateForm(form, value) {
 		$('#object-position', form).attr({ disabled: value === 'text' }),
 		$('#ad-description', form).attr({
 			disabled: value === 'image',
-			maxlength: (value === 'full-width') ? 400 : 100,
+			maxlength: (value === 'full-width') ? 400 : 118,
 		}),
 		$('#ad-calltoaction', form).attr({
 			disabled: value === 'image',
