@@ -67,6 +67,15 @@ if (typeof GA === 'string' && GA.length !== 0) {
 	});
 }
 
+if (location.hash.length !== 0) {
+	const layout = location.hash.substr(1);
+
+	if (['card', 'stack', 'text', 'image'].includes(layout)) {
+		$('input[name="layout"]').each(i => i.checked = i.value === layout);
+		location.hash = '';
+	}
+}
+
 // requestIdleCallback(() => document.getElementById('terms').show());
 
 // if (! ('PaymentRequest' in window)) {

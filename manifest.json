@@ -1,10 +1,13 @@
 {
   "name": "Kern Valley Ads",
   "short_name": "KRV Ads",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "start_url": "/",
   "lang": "en",
   "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
+  "theme_color": "#228282",
+  "background_color": "#343434",
+  "display": "standalone",
   "icons": [{
     "src": "/img/favicon.svg",
     "sizes": "192x192",
@@ -31,10 +34,49 @@
     "utilities"
   ],
   "features": [
-    "Offline availablility (need to be online to submit)",
-    "WYSIWYG ad editor with dark and light mode previews"
+    "Fully-functional when offline",
+    "Share links from other apps to prefill label, URL, and description",
+    "WYSIWYG ad editor with dark and light mode previews",
+    "App Shortcuts / jumplist to create a new ad with specified layout",
+    "Download, copy, or share your ad design"
   ],
-  "shortcuts": [],
+  "shortcuts": [{
+    "name": "Create Card Ad",
+    "url": "/#card",
+    "description": "Create new ad with card layout",
+    "icons": [{
+      "src": "/img/ad-layouts/new-card.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }]
+  }, {
+    "name": "Create Stacked Ad",
+    "url": "/#stack",
+    "description": "Create new ad with stack layout",
+    "icons": [{
+      "src": "/img/ad-layouts/new-stack.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }]
+  }, {
+    "name": "Create Text Ad",
+    "url": "/#text",
+    "description": "Create new ad with text layout",
+    "icons": [{
+      "src": "/img/ad-layouts/new-text.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }]
+  }, {
+    "name": "Create Image Ad",
+    "url": "/#image",
+    "description": "Create new ad with image layout",
+    "icons": [{
+      "src": "/img/ad-layouts/new-image.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }]
+  }],
   "share_target": {
     "method": "GET",
     "action": "/",
@@ -44,12 +86,5 @@
       "text": "text",
       "url": "url"
     }
-  },
-  "theme_color": "#228282",
-  "background_color": "#343434",
-  "display": "standalone",
-  "developer": {
-		"name": "Chris Zuber",
-		"url": "https://kernvalley.us"
-	}
+  }
 }

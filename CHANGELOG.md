@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.6] - 2020-10-10
+
+### Added
+- Jumplist / shortcuts with to create ads of specified layout
+
+### Fixed
+- Correctly set active button background color
+- Remove duplicate images
+
 ## [v1.1.5] - 2020-10-10
 
 ### Changed
