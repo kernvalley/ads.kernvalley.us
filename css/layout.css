@@ -18,6 +18,12 @@ fieldset {
 	padding: 2.3em;
 }
 
+@media (max-width: 600px) {
+	fieldset {
+		padding: 0.4em;
+	}
+}
+
 legend {
 	font-size: 1.4em;
 	font-weight: bold;
