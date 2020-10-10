@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Update layout selection to show SVG previews and use `<input type="radio">`
+- Update description `maxlength`
 
 ## [v1.1.4] - 2020-10-07
 
