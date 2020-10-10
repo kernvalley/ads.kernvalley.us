@@ -1,9 +1,12 @@
-:root {
-	--accent-color-light: #228282;
-	--accent-color-dark: var(--accent-color-light);
-	--button-active-background: #006060;
-	--sidebar-max-width: 30vw;
-	--scrollbar-color: var(--accent-color);
-	--scrollbar-track: var(--primary-color);
-	--scrollbar-width: auto;
+@media all {
+	:root[data-theme], :root:not([data-theme]) {
+		--accent-color-light: #228282;
+		--accent-color-dark: var(--accent-color-light);
+		--button-primary-active-background-light: #006060;
+		--button-primary-active-background-dark: var(--button-active-primary-background-light);
+		--sidebar-max-width: 30vw;
+		--scrollbar-color: var(--accent-color);
+		--scrollbar-track: var(--primary-color);
+		--scrollbar-width: auto;
+	}
 }

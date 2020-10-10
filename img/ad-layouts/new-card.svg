@@ -1,0 +1,17 @@
+<svg version="1.1" viewBox="0 0 192 192" width="192" height="192" xmlns="http://www.w3.org/2000/svg">
+	<circle cx="96" cy="96" r="96" fill="#008080" fill-rule="evenodd"/>
+	<g transform="matrix(1.4416 0 0 1.4426 -18.317 -23.885)" stroke-width=".69343">
+		<g fill-rule="evenodd">
+			<rect x="28.499" y="56.248" width="101.6" height="53.71" rx="1.4683" ry="1.4673" fill="#fafafa" stroke="#e0e0e0" stroke-dasharray="0.36694136, 0.18347068, 0.09173535, 0.18347068" stroke-linecap="round" stroke-linejoin="round" stroke-width=".18347"/>
+			<g stroke-width=".69343">
+				<rect x="31.372" y="61.521" width="37.798" height="36.853" rx="1.4683" ry="1.4673" fill="#cdcdcd" stroke="#9a9a9a"/>
+				<rect x="73.327" y="59.631" width="51.594" height="7.7485" rx="1.4683" ry="1.4673" fill="#9a9a9a"/>
+				<rect x="72.118" y="84.691" width="47.247" height="5.4807" rx="1.4683" ry="1.4673" fill="#9a9a9a"/>
+				<rect x="73.138" y="95.917" width="49.326" height="5.2917" rx="1.4683" ry="1.4673" fill="#556fea"/>
+				<rect x="30.427" y="102.91" width="46.869" height="4.1577" rx="1.4683" ry="1.4673" fill="#556fea"/>
+				<rect x="72.118" y="77.623" width="52.539" height="5.4807" rx="1.4683" ry="1.4673" fill="#9a9a9a"/>
+				<rect x="72.118" y="70.554" width="52.539" height="5.4807" rx="1.4683" ry="1.4673" fill="#9a9a9a"/>
+			</g>
+		</g>
+	</g>
+</svg>
