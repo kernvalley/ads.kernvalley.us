@@ -102,15 +102,43 @@
 						<input type="text" id="ad-calltoaction" class="input" name="callToAction" minlength ="8" maxlength="25" autocomplete="off" autocapitalize="words" placeholder="Call to action" spellcheck="true" title="8 - 25 characters" required="" />
 						<div class="status-box alert">Please enter 8 - 25 characters</div>
 					</div>
-					<div class="form-group">
-						<label for="layout" class="block input-label required">Layout</label>
-						<select name="layout" id="layout" class="input" autocomplete="off" required="">
-							<option value="card" checked="">Card</option>
-							<option value="stack">Stacked</option>
-							<option value="text">Text Only</option>
-							<option value="image">Image Only</option>
-							<option value="full-width">Full-Width</option>
-						</select>
+					<div>
+						<b class="block center">Ad Layout</b>
+						<hr />
+						<div class="form-group flex row wrap" id="layout-options">
+							<span class="layout-option">
+								<input name="layout" value="card" id="layout-value-card" type="radio" checked="" hidden="" />
+								<label for="layout-value-card" class="inline-block btn-toggle">
+									<span>Card</span>
+									<br />
+									<img src="/img/ad-layouts/card.svg" width="140" height="100" loading="lazy" decoding="async" alt="Card Layout" referrerpolicy="no-referrer" />
+								</label>
+							</span>
+							<span class="layout-option">
+								<input name="layout" value="text" id="layout-value-text" type="radio" hidden="" />
+								<label for="layout-value-text" class="inline-block btn-toggle">
+									<span>Text</span>
+									<br />
+									<img src="/img/ad-layouts/text.svg" width="140" height="75" loading="lazy" decoding="async" alt="Text Layout" referrerpolicy="no-referrer" />
+								</label>
+							</span>
+							<span class="layout-option">
+								<input name="layout" value="stack" id="layout-value-stack" type="radio" hidden="" />
+								<label for="layout-value-stack" class="inline-block btn-toggle">
+									<span>Stack</span>
+									<br />
+									<img src="/img/ad-layouts/stack.svg" width="140" height="190" loading="lazy" decoding="async" alt="Stack Layout" referrerpolicy="no-referrer" />
+								</label>
+							</span>
+							<span class="layout-option">
+								<input name="layout" value="image" id="layout-value-image" type="radio" hidden="" />
+								<label for="layout-value-image" class="inline-block btn-toggle">
+									<span>Image</span>
+									<br />
+									<img src="/img/ad-layouts/image.svg" width="140" height="105" loading="lazy" decoding="async" alt="Image Layout" referrerpolicy="no-referrer" />
+								</label>
+							</span>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="theme" class="block input-label required">Theme</label>
