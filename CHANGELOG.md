@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.7] - 2020-10-13
+
+### Added
+- Implement handling of ad custom colors, etc.
+
 ## [v1.1.6] - 2020-10-10
 
 ### Added
