@@ -123,6 +123,10 @@ Promise.allSettled([
 				break;
 
 			case 'theme':
+				$ads.attr({ background: null, color: null, border: null, borderWidth: null, linkColor: null });
+				$('#advanced-opts').close();
+				$('#advanced-opts input').each(i => i.value = null);
+
 				if (target.value === 'auto') {
 					$('#dark-preview').attr({ theme: 'dark' });
 					$('#light-preview').attr({ theme: 'light' });
@@ -130,10 +134,6 @@ Promise.allSettled([
 				} else {
 					$ads.each(async ad => ad[target.name] = target.value);
 				}
-				break;
-
-			case 'url':
-				// No-op
 				break;
 
 			default:
@@ -152,6 +152,11 @@ Promise.allSettled([
 			layout: 'card',
 			imagefit: 'cover',
 			imageposition: 'center',
+			background: null,
+			border: null,
+			bordercolor: null,
+			color: null,
+			linkcolor: null,
 		});
 	});
 
@@ -169,8 +174,14 @@ Promise.allSettled([
 			layout: data.get('layout'),
 			imagePosition: data.get('imagePosition'),
 			imageFit: data.get('imageFit'),
+			loading: 'eager',
 		});
 
+		ad.background = data.get('background') || null;
+		ad.color = data.get('color') || null;
+		ad.border = data.get('boder') || null;
+		ad.borderWidth = data.get('borderWidth') || null;
+		ad.linkColor = data.get('linkColor') || null;
 		ad.url = data.get('url');
 		ad.layout = data.get('layout');
 		ad.theme = data.get('theme');
@@ -186,9 +197,13 @@ Promise.allSettled([
 			ad.image = img;
 		}
 
-		await ad.ready;
+		const container = document.createElement('div');
+		container.append(ad);
+		container.hidden = true;
+		document.body.append(container);
 
-		await $('[part]', ad).attr({ part: null });
+		await ad.ready.then(() => $('[part]', ad).attr({ part: null }));
+
 		setTimeout(() => {
 			new HTMLNotificationElement('Ad Created', {
 				body: 'What next?',
@@ -286,13 +301,16 @@ Promise.allSettled([
 						target.close();
 				}
 			});
+			container.remove();
 		}, 20);
 	});
 
-	Promise.resolve(document.forms.ad).then(form => {
-		const data = new FormData(form);
+	requestIdleCallback(async () => {
+		const data = new FormData(document.forms.ad);
 
-		updateForm(form, data.get('layout'));
+		await new Promise(res => setTimeout(res, 500));
+
+		updateForm(document.forms.ad, data.get('layout'));
 
 		$ads.each(ad => {
 			ad.image = data.get('image') || null;
