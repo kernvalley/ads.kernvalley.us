@@ -51,7 +51,10 @@ function sluggify(text) {
 }
 
 if (typeof GA === 'string' && GA.length !== 0) {
-	requestIdleCallback(() => {
+	requestIdleCallback(async () => {
+		if (! navigator.onLine) {
+			await new Promise(resolve => window.addEventListener('online', () => resolve(), { once: true }));
+		}
 		importGa(GA).then(async () => {
 			/* global ga */
 			ga('create', GA, 'auto');
