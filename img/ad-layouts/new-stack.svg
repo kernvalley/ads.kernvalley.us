@@ -1,5 +1,5 @@
 <svg version="1.1" viewBox="0 0 192 192" width="192" height="192" xmlns="http://www.w3.org/2000/svg">
-	<circle cx="96" cy="96" r="96" fill="#008080" fill-rule="evenodd"/>
+	<circle cx="96" cy="96" r="96" fill="#e0e0e0" fill-rule="evenodd"/>
 	<g transform="matrix(1.3491 0 0 1.3488 -63.508 -51.242)" fill-rule="evenodd">
 		<rect x="80.134" y="57.837" width="76.2" height="102.66" rx="1.569" ry="1.5693" fill="#fafafa" stroke="#e0e0e0" stroke-dasharray="0.39228577, 0.19614289, 0.09807145, 0.19614289" stroke-linecap="round" stroke-linejoin="round" stroke-width=".19614"/>
 		<g stroke-width=".74133">
