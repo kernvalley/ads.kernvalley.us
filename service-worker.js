@@ -1,7 +1,7 @@
 'use strict';
 /* global config */
 /* eslint-env serviceworker */
-/* 2020-10-13T12:15 */
+/* 2020-10-13T14:56 */
 
 self.importScripts('/sw-config.js');
 
@@ -28,7 +28,7 @@ self.addEventListener('fetch', event => {
 	if (event.request.method === 'GET') {
 		event.respondWith((async () => {
 			if (Array.isArray(config.stale) && config.stale.includes(event.request.url)) {
-				const cached = await caches.match(event.request);
+				const cached = await caches.match(event.request, { ignoreSearch: true });
 				if (cached instanceof Response) {
 					return cached;
 				} else {
@@ -55,7 +55,7 @@ self.addEventListener('fetch', event => {
 					}
 					return resp;
 				} else {
-					return caches.match(event.request);
+					return caches.match(event.request, { ignoreSearch: true });
 				}
 			} else if (Array.isArray(config.allowed) && config.allowed.some(entry => (
 				entry instanceof RegExp
@@ -78,6 +78,7 @@ self.addEventListener('fetch', event => {
 					}
 				}
 			} else {
+				console.warn(event.request.url);
 				return fetch(event.request);
 			}
 		})());
