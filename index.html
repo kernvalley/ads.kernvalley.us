@@ -64,7 +64,7 @@
 		<main id="main" class="card shadow">
 			<form name="ad" is="share-target">
 				<div class="center">
-					<ad-block id="main-preview" class="ad-preview" theme="auto" layout="card" imagefit="cover" imageposition="center"></ad-block>
+					<ad-block id="main-preview" class="ad-preview no-pointer-events" theme="auto" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
 				</div>
 				<fieldset>
 					<legend>Build Your Ad</legend>
@@ -187,6 +187,39 @@
 							<option value="right">Right</option>
 						</select>
 					</div>
+					<details id="advanced-opts" class="accordion">
+						<summary>Advanced Design Options</summary>
+						<div class="form-group">
+							<label for="ad-background">
+								<b>Background Color</b>
+							</label>
+							<input type="color" name="background" id="ad-background" />
+						</div>
+						<div class="form-group">
+							<label for="ad-color">
+								<b>Text Color</b>
+							</label>
+							<input type="color" name="color" id="ad-color"  />
+						</div>
+						<div class="form-group">
+							<label for="ad-border">
+								<b>Border Color</b>
+							</label>
+							<input type="color" name="border" id="ad-border" />
+						</div>
+						<div class="form-group">
+							<label for="ad-border-width" class="block input-label">
+								<b>Border Width</b>
+							</label>
+							<input type="range" name="borderWidth" id="ad-border-width" min="0" max="10" value="1" step="1" class="input" />
+						</div>
+						<div class="form-group">
+							<label for="ad-link-color">
+								<b>Link Color</b>
+							</label>
+							<input type="color" name="linkColor" id="ad-link-color" />
+						</div>
+					</details>
 				</fieldset>
 				<br />
 				<div>
@@ -199,10 +232,10 @@
 		<aside id="sidebar" class="card shadow center">
 			<h2>Previews</h2>
 			<h3 class="center">Dark Theme</h3>
-			<ad-block theme="dark" id="dark-preview" class="ad-preview" layout="card" imagefit="cover" imageposition="center"></ad-block>
+			<ad-block theme="dark" id="dark-preview" class="ad-preview no-pointer-events" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
 			<hr />
 			<h3 class="center">Light Theme</h3>
-			<ad-block theme="light" id="light-preview" class="ad-preview" layout="card" imagefit="cover" imageposition="center"></ad-block>
+			<ad-block theme="light" id="light-preview" class="ad-preview no-pointer-events" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
 		</aside>
 		<footer id="footer">
 			<div class="social-links cols-2">
@@ -213,13 +246,13 @@
 						</svg>
 						<span>GitHub Profile</span>
 					</a>
-					<a class="block" href="https://github.com/kernvalley/weather.kernvalley.us" target="_blank" rel="external noopener">
+					<a class="block" href="https://github.com/kernvalley/ads.kernvalley.us" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon">
 							<use xlink:href="/img/icons.svg#repo"></use>
 						</svg>
 						<span>GitHub Repo</span>
 					</a>
-					<a class="block" href="https://github.com/kernvalley/weather.kernvalley.us/issues" target="_blank" rel="external noopener">
+					<a class="block" href="https://github.com/kernvalley/ads.kernvalley.us/issues" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon">
 							<use xlink:href="/img/icons.svg#issue-opened"></use>
 						</svg>
@@ -255,7 +288,7 @@
 			</button>
 			<hr />
 			<div class="copyright">
-				<github-user user="kernvalley">
+				<github-user user="kernvalley" loading="lazy">
 					<h3 slot="header" class="center">Created By</h3>
 					<div slot="footer">
 						<span>©</span>
@@ -274,7 +307,7 @@ referrerpolicy="no-referrer" width="256" height="282" />
 </a>
 			</div>
 		</footer>
-		<button type="button" is="share-button" class="btn btn-primary round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App, KernValley.US sites and more!">
+		<button type="button" is="share-button" class="btn btn-primary round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App and websites throughout the Kern River Valley">
 			<svg class="current-color icon">
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
