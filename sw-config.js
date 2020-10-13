@@ -1,10 +1,12 @@
+/* eslint-env serviceworker */
 /* eslint no-unused-vars: 0 */
 const config = {
 	version: '1.1.7',
 	fresh: [
 		'/',
-	].map(url => new URL(url, location.origin).href),
+	].map(path => new URL(path, location.origin).href),
 	stale: [
+		'/manifest.json',
 		'/js/index.min.js',
 		'/js/imgWorker.js',
 		'/css/index.min.css',
@@ -14,6 +16,11 @@ const config = {
 		'/img/icon-192.png',
 		'/img/icon-32.png',
 		'/img/favicon.svg',
+		'/img/ad-layouts/card.svg',
+		'/img/ad-layouts/stack.svg',
+		'/img/ad-layouts/text.svg',
+		'/img/ad-layouts/image.svg',
+		'https://cdn.polyfill.io/v3/polyfill.min.js',
 		'https://cdn.kernvalley.us/components/toast-message.html',
 		'https://cdn.kernvalley.us/components/login-form/login-form.html',
 		'https://cdn.kernvalley.us/components/pwa/prompt.html',
