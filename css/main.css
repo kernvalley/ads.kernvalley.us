@@ -25,4 +25,9 @@ article p:first-letter {
 	text-align: center;
 	color: var(--alt-color);
 	padding: 8px;
+	border-radius: 6px;
+}
+
+details.accordion > summary {
+	border-radius: 6px;
 }
