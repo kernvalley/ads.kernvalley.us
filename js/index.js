@@ -36,10 +36,10 @@ async function updateForm(form, value) {
 		}),
 		$('#ad-calltoaction', form).attr({
 			disabled: value === 'image',
-			maxlength: (value === 'full-width') ? 50 : 25,
+			maxlength: (value === 'full-width') ? 50 : 26,
 		}),
 		$('#ad-label', form).attr({
-			maxlength: (value === 'ful-width') ? 80 : 20,
+			maxlength: (value === 'ful-width') ? 80 : 21,
 		}),
 	]);
 
