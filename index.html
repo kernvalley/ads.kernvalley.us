@@ -85,8 +85,8 @@
 						<label for="ad-label" class="block input-label required">
 							<b>Label/Title</b>
 						</label>
-						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\. ]+" minlength="3" maxlength="20" placeholder="Ad label" autocomplete="off" spellcheck="true" autocapitalize="words" data-share-field="title" title="3 - 20 characters" required="" />
-						<div class="status-box alert">Please enter 3 - 20 characters</div>
+						<input type="text" id="ad-label" class="input" name="label" pattern="[\w\-\.'\&amp;\. ]+" minlength="5" maxlength="21" placeholder="Ad label" autocomplete="off" spellcheck="true" autocapitalize="words" data-share-field="title" title="5 - 21 characters" required="" />
+						<div class="status-box alert">Please enter 5 - 21 characters. Letters, numbers, and select special characters valid</div>
 					</div>
 					<div class="form-group">
 						<label for="ad-description" class="block input-label required">
@@ -99,8 +99,8 @@
 						<label for="ad-calltoaction" class="block input-label required">
 							<b>Call-to-Action</b>
 						</label>
-						<input type="text" id="ad-calltoaction" class="input" name="callToAction" minlength ="8" maxlength="25" autocomplete="off" autocapitalize="words" placeholder="Call to action" spellcheck="true" title="8 - 25 characters" required="" />
-						<div class="status-box alert">Please enter 8 - 25 characters</div>
+						<input type="text" id="ad-calltoaction" class="input" name="callToAction" minlength ="8" maxlength="26" autocomplete="off" autocapitalize="words" placeholder="Call to action" spellcheck="true" title="8 - 26 characters" required="" />
+						<div class="status-box alert">Please enter 8 - 26 characters</div>
 					</div>
 					<div>
 						<b class="block center">Ad Layout</b>
@@ -109,7 +109,8 @@
 							<span class="layout-option">
 								<input name="layout" value="card" id="layout-value-card" type="radio" checked="" hidden="" />
 								<label for="layout-value-card" class="inline-block btn-toggle">
-									<span>Card</span>
+									<b>Card</b>
+									<span>$35 / month</span>
 									<br />
 									<img src="/img/ad-layouts/card.svg" width="140" height="100" loading="lazy" decoding="async" alt="Card Layout" referrerpolicy="no-referrer" />
 								</label>
@@ -117,7 +118,8 @@
 							<span class="layout-option">
 								<input name="layout" value="text" id="layout-value-text" type="radio" hidden="" />
 								<label for="layout-value-text" class="inline-block btn-toggle">
-									<span>Text</span>
+									<b>Text</b>
+									<span>$20 / month</span>
 									<br />
 									<img src="/img/ad-layouts/text.svg" width="140" height="75" loading="lazy" decoding="async" alt="Text Layout" referrerpolicy="no-referrer" />
 								</label>
@@ -125,7 +127,8 @@
 							<span class="layout-option">
 								<input name="layout" value="stack" id="layout-value-stack" type="radio" hidden="" />
 								<label for="layout-value-stack" class="inline-block btn-toggle">
-									<span>Stack</span>
+									<b>Stack</b>
+									<span>$50 / month</span>
 									<br />
 									<img src="/img/ad-layouts/stack.svg" width="140" height="190" loading="lazy" decoding="async" alt="Stack Layout" referrerpolicy="no-referrer" />
 								</label>
@@ -133,7 +136,8 @@
 							<span class="layout-option">
 								<input name="layout" value="image" id="layout-value-image" type="radio" hidden="" />
 								<label for="layout-value-image" class="inline-block btn-toggle">
-									<span>Image</span>
+									<b>Image</b>
+									<span>$40 / month</span>
 									<br />
 									<img src="/img/ad-layouts/image.svg" width="140" height="105" loading="lazy" decoding="async" alt="Image Layout" referrerpolicy="no-referrer" />
 								</label>
@@ -189,6 +193,7 @@
 					</div>
 					<details id="advanced-opts" class="accordion">
 						<summary>Advanced Design Options</summary>
+						<div class="status-box info">These options may affect rates due to design clashes</div>
 						<div class="form-group">
 							<label for="ad-background">
 								<b>Background Color</b>
