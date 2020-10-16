@@ -1,5 +1,11 @@
 [{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target" : { "namespace": "android_app", "package_name": "us.kernvalley.ads.twa",
-                   "sha256_cert_fingerprints": ["85:68:64:9F:FE:58:34:BA:99:76:71:AB:CD:42:71:6A:9D:10:E9:80:BF:8C:AD:F3:31:0B:3F:44:F8:F4:98:EB"] }
-    }]
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "us.kernvalley.ads.twa",
+    "sha256_cert_fingerprints": [
+      "85:68:64:9F:FE:58:34:BA:99:76:71:AB:CD:42:71:6A:9D:10:E9:80:BF:8C:AD:F3:31:0B:3F:44:F8:F4:98:EB",
+      "38:49:53:F5:D1:57:55:66:CD:F1:4E:8D:C0:10:DB:11:95:83:15:02:FA:05:1E:54:3E:63:E3:98:7F:33:70:13"
+    ]
+  }
+}]
