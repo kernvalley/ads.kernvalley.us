@@ -52,8 +52,10 @@ self.addEventListener('fetch', event => {
 
 					if (resp.ok) {
 						cache.put(event.request, resp.clone());
+						return resp;
+					} else {
+						return cache.match(event.request, { ignoreSearch: true });
 					}
-					return resp;
 				} else {
 					return caches.match(event.request, { ignoreSearch: true });
 				}
@@ -78,7 +80,6 @@ self.addEventListener('fetch', event => {
 					}
 				}
 			} else {
-				console.warn(event.request.url);
 				return fetch(event.request);
 			}
 		})());

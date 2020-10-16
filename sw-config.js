@@ -31,10 +31,6 @@ const config = {
 		'https://cdn.kernvalley.us/components/pwa/prompt.css',
 		'https://cdn.kernvalley.us/components/ad/block.html',
 		'https://cdn.kernvalley.us/components/ad/block.css',
-		'/img/ad-layouts/card.svg',
-		'/img/ad-layouts/stack.svg',
-		'/img/ad-layouts/image.svg',
-		'/img/ad-layouts/text.svg',
 		/* Social Icons for Web Share API shim */
 		'https://cdn.kernvalley.us/img/octicons/mail.svg',
 		'https://cdn.kernvalley.us/img/logos/facebook.svg',
