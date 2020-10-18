@@ -1,7 +1,7 @@
 {
   "name": "Kern Valley Ads",
   "short_name": "KRV Ads",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "start_url": "/",
   "lang": "en",
   "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
@@ -25,15 +25,20 @@
     "purpose":"maskable any"
   }],
   "screenshots": [{
-    "src": "https://i.imgur.com/NdFm6p0l.png",
-    "sizes": "640x312",
-    "type": "image/png"
+    "src": "https://i.imgur.com/TS8dOQfl.jpg",
+    "sizes": "640x328",
+    "type": "image/jpeg"
+  }, {
+    "src": "https://i.imgur.com/TS8dOQfm.jpg",
+    "sizes": "320x167",
+    "type": "image/jpeg"
   }],
   "categories": [
     "business",
     "utilities"
   ],
   "features": [
+    "Selection of free stock photos for your ad design",
     "Fully-functional when offline",
     "Share links from other apps to prefill label, URL, and description",
     "WYSIWYG ad editor with dark and light mode previews",
