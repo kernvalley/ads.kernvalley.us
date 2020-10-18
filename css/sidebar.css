@@ -1,2 +1,8 @@
-#sidebar {
+@media (min-width: 801px) {
+	#ad-container {
+		position: sticky;
+		top: var(--nav-height, 3rem);
+		max-height: calc(100vh - var(--nav-height, 3rem));
+		overflow: auto;
+	}
 }
