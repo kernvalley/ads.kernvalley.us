@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Selection of stock images from Pexels
+
 ### Changed
 - Improve `maxlength` and `pattern`s to match expected values
 
