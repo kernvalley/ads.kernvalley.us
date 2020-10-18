@@ -3,6 +3,32 @@ main {
 	--link-decoration: underline;
 }
 
+#pexels-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 112px);
+	grid-template-rows: repeat(auto-fill, 112px);
+	gap: 8px;
+}
+
+#pexels-gallery [data-image-src] {
+	position: relative;
+	transition: background-color 400ms ease-in-out, transform 400ms ease-in-out;
+	object-fit: cover;
+	object-position: center center;
+	padding: 6px;
+}
+
+@media (any-hover: hover) {
+	#pexels-gallery [data-image-src]:hover {
+		z-index: 1;
+		transform: scale(1.5) rotate(5deg);
+	}
+}
+
+#pexels-gallery [data-image-src].selected-img {
+	background-color: var(--accent-color);
+}
+
 .form-group .input:not(:invalid) + .status-box {
 	display: none;
 }

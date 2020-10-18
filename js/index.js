@@ -95,6 +95,13 @@ Promise.allSettled([
 ]).then(async () => {
 	const $ads = $('ad-block');
 
+	$('#pexels-gallery [data-image-src]').click(({ target }) => {
+		const input = document.getElementById('ad-image');
+		$('#pexels-gallery [data-image-src]').toggleClass('selected-img', el => el.isSameNode(target));
+		input.value = target.dataset.imageSrc;
+		input.dispatchEvent(new Event('input'));
+	}, { passive: true });
+
 	Promise.resolve(new Worker('/js/imgWorker.js')).then(worker => {
 		$('#ad-image-file').change(({ target }) => {
 			if (target.files.length === 1) {
