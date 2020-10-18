@@ -95,9 +95,9 @@ Promise.allSettled([
 ]).then(async () => {
 	const $ads = $('ad-block');
 
-	$('.stock-imgs [data-image-src]').click(({ target }) => {
+	$('#pexels-gallery [data-image-src]').click(({ target }) => {
 		const input = document.getElementById('ad-image');
-		$('.stock-imgs [data-image-src]').toggleClass('selected-img', el => el.isSameNode(target));
+		$('#pexels-gallery [data-image-src]').toggleClass('selected-img', el => el.isSameNode(target));
 		input.value = target.dataset.imageSrc;
 		input.dispatchEvent(new Event('input'));
 	}, { passive: true });
