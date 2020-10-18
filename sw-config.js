@@ -1,7 +1,7 @@
 /* eslint-env serviceworker */
 /* eslint no-unused-vars: 0 */
 const config = {
-	version: '1.1.7',
+	version: '1.1.8',
 	fresh: [
 		'/',
 	].map(path => new URL(path, location.origin).href),
