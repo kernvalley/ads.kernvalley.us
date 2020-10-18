@@ -3,6 +3,14 @@ main {
 	--link-decoration: underline;
 }
 
+.stock-imgs [data-image-src] {
+	transition: background-color 400ms ease-in-out;
+}
+
+.stock-imgs [data-image-src].selected-img {
+	background-color: var(--accent-color);
+}
+
 .form-group .input:not(:invalid) + .status-box {
 	display: none;
 }
