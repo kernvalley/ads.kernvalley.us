@@ -95,6 +95,25 @@ Promise.allSettled([
 ]).then(async () => {
 	const $ads = $('ad-block');
 
+	$('#enable-advanced').change(async ({ target }) => {
+		const checked = target.checked;
+
+		$('.advanced-opt').each(el => {
+			if (checked) {
+				$(el.labels).removeClass('disabled');
+				el.disabled = false;
+				el.dispatchEvent(new Event('input'));
+			} else {
+				el.disabled = true;
+				$(el.labels).addClass('disabled');
+			}
+		});
+
+		if (! checked) {
+			$ads.attr({ color: null, background: null, linkColor: null, borderWidth: null, borderColor: null });
+		}
+	});
+
 	$('#pexels-gallery [data-image-src]').click(({ target }) => {
 		const input = document.getElementById('ad-image');
 		$('#pexels-gallery [data-image-src]').toggleClass('selected-img', el => el.isSameNode(target));
@@ -187,11 +206,14 @@ Promise.allSettled([
 			loading: 'eager',
 		});
 
-		ad.background = data.get('background') || null;
-		ad.color = data.get('color') || null;
-		ad.border = data.get('boder') || null;
-		ad.borderWidth = data.get('borderWidth') || null;
-		ad.linkColor = data.get('linkColor') || null;
+		if (data.has('background') && data.has('color') && data.has('linkColor')) {
+			ad.background = data.get('background') || null;
+			ad.color = data.get('color') || null;
+			ad.border = data.get('boder') || null;
+			ad.borderWidth = data.get('borderWidth') || null;
+			ad.linkColor = data.get('linkColor') || null;
+		}
+
 		ad.url = data.get('url');
 		ad.layout = data.get('layout');
 		ad.theme = data.get('theme');
