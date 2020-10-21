@@ -110,7 +110,7 @@ Promise.allSettled([
 		});
 
 		if (! checked) {
-			$ads.attr({ color: null, background: null, linkColor: null, borderWidth: null });
+			$ads.attr({ color: null, background: null, linkColor: null, borderWidth: null, borderColor: null });
 		}
 	});
 
