@@ -1,5 +1,50 @@
 import { $ } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 
+export async function importAd(file) {
+	if (file instanceof Promise) {
+		return importAd(await file);
+	} else {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.addEventListener('load', event => {
+				resolve(JSON.parse(event.target.result));
+			});
+			reader.addEventListener('error', () => reject(new Error('Error reading file')));
+			reader.readAsText(file);
+		});
+	}
+}
+
+/**
+ * From: https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
+ */
+export function uuidv4() {
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+		return v.toString(16);
+	});
+}
+
+export async function setAd(ad) {
+	Object.entries(ad).forEach(([key, value]) => {
+		if (typeof value === 'string') {
+			if (key === 'theme' && value === 'auto') {
+				$('#main-preview').attr({ theme: 'auto' });
+				$('#dark-preview').attr({ theme: 'dark' });
+				$('#light-preview').attr({ theme: 'light' });
+				document.forms.ad.querySelector('[name="theme"]').value = 'auto';
+			} else if (key === 'layout') {
+				const input = document.forms.ad.querySelector(`[name="${key}"][value="${value}"]`);
+				input.checked = true;
+				input.dispatchEvent(new Event('input'));
+			} else {
+				$('ad-block').each(ad => ad[key] = value);
+				$(`[name=${key}]`, document.forms.ad).each(i => i.value = value);
+			}
+		}
+	});
+}
+
 export async function pay({views = 500, price = 0.05} = {}) {
 	const terms = document.getElementById('terms');
 	const displayItems = [{
