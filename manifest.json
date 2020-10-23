@@ -1,10 +1,10 @@
 {
   "name": "Kern Valley Ads",
   "short_name": "KRV Ads",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "start_url": "/",
   "lang": "en",
-  "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
+  "description": "Advertise on websites throughout the Kern River Valley!",
   "theme_color": "#228282",
   "background_color": "#343434",
   "display": "standalone",
@@ -39,11 +39,12 @@
   ],
   "features": [
     "Selection of free stock photos for your ad design",
+    "Open *.krvad files to import them into the app",
+    "Download and share ads as *.krvad files",
     "Fully-functional when offline",
     "Share links from other apps to prefill label, URL, and description",
     "WYSIWYG ad editor with dark and light mode previews",
-    "App Shortcuts / jumplist to create a new ad with specified layout",
-    "Download, copy, or share your ad design"
+    "App Shortcuts / jumplist to create a new ad with specified layout"
   ],
   "shortcuts": [{
     "name": "Create Card Ad",
@@ -92,6 +93,12 @@
       "url": "url"
     }
   },
+  "file_handlers": [{
+    "action": "/",
+    "accept": {
+      "application/krv-ad+json": [".krvad"]
+    }
+  }],
   "related_applications":  [{
     "platform": "play",
     "id": "us.kernvalley.ads.twa"

@@ -40,5 +40,8 @@
             "method": {"before": true, "after": false}
         }]
     },
-    "globals": {}
+    "globals": {
+      "launchQueue": "readonly",
+      "cookieStore": "readonly"
+    }
 }

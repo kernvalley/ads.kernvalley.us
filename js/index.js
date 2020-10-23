@@ -15,13 +15,26 @@ import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/no
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
+import { importAd, setAd, uuidv4 } from './functions.js';
 // import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
-import { GA } from './consts.js';
+import { GA, fileInfo } from './consts.js';
 
 function updateRequired(form) {
 	$('.input', form).each(({ labels, required, disabled}) =>
 		$(labels).toggleClass('required', required && ! disabled));
+}
+
+if ('launchQueue' in window) {
+	launchQueue.setConsumer(async ({ files }) => {
+		if (files.length === 1) {
+			const file = await files[0].getFile();
+			const ad = await importAd(file);
+			await ready();
+			await setAd(ad);
+			console.info({ ad, file });
+		}
+	});
 }
 
 async function updateForm(form, value) {
@@ -94,6 +107,8 @@ Promise.allSettled([
 	loadScript('https://cdn.polyfill.io/v3/polyfill.min.js'),
 ]).then(async () => {
 	const $ads = $('ad-block');
+
+	document.getElementById('uuid').value = uuidv4();
 
 	$('#enable-advanced').change(async ({ target }) => {
 		const checked = target.checked;
@@ -177,6 +192,8 @@ Promise.allSettled([
 		$('#main-preview').attr({ theme: 'auto' });
 		$('#ad-url').attr({ type: 'url' });
 
+		document.getElementById('uuid').value = uuidv4();
+
 		$ads.attr({
 			layout: 'card',
 			imagefit: 'cover',
@@ -247,6 +264,7 @@ Promise.allSettled([
 					fname: `${sluggify(data.get('label'))}-${new Date().toISOString()}`,
 					label: data.get('label'),
 					json: {
+						identifier: data.get('identifier'),
 						label: data.get('label'),
 						url: data.get('url'),
 						description: data.get('description'),
@@ -256,6 +274,11 @@ Promise.allSettled([
 						theme: data.get('theme'),
 						imageFit: data.get('imageFit'),
 						imagePosition: data.get('imagePosition'),
+						background: data.get('background'),
+						color: data.get('color'),
+						linkColor: data.get('linkColor'),
+						borderWidth: data.get('borderWidth'),
+						borderColor: data.get('borderColor'),
 					},
 				},
 				actions: [{
@@ -272,7 +295,7 @@ Promise.allSettled([
 					action: 'close',
 				}]
 			}).addEventListener('notificationclick', ({ action, target }) => {
-				const { html, label, fname } = target.data;
+				const { html, label, fname, json } = target.data;
 
 				switch(action) {
 					case 'copy':
@@ -286,8 +309,8 @@ Promise.allSettled([
 						break;
 
 					case 'download':
-						Promise.resolve(html).then(async html => {
-							const file = new File([html], `${fname}.html`, { type: 'text/html' });
+						Promise.resolve(JSON.stringify(json, null, 4)).then(async json => {
+							const file = new File([json], `${fname}${fileInfo.extension}`, { type: fileInfo.type });
 							const url = URL.createObjectURL(file);
 							const a = document.createElement('a');
 							a.href = url;
@@ -312,7 +335,7 @@ Promise.allSettled([
 							title: `Ad for ${label}`,
 							text: html,
 							files: [
-								new File([html], `${fname}.html`, { type: 'text/html' })
+								new File([JSON.stringify(json, null, 4)], `${fname}${fileInfo.extension}`, { type: fileInfo.type })
 
 							],
 						}).then(async ({ title, text, files }) => {
