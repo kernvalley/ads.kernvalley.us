@@ -1,10 +1,10 @@
 {
   "name": "Kern Valley Ads",
   "short_name": "KRV Ads",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "start_url": "/",
   "lang": "en",
-  "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
+  "description": "Advertise on websites throughout the Kern River Valley!",
   "theme_color": "#228282",
   "background_color": "#343434",
   "display": "standalone",
@@ -92,6 +92,12 @@
       "url": "url"
     }
   },
+  "file_handlers": [{
+    "action": "/",
+    "accept": {
+      "application/krv-ad+json": [".krvad"]
+    }
+  }],
   "related_applications":  [{
     "platform": "play",
     "id": "us.kernvalley.ads.twa"
