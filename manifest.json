@@ -39,11 +39,12 @@
   ],
   "features": [
     "Selection of free stock photos for your ad design",
+    "Open *.krvad files to import them into the app",
+    "Download and share ads as *.krvad files",
     "Fully-functional when offline",
     "Share links from other apps to prefill label, URL, and description",
     "WYSIWYG ad editor with dark and light mode previews",
-    "App Shortcuts / jumplist to create a new ad with specified layout",
-    "Download, copy, or share your ad design"
+    "App Shortcuts / jumplist to create a new ad with specified layout"
   ],
   "shortcuts": [{
     "name": "Create Card Ad",
