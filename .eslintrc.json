@@ -41,6 +41,7 @@
         }]
     },
     "globals": {
-      "launchQueue": "readonly"
+      "launchQueue": "readonly",
+      "cookieStore": "readonly"
     }
 }
