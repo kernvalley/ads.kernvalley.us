@@ -2,4 +2,24 @@
 	padding: 0.6em;
 	font-size: 1.2em;
 	justify-content: space-around;
+	background-color: #ededed;
+}
+
+#nav .btn.btn-default {
+	background-color: #ededed;
+	color: #343434;
+}
+
+@media (prefers-color-scheme: dark) {
+	#nav {
+		padding: 0.6em;
+		font-size: 1.2em;
+		justify-content: space-around;
+		background-color: #212121;
+	}
+
+	#nav .btn.btn-default {
+		background-color: #212121;
+		color: #fafafa;
+	}
 }
