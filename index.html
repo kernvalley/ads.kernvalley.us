@@ -82,6 +82,12 @@
 				</svg>
 				<span class="mobile-hidden">Save As</span>
 			</button>
+			<button is="pwa-install" id="install-btn" class="btn btn-default" src="/service-worker.js" scope="/" title="Install Web App" reloadonupdate="" hidden="">
+				<svg class="icon current-color" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#system-software-install"></use>
+				</svg>
+				<span>Install</span>
+			</button>
 		</nav>
 		<main id="main" class="card shadow">
 			<form name="ad" is="share-target">
@@ -341,12 +347,6 @@
 					</a>
 				</div>
 			</div>
-			<button is="pwa-install" class="btn btn-primary btn-big btn-wide" src="/service-worker.js" scope="/" title="Install Web App" reloadonupdate="">
-				<svg class="icon current-color" role="img" aria-hidden="true">
-					<use xlink:href="/img/icons.svg#system-software-install"></use>
-				</svg>
-				<span>Install</span>
-			</button>
 			<hr />
 			<div class="copyright">
 				<github-user user="kernvalley" loading="lazy">
