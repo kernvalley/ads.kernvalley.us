@@ -57,26 +57,26 @@
 	</head>
 	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
 		<header id="header" class="background-cover background-fixed"></header>
-		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row">
-			<button type="button" class="btn btn-default" title="Create New Ad" id="new-btn">
+		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row" role="toolbar">
+			<button type="button" class="btn btn-default" title="Create New Ad" id="new-btn" accesskey="n">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#document-new"></use>
 				</svg>
-				<span class="mobile-hidden">Create New</span>
+				<span class="mobile-hidden">Create <u>N</u>ew</span>
 			</button>
-			<button type="button" class="btn btn-default" title="Open from File" id="open-btn">
+			<button type="button" class="btn btn-default" title="Open from File" id="open-btn" accesskey="o">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#document-open"></use>
 				</svg>
-				<span class="mobile-hidden">Open</span>
+				<span class="mobile-hidden"><u>O</u>pen</span>
 			</button>
-			<button type="button" class="btn btn-default" title="Save to File" id="save-btn">
+			<button type="button" class="btn btn-default" title="Save to File" id="save-btn" accesskey="s">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#document-save"></use>
 				</svg>
-				<span class="mobile-hidden">Save</span>
+				<span class="mobile-hidden"><u>S</u>ave</span>
 			</button>
-			<button type="button" class="btn btn-default" title="Save as..." id="save-as-btn" hidden="">
+			<button type="button" class="btn btn-default" title="Save as..." id="save-as-btn" disabled="" hidden="">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#document-save-as"></use>
 				</svg>
