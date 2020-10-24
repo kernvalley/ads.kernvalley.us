@@ -1,8 +1,8 @@
 {
   "name": "ads.kernvalley.us",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
-  "description": "Advertise on Whiskey Flat Days App, KernValley.US sites and more!",
+  "description": "Advertise on websites throughout the Kern River Valley",
   "config": {
     "icons": "./icons.csv",
     "serve": {
