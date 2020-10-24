@@ -33,3 +33,7 @@
 	margin-left: auto;
 	margin-right: 0.4em;
 }
+
+#nav .btn.btn-default:disabled * {
+	opacity: 0.6;
+}

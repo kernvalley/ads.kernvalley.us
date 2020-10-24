@@ -145,7 +145,7 @@ Promise.allSettled([
 
 	if (window.showSaveFilePicker instanceof Function) {
 		$('#save-as-btn').click(() => saveAd(true));
-		$('#save-as-btn').unhide();
+		$('#save-as-btn').attr({ hidden: false, disabled: false});
 	}
 
 	$('#new-btn').click(createHandler);
