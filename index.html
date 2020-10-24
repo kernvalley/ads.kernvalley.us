@@ -5,8 +5,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="robots" content="follow,index" />
-		<meta name="description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
-		<meta itemprop="description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
+		<meta name="description" content="Advertise on websites throughout the Kern River Valley!" />
+		<meta itemprop="description" content="Advertise on websites throughout the Kern River Valley!" />
 		<meta name="keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
 		<meta itemprop="keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
 		<meta name="referrer" content="no-referrer"/>
@@ -17,7 +17,7 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="Kern Valley Ads" />
 		<meta property="og:url" content="https://ads.kernvalley.us" />
-		<meta property="og:description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
+		<meta property="og:description" content="Advertise on websites throughout the Kern River Valley!" />
 		<meta property="og:keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
 		<meta property="og:image" content="https://i.imgur.com/TS8dOQfl.jpg" />
 		<meta property="og:image:height" content="328" />
@@ -26,7 +26,7 @@
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:creator" content="kern_valley" />
-		<meta name="twitter:description" content="Advertise on Whiskey Flat Days App, KernValley.US sites and more!" />
+		<meta name="twitter:description" content="Advertise on websites throughout the Kern River Valley!" />
 		<meta name="twitter:image" content="https://i.imgur.com/TS8dOQfl.jpg" />
 		<!-- /Twitter -->
 		<!-- /Social data -->
@@ -37,7 +37,7 @@
 		<link rel="preconnect" href="https://api.github.com/" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="preload" href="https://cdn.polyfill.io/v3/polyfill.min.js" as="script" type="text/javascript" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" />
 		<link rel="preload" href="https://cdn.kernvalley.us/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin="anonymous" importance="high" />
-		<link rel="preload" href="/img/neon.svg" as="image" type="image/svg+xml" referrerpolicy="no-referrer" importance="high" />
+		<!-- <link rel="preload" href="/img/neon.svg" as="image" type="image/svg+xml" referrerpolicy="no-referrer" importance="high" /> -->
 		<!-- <link rel="preload" href="https://cdn.kernvalley.us/components/ad/block.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" /> -->
 		<link rel="preload" href="https://cdn.kernvalley.us/components/ad/block.css" as="style" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" />
 		<!-- <link rel="preload" href="https://cdn.kernvalley.us/components/github/user.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" /> -->
@@ -57,9 +57,31 @@
 	</head>
 	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
 		<header id="header" class="background-cover background-fixed"></header>
-		<nav id="nav" class="sticky top shadow background-accent color-alt z-3">
-			<button is="login-button" title="Sign In" class="btn btn-accept" hidden="">Sign In</button>
-			<button is="logout-button" title="Sign Out" class="btn btn-reject" hidden="">Sign Out</button>
+		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row">
+			<button type="button" class="btn btn-default" title="Create New Ad" id="new-btn">
+				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#document-new"></use>
+				</svg>
+				<span class="mobile-hidden">Create New</span>
+			</button>
+			<button type="button" class="btn btn-default" title="Open from File" id="open-btn">
+				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#document-open"></use>
+				</svg>
+				<span class="mobile-hidden">Open</span>
+			</button>
+			<button type="button" class="btn btn-default" title="Save to File" id="save-btn">
+				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#document-save"></use>
+				</svg>
+				<span class="mobile-hidden">Save</span>
+			</button>
+			<button type="button" class="btn btn-default" title="Save as..." id="save-as-btn" hidden="">
+				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#document-save-as"></use>
+				</svg>
+				<span class="mobile-hidden">Save As</span>
+			</button>
 		</nav>
 		<main id="main" class="card shadow">
 			<form name="ad" is="share-target">
@@ -182,7 +204,7 @@
 					</div>
 					<div class="form-group">
 						<label role="button" for="ad-image-file" class="btn btn-primary">
-							<svg class="current-color icon" fill="currentColor" width="16" height="16">
+							<svg class="current-color icon" fill="currentColor" width="16" height="16" role="img" aria-hidden="true">
 								<use xlink:href="/img/icons.svg#cloud-upload"></use>
 							</svg>
 							<span>Upload File</span>
@@ -219,13 +241,13 @@
 							<input id="enable-advanced" type="checkbox" hidden="" />
 							<label class="btn btn-toggle" for="enable-advanced">
 								<span class="when-checked">
-									<svg width="12" height="16" viewBox="0 0 12 16" class="icon" fill="currentColor">
+									<svg width="12" height="16" viewBox="0 0 12 16" class="icon" fill="currentColor" role="img" aria-hidden="true">
 										<path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"/>
 									</svg>
 									<span>Enable</span>
 								</span>
 								<span class="when-unchecked">
-									<svg width="12" height="16" viewBox="0 0 12 16" class="icon" fill="currentColor">
+									<svg width="12" height="16" viewBox="0 0 12 16" class="icon" fill="currentColor" role="img" aria-hidden="true">
 										<path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
 									</svg>
 									<span>Disable</span>
@@ -264,41 +286,35 @@
 						</div>
 					</details>
 				</fieldset>
-				<br />
-				<div>
-					<button type="submit" class="btn btn-accept">Submit</button>
-					<span>&nbsp;</span>
-					<button type="reset" class="btn btn-reject">Reset</button>
-				</div>
 			</form>
 		</main>
 		<aside id="sidebar" class="card shadow center">
 			<div class="sticky" id="ad-container">
 				<h2>Previews</h2>
-				<h3 class="center">Dark Theme</h3>
-				<ad-block theme="dark" id="dark-preview" class="ad-preview no-pointer-events" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
-				<hr />
 				<h3 class="center">Light Theme</h3>
 				<ad-block theme="light" id="light-preview" class="ad-preview no-pointer-events" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
+				<hr />
+				<h3 class="center">Dark Theme</h3>
+				<ad-block theme="dark" id="dark-preview" class="ad-preview no-pointer-events" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
 			</div>
 		</aside>
 		<footer id="footer">
 			<div class="social-links cols-2">
 				<div class="cols inline-block">
 					<a class="block" href="https://github.com/kernvalley/" target="_blank" rel="external noopener">
-						<svg class="current-color icon social-icon">
+						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#mark-github"></use>
 						</svg>
 						<span>GitHub Profile</span>
 					</a>
 					<a class="block" href="https://github.com/kernvalley/ads.kernvalley.us" target="_blank" rel="external noopener">
-						<svg class="current-color icon social-icon">
+						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#repo"></use>
 						</svg>
 						<span>GitHub Repo</span>
 					</a>
 					<a class="block" href="https://github.com/kernvalley/ads.kernvalley.us/issues" target="_blank" rel="external noopener">
-						<svg class="current-color icon social-icon">
+						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#issue-opened"></use>
 						</svg>
 						<span>Report a Problem</span>
@@ -306,19 +322,19 @@
 				</div>
 				<div class="cols inline-block">
 					<a class="block" href="https://kernvalley.us" target="_blank" rel="external noopener" itemprop="sameAs">
-						<svg class="current-color icon social-icon">
+						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#web-browser"></use>
 						</svg>
 						<span>Website</span>
 					</a>
 					<a class="block" href="https://twitter.com/kern_valley" target="_blank" rel="external noopener" itemprop="sameAs">
-						<svg class="icon social-icon">
+						<svg class="icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#twitter"></use>
 						</svg>
 						<span>On Twitter</span>
 					</a>
 					<a class="block" href="https://www.linkedin.com/company/kernvalley-us/" target="_blank" rel="external noopener" itemprop="sameAs">
-						<svg class="icon social-icon">
+						<svg class="icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#linkedin"></use>
 						</svg>
 						<span>LinkedIn</span>
@@ -353,7 +369,7 @@ referrerpolicy="no-referrer" width="256" height="282" />
 			</div>
 		</footer>
 		<button type="button" is="share-button" class="btn btn-primary round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App and websites throughout the Kern River Valley" url="/" source="krv-ads" medium="social" content="share-button">
-			<svg class="current-color icon">
+			<svg class="current-color icon" role="img" aria-hidden="true">
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
 		</button>
@@ -401,5 +417,26 @@ referrerpolicy="no-referrer" width="256" height="282" />
 				<p>Feel free to check out the ad builder and plan your design for when it is available</p>
 			</div>
 		</toast-message>
+		<dialog id="import-dialog">
+			<form name="importForm">
+				<fieldset class="no-border">
+					<div class="form-group">
+						<label for="import-file" class="input-label required">
+							<span>Ad File</span>
+						</label>
+						<input type="file" accept=".krvad" name="upload" id="import-file" class="input" required="" />
+					</div>
+					<div id="preview-section"></div>
+				</fieldset>
+				<div class="btns flex row">
+					<button type="submit" class="btn btn-accept">
+						<span>Import</span>
+					</button>
+					<button type="reset" class="btn btn-reject">
+						<span>Cancel</span>
+					</button>
+				</div>
+			</form>
+		</dialog>
 	</body>
 </html>

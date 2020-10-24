@@ -15,10 +15,10 @@ import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/no
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
-import { importAd, setAd, uuidv4 } from './functions.js';
+import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, consumeHandler } from './functions.js';
 // import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
-import { GA, fileInfo } from './consts.js';
+import { GA } from './consts.js';
 
 function updateRequired(form) {
 	$('.input', form).each(({ labels, required, disabled}) =>
@@ -26,15 +26,7 @@ function updateRequired(form) {
 }
 
 if ('launchQueue' in window) {
-	launchQueue.setConsumer(async ({ files }) => {
-		if (files.length === 1) {
-			const file = await files[0].getFile();
-			const ad = await importAd(file);
-			await ready();
-			await setAd(ad);
-			console.info({ ad, file });
-		}
-	});
+	launchQueue.setConsumer(consumeHandler);
 }
 
 async function updateForm(form, value) {
@@ -52,15 +44,11 @@ async function updateForm(form, value) {
 			maxlength: (value === 'full-width') ? 50 : 26,
 		}),
 		$('#ad-label', form).attr({
-			maxlength: (value === 'ful-width') ? 80 : 21,
+			maxlength: (value === 'full-width') ? 80 : 21,
 		}),
 	]);
 
 	updateRequired(form);
-}
-
-function sluggify(text) {
-	return text.toLowerCase().replace(/\W+/g, '-');
 }
 
 if (typeof GA === 'string' && GA.length !== 0) {
@@ -105,10 +93,28 @@ document.body.classList.toggle('no-details', document.createElement('details') i
 Promise.allSettled([
 	ready(),
 	loadScript('https://cdn.polyfill.io/v3/polyfill.min.js'),
+	customElements.whenDefined('ad-block'),
 ]).then(async () => {
+	const HTMLAdBlockElement = customElements.get('ad-block');
 	const $ads = $('ad-block');
 
 	document.getElementById('uuid').value = uuidv4();
+
+	$('#open-btn').click(async () => {
+		const file = await getFile();
+		const ad = await importAd(file);
+		await setAd(ad);
+		console.info({ file, ad });
+	});
+
+	$('#save-btn').click(() => saveAd(false));
+
+	if (window.showSaveFilePicker instanceof Function) {
+		$('#save-as-btn').click(() => saveAd(true));
+		$('#save-as-btn').unhide();
+	}
+
+	$('#new-btn').click(createHandler);
 
 	$('#enable-advanced').change(async ({ target }) => {
 		const checked = target.checked;
@@ -210,7 +216,6 @@ Promise.allSettled([
 		event.preventDefault();
 		// await pay();
 		const data = new FormData(event.target);
-		const HTMLAdBlockElement = customElements.get('ad-block');
 
 		const ad = new HTMLAdBlockElement({
 			label: data.get('label'),
@@ -253,7 +258,7 @@ Promise.allSettled([
 
 		await ad.ready.then(() => $('[part]', ad).attr({ part: null }));
 
-		setTimeout(() => {
+		setTimeout(async () => {
 			new HTMLNotificationElement('Ad Created', {
 				body: 'What next?',
 				icon: '/img/favicon.svg',
@@ -263,23 +268,7 @@ Promise.allSettled([
 					html: ad.outerHTML,
 					fname: `${sluggify(data.get('label'))}-${new Date().toISOString()}`,
 					label: data.get('label'),
-					json: {
-						identifier: data.get('identifier'),
-						label: data.get('label'),
-						url: data.get('url'),
-						description: data.get('description'),
-						callToAction: data.get('callToAction'),
-						image: data.get('image'),
-						layout: data.get('layout'),
-						theme: data.get('theme'),
-						imageFit: data.get('imageFit'),
-						imagePosition: data.get('imagePosition'),
-						background: data.get('background'),
-						color: data.get('color'),
-						linkColor: data.get('linkColor'),
-						borderWidth: data.get('borderWidth'),
-						borderColor: data.get('borderColor'),
-					},
+					json: await ad.getJSON(),
 				},
 				actions: [{
 					title: 'Copy',
@@ -294,8 +283,8 @@ Promise.allSettled([
 					title: 'Close',
 					action: 'close',
 				}]
-			}).addEventListener('notificationclick', ({ action, target }) => {
-				const { html, label, fname, json } = target.data;
+			}).addEventListener('notificationclick', async ({ action, target }) => {
+				const { html, label, fname } = target.data;
 
 				switch(action) {
 					case 'copy':
@@ -309,24 +298,17 @@ Promise.allSettled([
 						break;
 
 					case 'download':
-						Promise.resolve(JSON.stringify(json, null, 4)).then(async json => {
-							const file = new File([json], `${fname}${fileInfo.extension}`, { type: fileInfo.type });
-							const url = URL.createObjectURL(file);
-							const a = document.createElement('a');
-							a.href = url;
-							a.download = file.name;
-							a.textContent = 'Download';
-							a.classList.add('btn', 'btn-primary');
-							document.body.append(a);
+						Promise.resolve(ad.getDownloadLink({ fname: `${fname}${HTMLAdBlockElement.FILE_EXTENSION}` })).then(a => {
 							try {
 								a.click();
 								a.remove();
 							} catch(err) {
 								console.error(err);
+								alert(err.message);
 							}
 						}).catch(err => {
 							console.error(err);
-							alert(`Error saving HTML for ad: ${err.message}`);
+							alert(`Error saving ad: ${err.message}`);
 						});
 						break;
 
@@ -334,10 +316,7 @@ Promise.allSettled([
 						Promise.resolve({
 							title: `Ad for ${label}`,
 							text: html,
-							files: [
-								new File([JSON.stringify(json, null, 4)], `${fname}${fileInfo.extension}`, { type: fileInfo.type })
-
-							],
+							files: [await ad.toFile({ fname: `${fname}${HTMLAdBlockElement.FILE_EXTENSION}` })],
 						}).then(async ({ title, text, files }) => {
 							if (! (navigator.canShare instanceof Function)) {
 								throw new Error('Share API not supported');
@@ -378,5 +357,24 @@ Promise.allSettled([
 		if (data.get('theme') !== 'auto') {
 			$ads.each(ad => ad.theme = data.get('theme') || null);
 		}
+	});
+
+	document.forms.ad.addEventListener('drop', async function(event) {
+		event.preventDefault();
+		this.classList.remove('dragging');
+
+		if (event.dataTransfer.items.length === 1) {
+			const file = event.dataTransfer.items[0].getAsFile();
+			const ad = await importAd(file);
+			await setAd(ad).catch(console.error);
+		}
+	});
+
+	document.forms.ad.addEventListener('dragover', event => event.preventDefault());
+	document.forms.ad.addEventListener('dragenter', function()  {
+		this.classList.add('dragging');
+	});
+	document.forms.ad.addEventListener('dragleave', function() {
+		this.classList.remove('dragging');
 	});
 });

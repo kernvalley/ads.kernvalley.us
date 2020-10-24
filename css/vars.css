@@ -8,5 +8,6 @@
 		--scrollbar-color: var(--accent-color);
 		--scrollbar-track: var(--primary-color);
 		--scrollbar-width: auto;
+		--header-height: 0;
 	}
 }

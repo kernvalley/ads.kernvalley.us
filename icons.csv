@@ -16,3 +16,7 @@ link,img/octicons/link.svg
 link-external,img/octicons/link-external.svg
 system-software-install,img/adwaita-icons/apps/system-software-install.svg
 cloud-upload,img/octicons/cloud-upload.svg
+document-new,img/adwaita-icons/actions/document-new.svg
+document-open,img/adwaita-icons/actions/document-open.svg
+document-save,img/adwaita-icons/actions/document-save.svg
+document-save-as,img/adwaita-icons/actions/document-save-as.svg

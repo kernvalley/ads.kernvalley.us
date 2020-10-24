@@ -2,4 +2,29 @@
 	padding: 0.6em;
 	font-size: 1.2em;
 	justify-content: space-around;
+	background-color: #DEDAD7;
+	gap: 0.6em;
+	justify-content: flex-start;
+}
+
+#nav .btn.btn-default {
+	background-color: #EEECEA;
+	color: #2E3436;
+	border: 1px solid #bfbfbf;
+	flex-grow: 1;
+	max-width: 200px;
+}
+
+@media (prefers-color-scheme: dark) {
+	#nav {
+		padding: 0.6em;
+		font-size: 1.2em;
+		background-color: #212121;
+	}
+
+	#nav .btn.btn-default {
+		background-color: #2d2d2d;
+		color: #EEEEEC;
+		border: 1px solid #070707;
+	}
 }
