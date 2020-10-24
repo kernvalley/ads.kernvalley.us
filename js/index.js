@@ -128,7 +128,12 @@ Promise.allSettled([
 			} else if (! navigator.canShare({ title, files: [file] })) {
 				throw new Error('File sharing not supported');
 			} else {
-				await navigator.share({ title, files: [file] });
+				try {
+					await navigator.share({ title, files: [file] });
+				} catch(err) {
+					console.error(err);
+					throw new Error('Unable to share ad file. Not supported');
+				}
 			}
 			$(`#${container.id}`).remove();
 		} catch(err) {
