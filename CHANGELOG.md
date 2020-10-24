@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add buttons and icons to `<nav>`
 - Re-style `<nav>` to be useful as a toolbar
 - Add proper `role` and accessibility attributes to `<svg>` icons
+- Use Adwaita inspired theme for `<nav>` and buttons
+- Hide `<header>`
 
 ### Removed
 - Submit and Reset buttons for ad form
