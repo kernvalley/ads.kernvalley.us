@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Add button to share ad files
+
+### Changed
+- Update screenshots
+
+### Fixed
+- Correctly set UUID/identifier/id of ad files
+- Remove debugging `console.*` calls
+
+### Removed
+- Delete unused analytics script
+- Remove unused constants in script
+
 ## [v1.2.1] - 2020-10-24
 
 ### Added
