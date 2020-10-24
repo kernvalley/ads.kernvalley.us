@@ -61,3 +61,7 @@ article p:first-letter {
 details.accordion > summary {
 	border-radius: 6px;
 }
+
+.dragging {
+	border: 3px solid red;
+}

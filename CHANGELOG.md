@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.2.1] - 2020-10-24
+
+### Added
+- Add support for dropping ad files into form
+- Add support for Native Filesystem API
+- Create, Open, Save, and Save as Buttons
+
+### Changed
+- Add buttons and icons to `<nav>`
+- Re-style `<nav>` to be useful as a toolbar
+- Add proper `role` and accessibility attributes to `<svg>` icons
+
+### Removed
+- Submit and Reset buttons for ad form
+
 ## [v1.2.0] - 2020-10-23
 
 ### Added
