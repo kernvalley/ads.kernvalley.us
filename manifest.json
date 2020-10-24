@@ -25,13 +25,13 @@
     "purpose":"maskable any"
   }],
   "screenshots": [{
-    "src": "https://i.imgur.com/TS8dOQfl.jpg",
-    "sizes": "640x328",
-    "type": "image/jpeg"
+    "src": "https://i.imgur.com/i2OdlWJl.png",
+    "sizes": "640x360",
+    "type": "image/png"
   }, {
-    "src": "https://i.imgur.com/TS8dOQfm.jpg",
-    "sizes": "320x167",
-    "type": "image/jpeg"
+    "src": "https://i.imgur.com/i2OdlWJm.png",
+    "sizes": "320x180",
+    "type": "image/png"
   }],
   "categories": [
     "business",

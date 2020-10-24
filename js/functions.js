@@ -62,7 +62,6 @@ export function uuidv4() {
 
 export async function setAd(ad) {
 	Object.entries(ad).forEach(([key, value]) => {
-		console.info({key, value});
 		if (typeof value === 'string') {
 			switch(key) {
 				case 'theme':
@@ -115,9 +114,6 @@ export async function getFile() {
 			}]
 		});
 		const file = await fileHandle.getFile();
-		window.fileHandle = fileHandle;
-
-		console.info({ file, fileHandle });
 
 		return file;
 	} else {
@@ -167,6 +163,13 @@ export async function getFile() {
 
 export async function saveAd(saveAs = false) {
 	await customElements.whenDefined('ad-block');
+	const identifier = document.getElementById('uuid').value;
+	const ad = document.getElementById('main-preview').cloneNode(true);
+	const container = document.createElement('div');
+	container.hidden = true;
+	ad.id = identifier;
+	container.append(ad);
+	document.body.append(container);
 
 	if (window.showSaveFilePicker instanceof Function) {
 		if (fileHandle === null || saveAs === true) {
@@ -187,24 +190,23 @@ export async function saveAd(saveAs = false) {
 			await verifyPermission(handle, true);
 
 			const writable = await handle.createWritable();
-			const ad = document.getElementById('main-preview');
 			const data = await ad.getJSON();
 			await writable.write(data);
 			await writable.close();
+			container.remove();
 		} else {
 			await verifyPermission(fileHandle, true);
 			const writable = await fileHandle.createWritable();
-			const ad = document.getElementById('main-preview');
 			const data = await ad.getJSON();
 			await writable.write(data);
 			await writable.close();
+			container.remove();
 		}
 	} else {
-		const ad = document.getElementById('main-preview');
 		const label = await ad.label;
+		container.remove();
 		const date = new Date();
 		const fname = `${sluggify(label || 'ad')}-${date.toISOString()}.krvad`;
-
 		const a = await ad.getDownloadLink({ fname });
 		a.click();
 	}
