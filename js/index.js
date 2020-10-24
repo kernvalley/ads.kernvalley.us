@@ -104,10 +104,44 @@ Promise.allSettled([
 		const file = await getFile();
 		const ad = await importAd(file);
 		await setAd(ad);
-		console.info({ file, ad });
 	});
 
 	$('#save-btn').click(() => saveAd(false));
+
+	$('#share-ad-btn').click(async () => {
+		const container = document.createElement('div');
+		container.id = 'tmp-container';
+
+		try {
+			await customElements.whenDefined('ad-block');
+			const identifier = document.getElementById('uuid').value;
+			const ad = document.getElementById('main-preview').cloneNode(true);
+			ad.id = identifier;
+			container.hidden = true;
+			container.append(ad);
+			document.body.append(container);
+			const title = await ad.label;
+			const file = await ad.toFile({ fname: `${sluggify(title || 'new ad')}.krvad` });
+
+			if (! (navigator.canShare instanceof Function)) {
+				throw new Error('Sharing not supported');
+			} else if (! navigator.canShare({ title, files: [file] })) {
+				throw new Error('File sharing not supported');
+			} else {
+				try {
+					await navigator.share({ title, files: [file] });
+				} catch(err) {
+					console.error(err);
+					throw new Error('Unable to share ad file. Not supported');
+				}
+			}
+			$(`#${container.id}`).remove();
+		} catch(err) {
+			console.error(err);
+			alert(err.message);
+			$(`#${container.id}`).remove();
+		}
+	});
 
 	if (window.showSaveFilePicker instanceof Function) {
 		$('#save-as-btn').click(() => saveAd(true));
