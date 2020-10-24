@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add proper `role` and accessibility attributes to `<svg>` icons
 - Use Adwaita inspired theme for `<nav>` and buttons
 - Hide `<header>`
+- Move `<button is="pwa-install">` to `<nav>` for better visibility
 
 ### Removed
 - Submit and Reset buttons for ad form
