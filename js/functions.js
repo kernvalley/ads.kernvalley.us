@@ -1,10 +1,71 @@
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+let fileHandle = null;
+
+export function updateRequired(form) {
+	$('.input', form).each(({ labels, required, disabled}) =>
+		$(labels).toggleClass('required', required && ! disabled));
+}
+
+export async function updateForm(form, layout) {
+	await Promise.allSettled([
+		$('#ad-image', form).attr({ disabled: layout === 'text' }),
+		$('#ad-image-file', form).attr({ disabled: layout === 'text' }),
+		$('#object-fit', form).attr({ disabled: layout === 'text' }),
+		$('#object-position', form).attr({ disabled: layout === 'text' }),
+		$('#ad-description', form).attr({
+			disabled: layout === 'image',
+			maxlength: (layout === 'full-width') ? 400 : 118,
+		}),
+		$('#ad-calltoaction', form).attr({
+			disabled: layout === 'image',
+			maxlength: (layout === 'full-width') ? 50 : 26,
+		}),
+		$('#ad-label', form).attr({
+			maxlength: (layout === 'full-width') ? 80 : 21,
+		}),
+	]);
+
+	updateRequired(form);
+}
+
+export function updatePage(name, value, updateState = true) {
+	const $ads = $('ad-block');
+
+	if (updateState) {
+		const state = history.state;
+		state[name] = value;
+		history.replaceState(state, document.title, location.href);
+	}
+
+	switch(name) {
+		case 'layout':
+			updateForm(document.forms.ad, value);
+			$ads.each(async ad => ad[name] = value);
+			break;
+
+		case 'theme':
+			$ads.attr({ background: null, color: null, border: null, borderWidth: null, linkColor: null });
+			$('#advanced-opts').close();
+			$('#advanced-opts input').each(i => i.value = null);
+
+			if (value === 'auto') {
+				$('#dark-preview').attr({ theme: 'dark' });
+				$('#light-preview').attr({ theme: 'light' });
+				$('#main-preview').attr({ theme: 'auto' });
+			} else {
+				$ads.each(async ad => ad[name] = value);
+			}
+			break;
+
+		default:
+			$(`[name="${name}"]`).each(i => i.value = value);
+			$ads.each(ad => ad[name] = value);
+	}
+}
 
 export function sluggify(text) {
 	return text.toLowerCase().replace(/\W+/g, '-');
 }
-
-let fileHandle = null;
 
 export async function consumeHandler({ files }) {
 	if (files.length === 1) {
@@ -62,23 +123,17 @@ export function uuidv4() {
 
 export async function setAd(ad) {
 	Object.entries(ad).forEach(([key, value]) => {
+		updatePage(key, value);
+
 		if (typeof value === 'string') {
 			switch(key) {
 				case 'theme':
-					if (value === 'auto') {
-						$('#main-preview').attr({ theme: 'auto' });
-						$('#dark-preview').attr({ theme: 'dark' });
-						$('#light-preview').attr({ theme: 'light' });
-					} else {
-						$('ad-block').attr({ theme: value });
-						document.forms.ad.querySelector('[name="theme"]').value = value;
-					}
+					document.forms.ad.querySelector('[name="theme"]').value = value;
 					break;
 
 				case 'layout':
 					(input => {
 						input.checked = true;
-						input.dispatchEvent(new Event('input'));
 					})(document.forms.ad.querySelector(`[name="${key}"][value="${value}"]`));
 					break;
 
@@ -88,7 +143,6 @@ export async function setAd(ad) {
 					break;
 
 				default:
-					$('ad-block').each(ad => ad[key] = value);
 					$(`[name=${key}]`, document.forms.ad).each(i => i.value = value);
 			}
 		}
