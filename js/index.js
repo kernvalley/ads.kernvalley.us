@@ -15,40 +15,28 @@ import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/no
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
-import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, consumeHandler } from './functions.js';
+import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm } from './functions.js';
 // import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
 import { GA } from './consts.js';
-
-function updateRequired(form) {
-	$('.input', form).each(({ labels, required, disabled}) =>
-		$(labels).toggleClass('required', required && ! disabled));
-}
 
 if ('launchQueue' in window) {
 	launchQueue.setConsumer(consumeHandler);
 }
 
-async function updateForm(form, value) {
-	await Promise.allSettled([
-		$('#ad-image', form).attr({ disabled: value === 'text' }),
-		$('#ad-image-file', form).attr({ disabled: value === 'text' }),
-		$('#object-fit', form).attr({ disabled: value === 'text' }),
-		$('#object-position', form).attr({ disabled: value === 'text' }),
-		$('#ad-description', form).attr({
-			disabled: value === 'image',
-			maxlength: (value === 'full-width') ? 400 : 118,
-		}),
-		$('#ad-calltoaction', form).attr({
-			disabled: value === 'image',
-			maxlength: (value === 'full-width') ? 50 : 26,
-		}),
-		$('#ad-label', form).attr({
-			maxlength: (value === 'full-width') ? 80 : 21,
-		}),
-	]);
-
-	updateRequired(form);
+if (history.state === null) {
+	history.replaceState({ identifier: uuidv4() }, document.title, location.href);
+} else {
+	Object.entries(history.state).forEach(([key, value]) => {
+		updatePage(key, value, false);
+		$(`[name="${key}"]`).each(i => {
+			if (i.type === 'radio' || i.type === 'checkbox') {
+				i.checked = i.value === value;
+			} else {
+				i.value = value;
+			}
+		});
+	});
 }
 
 if (typeof GA === 'string' && GA.length !== 0) {
@@ -98,12 +86,15 @@ Promise.allSettled([
 	const HTMLAdBlockElement = customElements.get('ad-block');
 	const $ads = $('ad-block');
 
-	document.getElementById('uuid').value = uuidv4();
+	document.getElementById('uuid').value = history.state.identifier;
 
 	$('#open-btn').click(async () => {
 		const file = await getFile();
-		const ad = await importAd(file);
-		await setAd(ad);
+
+		if (file) {
+			const ad = await importAd(file);
+			await setAd(ad);
+		}
 	});
 
 	$('#save-btn').click(() => saveAd(false));
@@ -198,41 +189,20 @@ Promise.allSettled([
 	});
 
 
-	$('input[name], textarea[name], select[name]', document.forms.ad).input(async ({ target }) => {
-		const form = target.form;
-		switch(target.name) {
-			case 'layout':
-				updateForm(form, target.value);
-				$ads.each(async ad => ad[target.name] = target.value);
-				break;
-
-			case 'theme':
-				$ads.attr({ background: null, color: null, border: null, borderWidth: null, linkColor: null });
-				$('#advanced-opts').close();
-				$('#advanced-opts input').each(i => i.value = null);
-
-				if (target.value === 'auto') {
-					$('#dark-preview').attr({ theme: 'dark' });
-					$('#light-preview').attr({ theme: 'light' });
-					$('#main-preview').attr({ theme: 'auto' });
-				} else {
-					$ads.each(async ad => ad[target.name] = target.value);
-				}
-				break;
-
-			default:
-				$ads.each(async ad => ad[target.name] = target.value);
-		}
+	$('input[name], textarea[name], select[name]', document.forms.ad).input(async ({ target: { name, value }}) => {
+		updatePage(name, value);
 	});
 
 	$('form[name="ad"]').reset(() => {
+		const uuid = uuidv4();
 		$('.ad-preview > [slot]').remove();
 		$('#light-preview').attr({ theme: 'light' });
 		$('#dark-preview').attr({ theme: 'dark' });
 		$('#main-preview').attr({ theme: 'auto' });
 		$('#ad-url').attr({ type: 'url' });
+		history.replaceState({ identifier: uuid }, document.title, location.href);
 
-		document.getElementById('uuid').value = uuidv4();
+		document.getElementById('uuid').value = uuid;
 
 		$ads.attr({
 			layout: 'card',
@@ -380,7 +350,7 @@ Promise.allSettled([
 
 		updateForm(document.forms.ad, data.get('layout'));
 
-		$ads.each(ad => {
+		$('ad-block').each(ad => {
 			ad.image = data.get('image') || null;
 			ad.imageFit = data.get('imageFit') || null;
 			ad.imagePosition = data.get('imagePosition') || null;

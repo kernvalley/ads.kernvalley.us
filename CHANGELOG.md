@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add button to share ad files
 - Implement `accesskey` on `<nav>`/toolbar buttons
+- Implement state management for form and ad previews
 
 ### Changed
 - Update screenshots
