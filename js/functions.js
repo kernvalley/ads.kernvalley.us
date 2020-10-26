@@ -31,8 +31,8 @@ export async function updateForm(form, layout) {
 export function updatePage(name, value, updateState = true) {
 	const $ads = $('ad-block');
 
-	if (updateState) {
-		const state = history.state;
+	if (updateState && (name !== 'image' || ! value.startsWith('data:'))) {
+		const state = history.state || {};
 		state[name] = value;
 		history.replaceState(state, document.title, location.href);
 	}
@@ -72,6 +72,7 @@ export async function consumeHandler({ files }) {
 		fileHandle = files[0];
 		const file = await fileHandle.getFile();
 		const ad = await importAd(file);
+		console.info({ file, ad });
 		await ready();
 		await setAd(ad);
 	}
