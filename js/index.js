@@ -185,9 +185,8 @@ Promise.allSettled([
 					file: target.files.item(0),
 				});
 
-				worker.addEventListener('message', ({ data }) => {
-					const img = document.getElementById('ad-image');
-					updatePage('image', data.dataUri, false);
+				worker.addEventListener('message', ({ data: { dataUri }}) => {
+					updatePage('image', dataUri, false);
 				});
 			}
 		});
