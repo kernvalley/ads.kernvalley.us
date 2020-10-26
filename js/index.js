@@ -65,6 +65,7 @@ if (location.hash.length !== 0) {
 	if (['card', 'stack', 'text', 'image'].includes(layout)) {
 		$('input[name="layout"]').each(i => i.checked = i.value === layout);
 		location.hash = '';
+		updatePage('layout', layout);
 	}
 }
 
@@ -99,40 +100,44 @@ Promise.allSettled([
 
 	$('#save-btn').click(() => saveAd(false));
 
-	$('#share-ad-btn').click(async () => {
-		const container = document.createElement('div');
-		container.id = 'tmp-container';
+	if (navigator.canShare instanceof Function && navigator.canShare({ files: [new File([''], 'f.txt', { type: 'text/plain' })]})) {
+		$('#share-ad-btn').click(async () => {
+			const container = document.createElement('div');
+			container.id = 'tmp-container';
 
-		try {
-			await customElements.whenDefined('ad-block');
-			const identifier = document.getElementById('uuid').value;
-			const ad = document.getElementById('main-preview').cloneNode(true);
-			ad.id = identifier;
-			container.hidden = true;
-			container.append(ad);
-			document.body.append(container);
-			const title = await ad.label;
-			const file = await ad.toFile({ fname: `${sluggify(title || 'new ad')}.krvad` });
+			try {
+				await customElements.whenDefined('ad-block');
+				const identifier = history.state.identifier;
+				const ad = document.getElementById('main-preview').cloneNode(true);
+				ad.id = identifier;
+				container.hidden = true;
+				container.append(ad);
+				document.body.append(container);
+				const title = await ad.label;
+				const file = await ad.toFile({ fname: `${sluggify(title || 'new ad')}.krvad` });
 
-			if (! (navigator.canShare instanceof Function)) {
-				throw new Error('Sharing not supported');
-			} else if (! navigator.canShare({ title, files: [file] })) {
-				throw new Error('File sharing not supported');
-			} else {
-				try {
-					await navigator.share({ title, files: [file] });
-				} catch(err) {
-					console.error(err);
-					throw new Error('Unable to share ad file. Not supported');
+				if (! (navigator.canShare instanceof Function)) {
+					throw new Error('Sharing not supported');
+				} else if (! navigator.canShare({ title, files: [file] })) {
+					throw new Error('File sharing not supported');
+				} else {
+					try {
+						await navigator.share({ title, files: [file] });
+					} catch(err) {
+						console.error(err);
+						throw new Error('Unable to share ad file. Not supported');
+					}
 				}
+				$(`#${container.id}`).remove();
+			} catch(err) {
+				console.error(err);
+				alert(err.message);
+				$(`#${container.id}`).remove();
 			}
-			$(`#${container.id}`).remove();
-		} catch(err) {
-			console.error(err);
-			alert(err.message);
-			$(`#${container.id}`).remove();
-		}
-	});
+		});
+	} else {
+		$('#share-ad-btn').attr({ hidden: true, disabled: true });
+	}
 
 	if (window.showSaveFilePicker instanceof Function) {
 		$('#save-as-btn').click(() => saveAd(true));
@@ -141,14 +146,17 @@ Promise.allSettled([
 
 	$('#new-btn').click(createHandler);
 
-	$('#enable-advanced').change(async ({ target }) => {
-		const checked = target.checked;
-
+	$('#enable-advanced').change(async ({ target: { checked }}) => {
 		$('.advanced-opt').each(el => {
 			if (checked) {
 				$(el.labels).removeClass('disabled');
 				el.disabled = false;
 				el.dispatchEvent(new Event('input'));
+				updatePage('color', null);
+				updatePage('background', null);
+				updatePage('linkColor', null);
+				updatePage('borderColor', null);
+				updatePage('borderWidth', null);
 			} else {
 				el.disabled = true;
 				$(el.labels).addClass('disabled');
@@ -177,12 +185,8 @@ Promise.allSettled([
 					file: target.files.item(0),
 				});
 
-				worker.addEventListener('message', ({ data }) => {
-					const img = document.getElementById('ad-image');
-					img.value = data.dataUri;
-					target.value = null;
-					$ads.each(ad => ad.image = data.dataUri);
-					worker.terminate();
+				worker.addEventListener('message', ({ data: { dataUri }}) => {
+					updatePage('image', dataUri, false);
 				});
 			}
 		});
