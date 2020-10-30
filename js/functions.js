@@ -6,6 +6,16 @@ export function updateRequired(form) {
 		$(labels).toggleClass('required', required && ! disabled));
 }
 
+export function enableAdvanced(enabled = true) {
+	const advanced = document.getElementById('advanced-opts');
+	const toggle = document.getElementById('enable-advanced');
+
+	toggle.checked = enabled;
+	$('input', advanced).attr({ disabled: ! enabled });
+	advanced.hidden = ! enabled;
+	advanced.open = enabled;
+}
+
 export async function updateForm(form, layout) {
 	await Promise.allSettled([
 		$('#ad-image', form).attr({ disabled: layout === 'text' }),

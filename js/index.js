@@ -11,11 +11,12 @@ import 'https://cdn.kernvalley.us/components/pwa/install.js';
 import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/ad/block.js';
 import 'https://cdn.kernvalley.us/components/share-target.js';
+import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
-import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm } from './functions.js';
+import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm, enableAdvanced } from './functions.js';
 // import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
 import { GA } from './consts.js';
@@ -384,5 +385,46 @@ Promise.allSettled([
 	});
 	document.forms.ad.addEventListener('dragleave', function() {
 		this.classList.remove('dragging');
+	});
+
+	cookieStore.get({ name: 'konami' }).then(cookie => {
+		if (typeof cookie === 'undefined' || cookie.value !== 'enabled') {
+			konami().then(() => {
+				enableAdvanced(true);
+
+				cookieStore.set({ name: 'konami', value: 'enabled', path: '/', secure: true, expires: new Date().getTime() + 3600000 });
+
+				new HTMLNotificationElement('Cheat mode enabled', {
+					body: 'Entering the Konami code enabled advanced options',
+					image: 'https://static.wikia.nocookie.net/contra/images/4/49/Konami_Code_-_01.jpg/revision/latest/scale-to-width-down/300?cb=20171125105020',
+					vibrate: 0,
+					actions: [{
+						title: 'Disable',
+						action: 'disable',
+					}, {
+						title: 'Dismiss',
+						action: 'dismiss',
+					}]
+				}).addEventListener('notificationclick', ({ action, target }) => {
+					console.info({ action, target });
+					switch(action) {
+						case 'disable':
+							cookieStore.delete({ name: 'konami',  path: '/', secure: true });
+							target.close();
+							enableAdvanced(false);
+							break;
+
+						case 'dismiss':
+							target.close();
+							break;
+
+						default:
+							throw new Error(`Unhandled action: ${action}`);
+					}
+				});
+			});
+		} else {
+			enableAdvanced(true);
+		}
 	});
 });
