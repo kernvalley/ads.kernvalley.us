@@ -21,6 +21,8 @@ import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, cons
 // import { pay } from './functions.js';
 import { GA } from './consts.js';
 
+cookieStore.addEventListener('change', ({ changed, deleted }) => console.dir({ changed, deleted }));
+
 if ('launchQueue' in window) {
 	launchQueue.setConsumer(consumeHandler);
 }
@@ -87,6 +89,24 @@ Promise.allSettled([
 ]).then(async () => {
 	const HTMLAdBlockElement = customElements.get('ad-block');
 	const $ads = $('ad-block');
+
+	$('[data-close]').click(function() {
+		$(this.dataset.close).close();
+	});
+
+	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
+		if (! cookie) {
+			cookieStore.set({
+				name: 'wfd-notice',
+				value: 'shown',
+				path: '/',
+				secure: true,
+				expires: new Date('2021-01-17T00:00'),
+			}).catch(console.error);
+
+			document.getElementById('wfd-dialog').showModal();
+		}
+	});
 
 	document.getElementById('uuid').value = history.state.identifier;
 
@@ -388,7 +408,7 @@ Promise.allSettled([
 	});
 
 	cookieStore.get({ name: 'konami' }).then(cookie => {
-		if (typeof cookie === 'undefined' || cookie.value !== 'enabled') {
+		if (! cookie || cookie.value !== 'enabled') {
 			konami().then(() => {
 				enableAdvanced(true);
 
