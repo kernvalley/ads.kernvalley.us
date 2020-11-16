@@ -12,6 +12,7 @@ import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/ad/block.js';
 import 'https://cdn.kernvalley.us/components/share-target.js';
 import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
+import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
@@ -45,8 +46,7 @@ if (typeof GA === 'string' && GA.length !== 0) {
 		if (! navigator.onLine) {
 			await new Promise(resolve => window.addEventListener('online', () => resolve(), { once: true }));
 		}
-		importGa(GA).then(async () => {
-			/* global ga */
+		importGa(GA).then(async ({ ga }) => {
 			ga('create', GA, 'auto');
 			ga('set', 'transport', 'beacon');
 			ga('send', 'pageview');
@@ -177,13 +177,13 @@ Promise.allSettled([
 	}, { passive: true });
 
 	Promise.resolve(new Worker('/js/imgWorker.js')).then(worker => {
-		$('#ad-image-file').change(({ target }) => {
-			if (target.files.length === 1) {
+		$('#ad-image-file').change(({ target: { files }}) => {
+			if (files.length === 1) {
 				$('#ad-image').attr({ type: 'text' });
 
 				worker.postMessage({
 					type: 'update',
-					file: target.files.item(0),
+					file: files.item(0),
 				});
 
 				worker.addEventListener('message', ({ data: { dataUri }}) => {
@@ -192,7 +192,6 @@ Promise.allSettled([
 			}
 		});
 	});
-
 
 	$('input[name], textarea[name], select[name]', document.forms.ad).input(async ({ target: { name, value }}) => {
 		updatePage(name, value);
@@ -388,15 +387,21 @@ Promise.allSettled([
 	});
 
 	cookieStore.get({ name: 'konami' }).then(cookie => {
-		if (typeof cookie === 'undefined' || cookie.value !== 'enabled') {
+		if (! cookie) {
 			konami().then(() => {
 				enableAdvanced(true);
 
-				cookieStore.set({ name: 'konami', value: 'enabled', path: '/', secure: true, expires: new Date().getTime() + 3600000 });
+				cookieStore.set({
+					name: 'konami',
+					value: 'enabled',
+					path: '/',
+					secure: true,
+					expires: Date.now() + DAYS, // Now + 1 day
+				});
 
 				new HTMLNotificationElement('Cheat mode enabled', {
 					body: 'Entering the Konami code enabled advanced options',
-					image: 'https://static.wikia.nocookie.net/contra/images/4/49/Konami_Code_-_01.jpg/revision/latest/scale-to-width-down/300?cb=20171125105020',
+					image: 'https://static.wikia.nocookie.net/contra/images/4/49/Konami_Code_-_01.jpg/revision/latest/scale-to-width-down/300',
 					vibrate: 0,
 					actions: [{
 						title: 'Disable',
@@ -406,7 +411,6 @@ Promise.allSettled([
 						action: 'dismiss',
 					}]
 				}).addEventListener('notificationclick', ({ action, target }) => {
-					console.info({ action, target });
 					switch(action) {
 						case 'disable':
 							cookieStore.delete({ name: 'konami',  path: '/', secure: true });
