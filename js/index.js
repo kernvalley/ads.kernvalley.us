@@ -177,13 +177,13 @@ Promise.allSettled([
 	}, { passive: true });
 
 	Promise.resolve(new Worker('/js/imgWorker.js')).then(worker => {
-		$('#ad-image-file').change(({ target }) => {
-			if (target.files.length === 1) {
+		$('#ad-image-file').change(({ target: { files }}) => {
+			if (files.length === 1) {
 				$('#ad-image').attr({ type: 'text' });
 
 				worker.postMessage({
 					type: 'update',
-					file: target.files.item(0),
+					file: files.item(0),
 				});
 
 				worker.addEventListener('message', ({ data: { dataUri }}) => {
@@ -192,7 +192,6 @@ Promise.allSettled([
 			}
 		});
 	});
-
 
 	$('input[name], textarea[name], select[name]', document.forms.ad).input(async ({ target: { name, value }}) => {
 		updatePage(name, value);
