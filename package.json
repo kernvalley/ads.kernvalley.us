@@ -80,7 +80,7 @@
     "postcss-media-minmax": "^4.0.0",
     "postcss-preset-env": "^6.7.0",
     "postcss-url": "^9.0.0",
-    "rollup": "^2.33.2",
+    "rollup": "^2.33.3",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-url-resolve": "^0.1.1",
     "stylelint": "^13.7.2",
