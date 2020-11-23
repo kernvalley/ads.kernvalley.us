@@ -227,6 +227,14 @@ export async function getFile() {
 }
 
 export async function saveAd(saveAs = false) {
+	if (window.ga instanceof Function) {
+		ga('send', {
+			hitType: 'event',
+			eventCategory: 'ad-save',
+			eventAction: 'save',
+			transport: 'beacon',
+		});
+	}
 	await customElements.whenDefined('ad-block');
 	const identifier = document.getElementById('uuid').value;
 	const ad = document.getElementById('main-preview').cloneNode(true);
