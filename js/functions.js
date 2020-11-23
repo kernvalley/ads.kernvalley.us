@@ -228,7 +228,7 @@ export async function getFile() {
 
 export async function saveAd(saveAs = false) {
 	if (window.ga instanceof Function) {
-		ga('send', {
+		window.ga('send', {
 			hitType: 'event',
 			eventCategory: 'ad-save',
 			eventAction: 'save',
