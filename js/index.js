@@ -96,15 +96,17 @@ Promise.allSettled([
 
 	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
 		if (! cookie) {
-			cookieStore.set({
-				name: 'wfd-notice',
-				value: 'shown',
-				path: '/',
-				secure: true,
-				expires: new Date('2021-01-17T00:00'),
-			}).catch(console.error);
-
-			document.getElementById('wfd-dialog').showModal();
+			const dialog = document.getElementById('wfd-dialog');
+			dialog.showModal();
+			dialog.addEventListener('close', () => {
+				cookieStore.set({
+					name: 'wfd-notice',
+					value: 'shown',
+					path: '/',
+					secure: true,
+					expires: new Date('2021-01-17T00:00'),
+				}).catch(console.error);
+			}, { once: true });
 		}
 	});
 
