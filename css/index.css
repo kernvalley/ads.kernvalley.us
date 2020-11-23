@@ -32,3 +32,8 @@ img.avatar {
 .form-group {
 	border: none;
 }
+
+#wfd-dialog {
+	max-width: 80vw;
+	border-radius: 12px;
+}

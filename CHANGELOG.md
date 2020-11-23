@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add button to share ad files
 - Implement `accesskey` on `<nav>`/toolbar buttons
 - Implement state management for form and ad previews
+- Add notice for WFD vendors via `<dialog>`, controlled by `cookieStore`
 
 ### Changed
 - Update screenshots

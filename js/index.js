@@ -3,7 +3,7 @@ import 'https://cdn.kernvalley.us/js/std-js/deprefixer.js';
 import 'https://cdn.kernvalley.us/js/std-js/shims.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
 import 'https://cdn.kernvalley.us/components/current-year.js';
-import 'https://cdn.kernvalley.us/components/gravatar-img.js';
+// import 'https://cdn.kernvalley.us/components/gravatar-img.js';
 // import 'https://cdn.kernvalley.us/components/login-button.js';
 // import 'https://cdn.kernvalley.us/components/logout-button.js';
 import 'https://cdn.kernvalley.us/components/toast-message.js';
@@ -21,6 +21,8 @@ import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, cons
 // import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
 import { GA } from './consts.js';
+
+cookieStore.addEventListener('change', ({ changed, deleted }) => console.dir({ changed, deleted }));
 
 if ('launchQueue' in window) {
 	launchQueue.setConsumer(consumeHandler);
@@ -87,6 +89,26 @@ Promise.allSettled([
 ]).then(async () => {
 	const HTMLAdBlockElement = customElements.get('ad-block');
 	const $ads = $('ad-block');
+
+	$('[data-close]').click(function() {
+		$(this.dataset.close).close();
+	});
+
+	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
+		if (! cookie) {
+			const dialog = document.getElementById('wfd-dialog');
+			dialog.showModal();
+			dialog.addEventListener('close', () => {
+				cookieStore.set({
+					name: 'wfd-notice',
+					value: 'shown',
+					path: '/',
+					secure: true,
+					expires: new Date('2021-01-17T00:00'),
+				}).catch(console.error);
+			}, { once: true });
+		}
+	});
 
 	document.getElementById('uuid').value = history.state.identifier;
 
@@ -387,7 +409,7 @@ Promise.allSettled([
 	});
 
 	cookieStore.get({ name: 'konami' }).then(cookie => {
-		if (! cookie) {
+		if (! cookie || cookie.value !== 'enabled') {
 			konami().then(() => {
 				enableAdvanced(true);
 
