@@ -1,12 +1,17 @@
+@import url("https://cdn.kernvalley.us/css/core-css/theme/adwaita/index.css");
+@import url("https://cdn.kernvalley.us/css/core-css/theme/properties.css");
+
 @media all {
 	:root[data-theme], :root:not([data-theme]) {
 		--accent-color-light: #228282;
 		--accent-color-dark: var(--accent-color-light);
+		--button-primary-background-light: var(--accent-color-light);
+		--button-primary-background-dark: var(--button-primary-background-light);
+		--button-primary-hover-background-light: var(--button-primary-background-light);
+		--button-primary-hover-background-dark: var(--button-primary-hover-background-light);
 		--button-primary-active-background-light: #006060;
-		--button-primary-active-background-dark: var(--button-active-primary-background-light);
+		--button-primary-active-background-dark: var(--button-primary-active-background-light);
 		--sidebar-max-width: 30vw;
-		--scrollbar-color: var(--accent-color);
-		--scrollbar-track: var(--primary-color);
 		--scrollbar-width: auto;
 		--header-height: 0;
 	}
