@@ -10,6 +10,7 @@ location,img/adwaita-icons/actions/mark-location.svg
 call-start,img/adwaita-icons/actions/call-start.svg
 public-share,img/adwaita-icons/places/folder-publicshare.svg
 close,img/adwaita-icons/actions/window-close.svg
+question,img/octicons/question.svg
 mail-send,img/adwaita-icons/actions/mail-send.svg
 mail-unread,img/adwaita-icons/status/mail-unread.svg-system.svg
 web-browser,img/adwaita-icons/apps/web-browser.svg

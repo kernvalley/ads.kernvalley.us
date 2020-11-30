@@ -3,7 +3,6 @@
 	font-size: 18px;
 	font-size: clamp(18px, 1.2em, 21px);
 	justify-content: space-around;
-	background-color: #DEDAD7;
 	gap: 0.6em;
 	justify-content: flex-start;
 }
@@ -17,13 +16,11 @@
 	#nav {
 		padding: 0.6em;
 		font-size: 1.2em;
-		background-color: #212121;
 	}
 }
 
-#install-btn {
+#install-btn, #help-btn {
 	margin-left: auto;
-	margin-right: 0.4em;
 }
 
 #nav .btn.btn-default:disabled * {
