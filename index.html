@@ -57,7 +57,7 @@
 	</head>
 	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
 		<header id="header" class="background-cover background-fixed"></header>
-		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row" role="toolbar">
+		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row adwaita-toolbar" role="toolbar">
 			<button type="button" class="btn btn-default" title="Create New Ad" id="new-btn" accesskey="n">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#document-new"></use>
@@ -87,6 +87,12 @@
 					<use xlink:href="/img/icons.svg#public-share"></use>
 				</svg>
 				<span class="mobile-hidden">Share</span>
+			</button>
+			<button type="button" class="btn btn-default" id="help-btn" accesskey="?" data-show-modal="#help-dialog" title="help">
+				<svg class="icon" fill="currentColor" width="18" height="18" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#question"></use>
+				</svg>
+				<span class="mobile-hidden">Help</span>
 			</button>
 			<button is="pwa-install" id="install-btn" class="btn btn-primary" src="/service-worker.js" scope="/" title="Install Web App" reloadonupdate="" hidden="">
 				<svg class="icon" fill="currentColor" role="img" aria-hidden="true">
@@ -373,6 +379,120 @@ referrerpolicy="no-referrer" width="256" height="282" />
 </a>
 			</div>
 		</footer>
+		<dialog id="help-dialog">
+			<header class="sticky top clearfix">
+				<button type="button" class="btn btn-reject float-right" title="close" data-close="#help-dialog">
+					<svg class="icon" width="22" height="22" fill="currentColor" role="img" aria-hidden="true">
+						<use xlink:href="/img/icons.svg#x"></use>
+					</svg>
+				</button>
+			</header>
+			<div>
+				<h2 class="center">Kern Valley Ads FAQ &amp; Instructions</h2>
+				<blockquote>This app is for creating ads to place on websites, specifically within the Kern River Valley. For the best experience, please use Chrome (<i>only Chrome currently supports launching app by opening a <code>.krvad</code> file</i>). It should work perfectly well in any browser though.</blockquote>
+				<section id="faq">
+					<h3><abbr title="Frequently Asked Questions">FAQ</abbr></h3>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>Where do I submit my ad?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">For Whiskey Flat Days vendors, please attach the <code>.krvad</code> file along with the <q>Promotional Add-on</q> application in an email to the Kernville Chamber of Commerce.</p>
+							<p itemprop="text">If you were directed to this site to create an ad, you should have been provided with an email address or a link to upload to. Please contact whomever referreed you to this site for more detailed instructions.</p>
+							<p itemprop="text">If you did not receive any instructions but were referred to this app to create an ad, please ask the referring party where to submit the file to.</p>
+							<p itemprop="text">For all others, advertising is currently available by invite only. Check back soon.</p>
+						</dd>
+					</dl>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>Where will my ads appear?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">That depends on what you're advertising, but there is a growing list of Kern Valley websites that are possible. Examples of sites your ad may appear on include:
+								<ul>
+									<li><a href="https://whiskeyflatdays.com" class="underline" rel="noopener external">Whiskey Flat Days</a></li>
+									<li><a href="https://www.paradisecovelodge.com" class="underline" rel="noopener external">Paradise Cove Lodge</a></li>
+									<li><a href="https://events.kernvalley.us" class="underline" rel="noopener external">Kern Valley Events</a></li>
+								</ul>
+							</p>
+						</dd>
+					</dl>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>How do I install this app?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">Although this web app may be installed as a PWA for convenience and extra features, this is not required. Installation is optional, but does allow for opening the app directly from a <code>.krvad</code> file in supported browsers.</p>
+							<p itemprop="text">In Google Chrome or Microsoft Edge, an <q>Install</q> button should appear in the toolbar. Clicking this button will open an install prompt, from which you may install the Progressive Web App on any supported Operating System. This is not supported in Firefox, Safari, or older browsers, and installation instructions may vary on iOS.</p>
+						</dd>
+					</dl>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>What is a PWA?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">Progressive Web Apps are a collection of new web technologies that enable creating native, app-like experiences that run in a minimal browser. This means that the web app gets its own icon in the launcher/Start menu and is uninstalled like any other app.</p>
+						</dd>
+					</dl>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>How do I open and edit my ads?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">This varies from browser-to-browser since not all browsers support the newest features available, and it's why Google Chrome is the preferred browser to use.</p>
+							<ul>
+								<li>If you are using Chrome on Desktop and have installed the PWA, just open any <code>.krvad</code> file, make any changes to your ad, and click <q>Save</q>. The file you opened will be updated.</li>
+								<li>For Edge or Desktop versions of Chrome without the PWA installed, just click the <q>Open</q> button, select the <code>.krvad</code> file, make any changes, and click <q>Save</q>. Changes will be saved to the file you opened</li>
+								<li>For all other browsers and on mobile, clicking <q>Open</q> will show a prompt with a file picker. Pick the <code>.krvad</code> file and click <q>Import</q> if the preview is correct. Changes will not be saved to the original file, but clicking <q>Save</q> will download a new ad file.</li>
+							</ul>
+						</dd>
+					</dl>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>Can I use these ads on my website?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">Not yet, but that will be available soon. When this is available, it will involve adding a <code>&lt;script&gt;</code>, will respect user privacy, and should have little-to-no impact on the performance of your website.</p>
+						</dd>
+					</dl>
+					</section>
+				<details open="">
+					<summary>Basic Instructions</summary>
+					<ol>
+						<li>Design your ad, filling out all fields in the form</li>
+						<li>Click the <q>Save</q> button</li>
+						<li>Submit the <code>.krvad</code> file as instructed</li>
+					</ol>
+				</details>
+				<hr />
+				<div class="btns flex row no-wrap">
+					<button type="button" class="btn btn-reject grow-1" title="close" data-close="#help-dialog">
+						<span>Close</span>
+						<svg class="icon" fill="currentColor" width="18" height="18" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#x"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</dialog>
 		<button type="button" is="share-button" class="btn btn-primary round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App and websites throughout the Kern River Valley" url="/" source="krv-ads" medium="social" content="share-button">
 			<svg class="current-color icon" role="img" aria-hidden="true">
 				<use xlink:href="/img/icons.svg#public-share"></use>

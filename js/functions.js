@@ -82,7 +82,6 @@ export async function consumeHandler({ files }) {
 		fileHandle = files[0];
 		const file = await fileHandle.getFile();
 		const ad = await importAd(file);
-		console.info({ file, ad });
 		await ready();
 		await setAd(ad);
 	}
