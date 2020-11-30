@@ -94,6 +94,10 @@ Promise.allSettled([
 		$(this.dataset.close).close();
 	});
 
+	$('[data-show-modal]').click(function() {
+		$(this.dataset.showModal).showModal();
+	});
+
 	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
 		if (! cookie) {
 			const dialog = document.getElementById('wfd-dialog');
@@ -389,23 +393,21 @@ Promise.allSettled([
 		}
 	});
 
-	document.forms.ad.addEventListener('drop', async function(event) {
-		event.preventDefault();
-		this.classList.remove('dragging');
+	$('form[name="ad"]').on({
+		dragover: event => event.preventDefault(),
+		dragenter: () => document.forms.ad.classList.add('dragging'),
+		dragleave: () => document.forms.ad.classList.remove('dragging'),
+		drop: async event => {
+			event.preventDefault();
+			document.forms.ad.classList.remove('dragging');
 
-		if (event.dataTransfer.items.length === 1) {
-			const file = event.dataTransfer.items[0].getAsFile();
-			const ad = await importAd(file);
-			await setAd(ad).catch(console.error);
+			if (event.dataTransfer.items.length === 1) {
+				const file = event.dataTransfer.items[0].getAsFile();
+				const ad = await importAd(file);
+				console.info({ file, ad });
+				await setAd(ad).catch(console.error);
+			}
 		}
-	});
-
-	document.forms.ad.addEventListener('dragover', event => event.preventDefault());
-	document.forms.ad.addEventListener('dragenter', function()  {
-		this.classList.add('dragging');
-	});
-	document.forms.ad.addEventListener('dragleave', function() {
-		this.classList.remove('dragging');
 	});
 
 	cookieStore.get({ name: 'konami' }).then(cookie => {
