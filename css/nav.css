@@ -2,21 +2,12 @@
 	padding: 0.6em;
 	font-size: 18px;
 	font-size: clamp(18px, 1.2em, 21px);
-	justify-content: space-around;
 	gap: 0.6em;
 	justify-content: flex-start;
 }
 
 #nav .btn {
-	flex-grow: 1;
 	max-width: 220px;
-}
-
-@media (prefers-color-scheme: dark) {
-	#nav {
-		padding: 0.6em;
-		font-size: 1.2em;
-	}
 }
 
 #install-btn, #help-btn {
