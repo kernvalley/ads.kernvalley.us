@@ -29,12 +29,6 @@ legend {
 	font-weight: bold;
 }
 
-dialog {
-	max-height: var(--dialog-max-height, 90vh);
-	max-width: var(--dialog-max-width, 90vw);
-	overflow: auto;
-}
-
 .no-margins {
 	margin: 0;
 }
@@ -78,44 +72,4 @@ button[is="share-button"] {
 	body.grid {
 		grid-column-gap: 1.5rem;
 	}
-}
-
-[data-flex-grow="0"] {
-	flex-grow: 0;
-}
-
-[data-flex-grow="1"] {
-	flex-grow: 1;
-}
-
-[data-flex-grow="2"] {
-	flex-grow: 2;
-}
-
-[data-flex-grow="3"] {
-	flex-grow: 3;
-}
-
-[data-flex-grow="4"] {
-	flex-grow: 4;
-}
-
-[data-flex-shrink="0"] {
-	flex-shrink: 0;
-}
-
-[data-flex-shrink="1"] {
-	flex-shrink: 1;
-}
-
-[data-flex-shrink="2"] {
-	flex-shrink: 2;
-}
-
-[data-flex-shrink="3"] {
-	flex-shrink: 3;
-}
-
-[data-flex-shrink="4"] {
-	flex-shrink: 4;
 }
