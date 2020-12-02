@@ -22,7 +22,28 @@ import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, cons
 // import { pay } from './functions.js';
 import { GA } from './consts.js';
 
-cookieStore.addEventListener('change', ({ changed, deleted }) => console.dir({ changed, deleted }));
+
+
+cookieStore.get('theme').then(cookie => {
+	const setTheme = ({ name, value }) => {
+		if (name === 'theme') {
+			$(':root').data({ theme: value });
+			$('#main-preview').attr({ theme: value });
+		}
+	};
+
+	if (cookie) {
+		setTheme(cookie);
+	}
+
+	cookieStore.addEventListener('change', ({ changed }) => {
+		const cookie = changed.find(({ name }) => name === 'theme');
+
+		if (cookie) {
+			setTheme(cookie);
+		}
+	});
+});
 
 if ('launchQueue' in window) {
 	launchQueue.setConsumer(consumeHandler);
