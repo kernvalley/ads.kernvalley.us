@@ -1,9 +1,10 @@
 #nav {
-	padding: 0.6em;
+	padding: 8px;
 	font-size: 18px;
 	font-size: clamp(18px, 1.2em, 21px);
 	gap: 0.6em;
 	justify-content: flex-start;
+	min-height: 38px;
 }
 
 #nav .btn {

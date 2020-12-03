@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="no-js border-box smooth-scroll" data-layout="right-sidebar" data-theme="auto" prefix="og: http://ogp.me/ns#" itemtype="https://schema.org/WebPage" itemscope="">
+<html lang="en" dir="ltr" class="no-js border-box smooth-scroll" data-layout="mobile-toggle-sidebar" data-theme="auto" prefix="og: http://ogp.me/ns#" itemtype="https://schema.org/WebPage" itemscope="">
 	<head>
 		<base href="/" />
 		<meta charset="utf-8" />
@@ -58,6 +58,11 @@
 	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
 		<header id="header" class="background-cover background-fixed"></header>
 		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row adwaita-toolbar" role="toolbar">
+			<button type="button" class="btn btn-default layout-mobile-toggle-sidebar" title="Open Previews" id="menu-btn" data-toggle-class="open" data-selector="#sidebar">
+				<svg class="icon" fill="currentColor" width="20" height="20" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#open-menu"></use>
+				</svg>
+			</button>
 			<button type="button" class="btn btn-default grow-1" title="Create New Ad" id="new-btn" accesskey="n">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#document-new"></use>
@@ -105,7 +110,7 @@
 			<form name="ad" is="share-target">
 				<input type="hidden" id="uuid" name="identifier" />
 				<div class="center">
-					<ad-block id="main-preview" class="ad-preview no-pointer-events" theme="auto" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
+					<ad-block id="main-preview" class="ad-preview" theme="auto" layout="card" imagefit="cover" imageposition="center" loading="eager" preview=""></ad-block>
 				</div>
 				<fieldset class="no-border">
 					<legend>Build Your Ad</legend>
@@ -306,13 +311,24 @@
 			</form>
 		</main>
 		<aside id="sidebar" class="card shadow center">
+			<div class="clearfix">
+				<button type="button" class="btn btn-reject layout-mobile-toggle-sidebar float-right" title="Close Previews" id="closde-menu-btn" data-toggle-class="open" data-selector="#sidebar">
+					<svg class="icon" fill="currentColor" width="20" height="20" role="img" aria-hidden="true">
+						<use xlink:href="/img/icons.svg#x"></use>
+					</svg>
+				</button>
+			</div>
 			<div class="sticky" id="ad-container">
 				<h2>Previews</h2>
-				<h3 class="center">Light Theme</h3>
-				<ad-block theme="light" id="light-preview" class="ad-preview no-pointer-events" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
+				<div class="card" data-theme="light">
+					<h3 class="center">Light Theme</h3>
+					<ad-block theme="light" id="light-preview" class="ad-preview" layout="card" imagefit="cover" imageposition="center" loading="eager" preview=""></ad-block>
+				</div>
 				<hr />
-				<h3 class="center">Dark Theme</h3>
-				<ad-block theme="dark" id="dark-preview" class="ad-preview no-pointer-events" layout="card" imagefit="cover" imageposition="center" loading="eager"></ad-block>
+				<div class="card" data-theme="dark">
+					<h3 class="center color-alt">Dark Theme</h3>
+					<ad-block theme="dark" id="dark-preview" class="ad-preview" layout="card" imagefit="cover" imageposition="center" loading="eager" preview=""></ad-block>
+				</div>
 			</div>
 		</aside>
 		<footer id="footer">
