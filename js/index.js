@@ -14,6 +14,7 @@ import 'https://cdn.kernvalley.us/components/share-target.js';
 import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
 import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
+import * as handlers from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
@@ -21,8 +22,6 @@ import { importAd, setAd, uuidv4, getFile, saveAd, sluggify, createHandler, cons
 // import PaymentRequestShim from 'https://cdn.kernvalley.us/js/PaymentAPI/PaymentRequest.js';
 // import { pay } from './functions.js';
 import { GA } from './consts.js';
-
-
 
 cookieStore.get('theme').then(cookie => {
 	const setTheme = ({ name, value }) => {
@@ -99,9 +98,12 @@ if (location.hash.length !== 0) {
 // 	window.PaymentRequest = PaymentRequestShim;
 // }
 
-document.documentElement.classList.replace('no-js', 'js');
-document.body.classList.toggle('no-dialog', document.createElement('dialog') instanceof HTMLUnknownElement);
-document.body.classList.toggle('no-details', document.createElement('details') instanceof HTMLUnknownElement);
+$(document.documentElement).toggleClass({
+	'no-js': false,
+	'js': true,
+	'no-dialog': document.createElement('dialog') instanceof HTMLUnknownElement,
+	'no-details': document.createElement('details') instanceof HTMLUnknownElement,
+});
 
 Promise.allSettled([
 	ready(),
@@ -111,13 +113,10 @@ Promise.allSettled([
 	const HTMLAdBlockElement = customElements.get('ad-block');
 	const $ads = $('ad-block');
 
-	$('[data-close]').click(function() {
-		$(this.dataset.close).close();
-	});
-
-	$('[data-show-modal]').click(function() {
-		$(this.dataset.showModal).showModal();
-	});
+	$('[data-close]').click(handlers.close);
+	$('[data-show-modal]').click(handlers.showModal);
+	$('[data-toggle-class]').click(handlers.toggleClass);
+	$('[data-toggle-attribute]').click(handlers.toggleAttribute);
 
 	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
 		if (! cookie) {
