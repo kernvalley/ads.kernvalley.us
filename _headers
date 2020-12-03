@@ -4,7 +4,7 @@
   Origin-Trial: Aicd9vjSW7nobiASoyIM6EqUUcZPj8iveYNaeDmiQja/2HeB61gp0yP+FvpGp9oa2XA+hE1MyJ1jdzu0IvETSAwAAABkeyJvcmlnaW4iOiJodHRwczovL25ldGxpZnkubGl2ZTo0NDMiLCJmZWF0dXJlIjoiQ29va2llU3RvcmUiLCJleHBpcnkiOjE2MDc3OTM2MTEsImlzU3ViZG9tYWluIjp0cnVlfQ==
 
 /reset
-  Clear-Site-Data: "*"
+  Clear-Site-Data: "cache", "cookies", "storage"
   Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.kernvalley.us;
 
 /service-worker.js
