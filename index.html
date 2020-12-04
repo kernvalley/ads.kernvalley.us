@@ -58,11 +58,6 @@
 	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
 		<header id="header" class="background-cover background-fixed"></header>
 		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row adwaita-toolbar" role="toolbar">
-			<button type="button" class="btn btn-default layout-mobile-toggle-sidebar" title="Open Previews" id="menu-btn" data-toggle-class="open" data-selector="#sidebar">
-				<svg class="icon" fill="currentColor" width="20" height="20" role="img" aria-hidden="true">
-					<use xlink:href="/img/icons.svg#open-menu"></use>
-				</svg>
-			</button>
 			<button type="button" class="btn btn-default grow-1" title="Create New Ad" id="new-btn" accesskey="n">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#document-new"></use>
@@ -104,6 +99,11 @@
 					<use xlink:href="/img/icons.svg#system-software-install"></use>
 				</svg>
 				<span class="mobile-hidden">Install</span>
+			</button>
+			<button type="button" class="btn btn-default grow-1 layout-mobile-toggle-sidebar" title="Open Previews" id="menu-btn" accesskey="m" data-toggle-class="open" data-selector="#sidebar">
+				<svg class="icon" fill="currentColor" width="20" height="20" role="img" aria-hidden="true">
+					<use xlink:href="/img/icons.svg#open-menu"></use>
+				</svg>
 			</button>
 		</nav>
 		<main id="main" class="card shadow">
@@ -320,13 +320,13 @@
 			</div>
 			<div class="sticky" id="ad-container">
 				<h2>Previews</h2>
-				<div class="card" data-theme="light">
+				<div class="card background-primary color-default" data-theme="light">
 					<h3 class="center">Light Theme</h3>
 					<ad-block theme="light" id="light-preview" class="ad-preview" layout="card" imagefit="cover" imageposition="center" loading="eager" preview=""></ad-block>
 				</div>
 				<hr />
-				<div class="card" data-theme="dark">
-					<h3 class="center color-alt">Dark Theme</h3>
+				<div class="card background-primary color-default" data-theme="dark">
+					<h3 class="center">Dark Theme</h3>
 					<ad-block theme="dark" id="dark-preview" class="ad-preview" layout="card" imagefit="cover" imageposition="center" loading="eager" preview=""></ad-block>
 				</div>
 			</div>
@@ -395,7 +395,7 @@ referrerpolicy="no-referrer" width="256" height="282" />
 </a>
 			</div>
 		</footer>
-		<dialog id="help-dialog">
+		<dialog id="help-dialog" class="animation-speed-normal fade-in animation-ease-in-out">
 			<header class="sticky top clearfix">
 				<button type="button" class="btn btn-reject float-right" title="close" data-close="#help-dialog">
 					<svg class="icon" width="22" height="22" fill="currentColor" role="img" aria-hidden="true">
@@ -437,6 +437,24 @@ referrerpolicy="no-referrer" width="256" height="282" />
 									<li><a href="https://events.kernvalley.us" class="underline" rel="noopener external">Kern Valley Events</a></li>
 								</ul>
 							</p>
+						</dd>
+					</dl>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>Do you support keyboard shortcuts?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">Yes, most of the toolbar buttons support keyboard shortcuts via <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey" class="underline" rel="noopener noreferrer external" target="_blank"><code>accesskey</code></a>. The specific keys vary based operating system and browser, however.</p>
+							<ul>
+								<li><b>Save: </b><kbd>accesskey</kbd> + <kbd>S</kbd></li>
+								<li><b>Open: </b><kbd>accesskey</kbd> + <kbd>O</kbd></li>
+								<li><b>New: </b><kbd>accesskey</kbd> + <kbd>N</kbd></li>
+								<li><b>Help/FAQ (<i>this</i>): </b><kbd>accesskey</kbd> + <kbd>?</kbd></li>
+								<li><b>Menu: </b><kbd>accesskey</kbd> + <kbd>M</kbd></li>
+							</ul>
 						</dd>
 					</dl>
 					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
@@ -514,50 +532,6 @@ referrerpolicy="no-referrer" width="256" height="282" />
 				<use xlink:href="/img/icons.svg#public-share"></use>
 			</svg>
 		</button>
-		<toast-message id="terms" class="custom-element if-defined" backdrop="" hidden="">
-			<div slot="content">
-				<h2 class="center">Currently not Avaialble</h2>
-				<p>This site is currently under development and nothing will be submitted <b>(Your credit card will not be charged)</b>.</p>
-				<p>Upon official launch, this site will be used to create ads for:</p>
-				<ul>
-					<li>
-						<a href="https://whiskeyflatdays.com" class="underline" rel="noopener external">The Whiskey Flat Days App</a>
-					</li>
-					<li>
-						<a href="https://whiskeyflatdays.com/map/#86019dd1-f979-4833-ba6d-7b8b3378614f" rel="noopener external" class="underline">The Whiskey Flat Days Info Booth</a>
-						</li>
-					<li>
-						<a href="https://news.kernvalley.us" rel="noopener external" class="underline">The Kern River Courier</a>
-						</li>
-					<li>
-						<a href="https://kernvalley.us" class="underline" rel="external noreferrer noopener">KernValley.US</a>
-					</li>
-					<li>
-						<a href="https://events.kernvalley.us" class="underline" rel="external noreferrer noopener">Kern Valley Events</a>
-					</li>
-					<li>
-						<a href="https://maps.kernvalley.us" class="underline" rel="external noreferrer noopener">Kern Valley Maps</a>
-					</li>
-					<li>
-						<a href="https://weather.kernvalley.us" class="underline" rel="external noreferrer noopener">Kern Valley Weather</a>
-					</li>
-					<li>
-						<a href="https://rafting.kernvalley.us" class="underline" rel="external noreferrer noopener">Kern Valley Rafting</a>
-					</li>
-					<li>
-						<a href="https://dining.kernvalley.us" class="underline" rel="external noreferrer noopener">Kern Valley Dining</a>
-					</li>
-					<li>
-						<a href="https://news.kernvalley.us" class="underline" rel="external noreferrer noopener">Kern Valley News</a>
-					</li>
-					<li>
-						<a href="https://camping.kernvalley.us/" class="underline" rel="external noreferrer noopener">Kern Valley Camping</a>
-					</li>
-					<li>&hellip;&amp; more!</li>
-				</ul>
-				<p>Feel free to check out the ad builder and plan your design for when it is available</p>
-			</div>
-		</toast-message>
 		<dialog id="wfd-dialog">
 			<div class="clearfix">
 				<button type="button" class="no-border border-none background-none color-inherit float-right" title="Close Dialog" data-close="#wfd-dialog">
