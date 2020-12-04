@@ -2,7 +2,7 @@
 	padding: 8px;
 	font-size: 18px;
 	font-size: clamp(18px, 1.2em, 21px);
-	gap: 0.6em;
+	gap: 8px;
 	justify-content: flex-start;
 	min-height: 38px;
 }
@@ -11,8 +11,12 @@
 	max-width: 220px;
 }
 
-#install-btn, #help-btn {
+#install-btn, #help-btn, #menu-btn {
 	margin-left: auto;
+}
+
+#menu-btn.btn {
+	max-width: 47px;
 }
 
 #nav .btn.btn-default:disabled * {
