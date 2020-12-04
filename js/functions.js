@@ -1,4 +1,5 @@
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+import { confirm } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 let fileHandle = null;
 
 export function updateRequired(form) {
@@ -160,7 +161,7 @@ export async function setAd(ad) {
 }
 
 export async function createHandler() {
-	if (confirm('Create new ad? Any current work will be lost')) {
+	if (await confirm('Create new ad? Any current work will be lost')) {
 		document.forms.ad.reset();
 		fileHandle = null;
 	}

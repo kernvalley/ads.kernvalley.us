@@ -3,9 +3,9 @@
 const config = {
 	version: '1.2.1',
 	fresh: [
-		'/',
 	].map(path => new URL(path, location.origin).href),
 	stale: [
+		'/',
 		'/manifest.json',
 		'/js/index.min.js',
 		'/js/imgWorker.js',
