@@ -100,7 +100,7 @@
 				</svg>
 				<span class="mobile-hidden">Install</span>
 			</button>
-			<button type="button" class="btn btn-default grow-1 layout-mobile-toggle-sidebar" title="Open Previews" id="menu-btn" data-toggle-class="open" data-selector="#sidebar">
+			<button type="button" class="btn btn-default grow-1 layout-mobile-toggle-sidebar" title="Open Previews" id="menu-btn" accesskey="m" data-toggle-class="open" data-selector="#sidebar">
 				<svg class="icon" fill="currentColor" width="20" height="20" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#open-menu"></use>
 				</svg>
@@ -437,6 +437,24 @@ referrerpolicy="no-referrer" width="256" height="282" />
 									<li><a href="https://events.kernvalley.us" class="underline" rel="noopener external">Kern Valley Events</a></li>
 								</ul>
 							</p>
+						</dd>
+					</dl>
+					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
+						<dt class="faq-question" itemprop="name">
+							<svg class="icon" fill="currentColor" height="22" width="22" role="img" aria-hidden="">
+								<use xlink:href="/img/icons.svg#question"></use>
+							</svg>
+							<span>Do you support keyboard shortcuts?</span>
+						</dt>
+						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
+							<p itemprop="text">Yes, most of the toolbar buttons support keyboard shortcuts via <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey" class="underline" rel="noopener noreferrer external" target="_blank"><code>accesskey</code></a>. The specific keys vary based operating system and browser, however.</p>
+							<ul>
+								<li><b>Save: </b><kbd>accesskey</kbd> + <kbd>S</kbd></li>
+								<li><b>Open: </b><kbd>accesskey</kbd> + <kbd>O</kbd></li>
+								<li><b>New: </b><kbd>accesskey</kbd> + <kbd>N</kbd></li>
+								<li><b>Help/FAQ (<i>this</i>): </b><kbd>accesskey</kbd> + <kbd>?</kbd></li>
+								<li><b>Menu: </b><kbd>accesskey</kbd> + <kbd>M</kbd></li>
+							</ul>
 						</dd>
 					</dl>
 					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
