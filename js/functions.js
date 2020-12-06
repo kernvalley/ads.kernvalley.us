@@ -1,6 +1,8 @@
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { confirm } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
+import { save, open } from 'https://cdn.kernvalley.us/js/std-js/filesystem.js';
 let fileHandle = null;
+let legacyFileName = null;
 
 export function updateRequired(form) {
 	$('.input', form).each(({ labels, required, disabled}) =>
@@ -164,6 +166,7 @@ export async function createHandler() {
 	if (await confirm('Create new ad? Any current work will be lost')) {
 		document.forms.ad.reset();
 		fileHandle = null;
+		legacyFileName = null;
 	}
 }
 
@@ -172,57 +175,20 @@ export async function getFile() {
 		[fileHandle] = await showOpenFilePicker({
 			multiple: false,
 			types: [{
-				description: 'Kern Valley Ads File',
+				description: 'KRV Ad File',
 				accept: {
 					'application/krv-ad+json': '.krvad',
 				}
 			}]
 		});
 		const file = await fileHandle.getFile();
+		legacyFileName = file.name;
 
 		return file;
 	} else {
-		return new Promise((resolve, reject) => {
-			const dialog = document.getElementById('import-dialog');
-			const input = document.getElementById('import-file');
-
-			const submitHandler = (event => {
-				event.preventDefault();
-				const data = new FormData(event.target);
-				resolve(data.get('upload'));
-				event.target.removeEventListener('submit', submitHandler);
-				event.target.removeEventListener('reset', resetHandler);
-				input.removeEventListener('change', changeHandler);
-				event.target.reset();
-				dialog.close();
-			});
-
-			const resetHandler = (event => {
-				dialog.close();
-				event.target.removeEventListener('submit', submitHandler);
-				event.target.removeEventListener('reset', resetHandler);
-				input.removeEventListener('change', changeHandler);
-				reject('Import Cancelled');
-			});
-
-			const changeHandler = (async ({ target }) => {
-				if (target.files.length === 1) {
-					await customElements.whenDefined('ad-block');
-					const HTMLAdBlockElement = customElements.get('ad-block');
-					const ad = await HTMLAdBlockElement.fromFile(target.files[0]);
-					$('#preview-section ad-block').remove();
-					document.getElementById('preview-section').append(ad);
-				} else {
-					$('#preview-section ad-block').remove();
-				}
-			});
-
-			input.addEventListener('change', changeHandler);
-			document.forms.importForm.addEventListener('submit', submitHandler);
-			document.forms.importForm.addEventListener('reset', resetHandler);
-
-			dialog.showModal();
-		});
+		const [file] = await open({ accept: ['.krvad'], description: 'Select .krvad file' });
+		legacyFileName = file.name;
+		return file;
 	}
 }
 
@@ -235,14 +201,10 @@ export async function saveAd(saveAs = false) {
 			transport: 'beacon',
 		});
 	}
+
 	await customElements.whenDefined('ad-block');
-	const identifier = document.getElementById('uuid').value;
-	const ad = document.getElementById('main-preview').cloneNode(true);
-	const container = document.createElement('div');
-	container.hidden = true;
-	ad.id = identifier;
-	container.append(ad);
-	document.body.append(container);
+	const ad = document.querySelector('#main .ad-preview');
+	const json = await ad.getJSON();
 
 	if (window.showSaveFilePicker instanceof Function) {
 		if (fileHandle === null || saveAs === true) {
@@ -263,25 +225,24 @@ export async function saveAd(saveAs = false) {
 			await verifyPermission(handle, true);
 
 			const writable = await handle.createWritable();
-			const data = await ad.getJSON();
-			await writable.write(data);
+			await writable.write(json);
 			await writable.close();
-			container.remove();
 		} else {
 			await verifyPermission(fileHandle, true);
 			const writable = await fileHandle.createWritable();
-			const data = await ad.getJSON();
-			await writable.write(data);
+			await writable.write(json);
 			await writable.close();
-			container.remove();
 		}
+	} else if (typeof legacyFileName === 'string' && legacyFileName.endsWith('.krvad')) {
+		const file = new File([json], legacyFileName, { type: 'application/krvad+json' });
+		await save(file);
 	} else {
 		const label = await ad.label;
-		container.remove();
 		const date = new Date();
 		const fname = `${sluggify(label || 'ad')}-${date.toISOString()}.krvad`;
-		const a = await ad.getDownloadLink({ fname });
-		a.click();
+		const file = new File([json], fname, { type: 'application/krvad+json' });
+		await save(file);
+		legacyFileName = file.name;
 	}
 }
 

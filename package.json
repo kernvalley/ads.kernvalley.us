@@ -61,13 +61,9 @@
     "svg-sprite-generator": "0.0.7"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "cssnano": "^4.1.10",
     "cssnano-preset-default": "^4.0.7",
     "eslint": "^7.14.0",
-    "eslint-plugin-async-await": "0.0.0",
-    "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-frontmatter": "0.0.8",
     "htmlhint": "^0.14.2",
     "netlify-cli": "^2.69.0",
     "postcss": "^7.0.35",
