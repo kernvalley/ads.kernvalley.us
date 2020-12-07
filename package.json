@@ -63,7 +63,7 @@
   "devDependencies": {
     "cssnano": "^4.1.10",
     "cssnano-preset-default": "^4.0.7",
-    "eslint": "^7.14.0",
+    "eslint": "^7.15.0",
     "htmlhint": "^0.14.2",
     "netlify-cli": "^2.69.0",
     "postcss": "^7.0.35",
