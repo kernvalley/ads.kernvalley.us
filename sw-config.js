@@ -6,6 +6,9 @@ const config = {
 	].map(path => new URL(path, location.origin).href),
 	stale: [
 		'/',
+		'/reset',
+		'/js/reset.js',
+		'https://cdn.kernvalley.us/js/pwa-reset.js',
 		'/manifest.json',
 		'/js/index.min.js',
 		'/js/imgWorker.js',

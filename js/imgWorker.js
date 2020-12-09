@@ -10,4 +10,3 @@ self.addEventListener('message', ({ data }) => {
 		reader.readAsDataURL(data.file);
 	}
 });
-
