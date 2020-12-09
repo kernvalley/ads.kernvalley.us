@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update screenshots
 - Update mobile layout to ![screenshot](https://i.imgur.com/97KQRTg.png)
+- Update to use uuid-v6 instead of 4
 
 ### Fixed
 - Correctly set UUID/identifier/id of ad files
