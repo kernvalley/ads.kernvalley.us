@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement `accesskey` on `<nav>`/toolbar buttons
 - Implement state management for form and ad previews
 - Add notice for WFD vendors via `<dialog>`, controlled by `cookieStore`
+- `<button is="app-list">` to show KernValley.US apps
 
 ### Changed
 - Update screenshots
