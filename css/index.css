@@ -13,17 +13,6 @@
 @import url("https://cdn.kernvalley.us/css/core-css/accordion.css");
 @import url("./layout.css");
 
-body {
-	--accent-color: #008080;
-	--button-background: #008080;
-	--sidebar-max-width: 30vw;
-}
-
-img.avatar {
-	vertical-align: middle;
-	margin-left: 1.2em;
-}
-
 .input:disabled {
 	opacity: 0.7;
 }
