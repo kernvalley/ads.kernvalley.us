@@ -8,10 +8,11 @@ import 'https://cdn.kernvalley.us/components/pwa/install.js';
 import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/ad/block.js';
 import 'https://cdn.kernvalley.us/components/share-target.js';
+import 'https://cdn.kernvalley.us/components/app/list-button.js';
 import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
 import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
-import * as handlers from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
+import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
@@ -103,10 +104,7 @@ Promise.allSettled([
 	const HTMLAdBlockElement = customElements.get('ad-block');
 	const $ads = $('ad-block');
 
-	$('[data-close]').click(handlers.close);
-	$('[data-show-modal]').click(handlers.showModal);
-	$('[data-toggle-class]').click(handlers.toggleClass);
-	$('[data-toggle-attribute]').click(handlers.toggleAttribute);
+	await init();
 
 	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
 		if (! cookie) {
