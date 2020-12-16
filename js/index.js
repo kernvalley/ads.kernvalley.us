@@ -1,6 +1,7 @@
-import 'https://unpkg.com/@webcomponents/custom-elements@1.4.2/custom-elements.min.js';
 import 'https://cdn.kernvalley.us/js/std-js/deprefixer.js';
 import 'https://cdn.kernvalley.us/js/std-js/shims.js';
+import 'https://cdn.kernvalley.us/js/std-js/theme-cookie.js';
+import 'https://unpkg.com/@webcomponents/custom-elements@1.4.2/custom-elements.min.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
 import 'https://cdn.kernvalley.us/components/current-year.js';
 import 'https://cdn.kernvalley.us/components/toast-message.js';
@@ -13,33 +14,12 @@ import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
 import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
 import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
-import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+import { $, ready, getCustomElement } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm, enableAdvanced } from './functions.js';
 import { uuidv6 } from 'https://cdn.kernvalley.us/js/std-js/uuid.js';
 import { GA } from './consts.js';
-
-cookieStore.get('theme').then(cookie => {
-	const setTheme = ({ name, value }) => {
-		if (name === 'theme') {
-			$(':root').data({ theme: value });
-			$('#main-preview').attr({ theme: value });
-		}
-	};
-
-	if (cookie) {
-		setTheme(cookie);
-	}
-
-	cookieStore.addEventListener('change', ({ changed }) => {
-		const cookie = changed.find(({ name }) => name === 'theme');
-
-		if (cookie) {
-			setTheme(cookie);
-		}
-	});
-});
 
 if ('launchQueue' in window) {
 	launchQueue.setConsumer(consumeHandler);
@@ -97,11 +77,10 @@ $(document.documentElement).toggleClass({
 });
 
 Promise.allSettled([
+	getCustomElement('ad-block'),
 	ready(),
 	loadScript('https://cdn.polyfill.io/v3/polyfill.min.js'),
-	customElements.whenDefined('ad-block'),
-]).then(async () => {
-	const HTMLAdBlockElement = customElements.get('ad-block');
+]).then(async ([HTMLAdBlockElement]) => {
 	const $ads = $('ad-block');
 
 	await init();
@@ -110,6 +89,7 @@ Promise.allSettled([
 		if (! cookie) {
 			const dialog = document.getElementById('wfd-dialog');
 			dialog.showModal();
+
 			dialog.addEventListener('close', () => {
 				cookieStore.set({
 					name: 'wfd-notice',
