@@ -42,8 +42,9 @@
 		<link rel="preload" href="https://cdn.kernvalley.us/components/ad/block.css" as="style" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer" importance="high" />
 		<!-- <link rel="preload" href="https://cdn.kernvalley.us/components/github/user.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" /> -->
 		<link rel="preload" href="https://cdn.kernvalley.us/components/github/user.css" as="style" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" />
+		<script src="https://unpkg.com/@webcomponents/custom-elements@1.4.2/custom-elements.min.js" async="" defer="" nomodule="" crossorigin="anonymous" referrerpolicy="noreferrer"></script>
 		<!-- <script type="module" src="/js/index.js" async=""></script> -->
-		<script src="/js/index.min.js" referrerpolicy="no-referrer" async=""></script>
+		<script src="/js/index.min.js" referrerpolicy="no-referrer" defer="" async=""></script>
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="license" href="/LICENSE" />
 		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml" sizes="any" />
@@ -58,7 +59,7 @@
 	<body id="top" class="grid font-main background-primary color-default overflow-x-hidden">
 		<header id="header" class="background-cover background-fixed"></header>
 		<nav id="nav" class="sticky top shadow background-accent color-alt z-3 flex row adwaita-toolbar" role="toolbar">
-			<button type="button" is="app-list" id="app-menu" class="btn btn-default" title="Open KernValley.US Apps Menu" accesskey="a" hidden="">
+			<button type="button" is="app-list" id="app-menu" class="btn btn-default" title="Open KernValley.US Apps Menu" source="krv-ads" accesskey="a" hidden="">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#apps"></use>
 				</svg>
