@@ -1,7 +1,6 @@
 import 'https://cdn.kernvalley.us/js/std-js/deprefixer.js';
 import 'https://cdn.kernvalley.us/js/std-js/shims.js';
 import 'https://cdn.kernvalley.us/js/std-js/theme-cookie.js';
-import 'https://unpkg.com/@webcomponents/custom-elements@1.4.2/custom-elements.min.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
 import 'https://cdn.kernvalley.us/components/current-year.js';
 import 'https://cdn.kernvalley.us/components/toast-message.js';
@@ -78,12 +77,10 @@ $(document.documentElement).toggleClass({
 
 Promise.allSettled([
 	getCustomElement('ad-block'),
-	ready(),
+	init(),
 	loadScript('https://cdn.polyfill.io/v3/polyfill.min.js'),
 ]).then(async ([HTMLAdBlockElement]) => {
 	const $ads = $('ad-block');
-
-	await init();
 
 	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
 		if (! cookie) {
