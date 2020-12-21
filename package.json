@@ -65,7 +65,7 @@
     "cssnano-preset-default": "^4.0.7",
     "eslint": "^7.15.0",
     "htmlhint": "^0.14.2",
-    "netlify-cli": "^2.69.8",
+    "netlify-cli": "^2.69.11",
     "postcss": "^7.0.35",
     "postcss-cli": "^7.1.2",
     "postcss-cssnext": "^3.1.0",
