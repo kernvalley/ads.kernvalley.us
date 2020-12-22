@@ -14,7 +14,7 @@ import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
 import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 import { $, ready, getCustomElement } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
-import { loadScript, loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
+import { loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm, enableAdvanced } from './functions.js';
 import { uuidv6 } from 'https://cdn.kernvalley.us/js/std-js/uuid.js';
@@ -78,7 +78,6 @@ $(document.documentElement).toggleClass({
 Promise.allSettled([
 	getCustomElement('ad-block'),
 	init(),
-	loadScript('https://cdn.polyfill.io/v3/polyfill.min.js'),
 ]).then(async ([HTMLAdBlockElement]) => {
 	const $ads = $('ad-block');
 
