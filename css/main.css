@@ -3,11 +3,30 @@ main {
 	--link-decoration: underline;
 }
 
+#image-picker {
+	padding: 0;
+}
+
+#image-picker .accordion > *:not(summary) {
+	padding: 0;
+}
+
 #pexels-gallery {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 112px);
-	grid-template-rows: repeat(auto-fill, 112px);
-	gap: 8px;
+	justify-content: space-evenly;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 0.3em;
+}
+
+@media (min-width: 500px) {
+	#pexels-gallery {
+		grid-auto-flow: dense;
+	}
+}
+
+#pexels-gallery > img {
+	width: unset;
+	height: auto;
 }
 
 #pexels-gallery [data-image-src] {

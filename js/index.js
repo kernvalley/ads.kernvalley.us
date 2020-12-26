@@ -179,12 +179,19 @@ Promise.allSettled([
 		}
 	});
 
-	$('#pexels-gallery [data-image-src]').click(({ target }) => {
+	$('#pexels-gallery > img[src]').each(img => {
+		img.dataset.imageSrc = img.src.replace('t.jpg', 'm.jpg');
+	}).then($imgs => {
 		const input = document.getElementById('ad-image');
-		$('#pexels-gallery [data-image-src]').toggleClass('selected-img', el => el.isSameNode(target));
-		input.value = target.dataset.imageSrc;
-		input.dispatchEvent(new Event('input'));
-	}, { passive: true });
+
+		$imgs.click(({ target }) => {
+			$('#pexels-gallery > .selected-img').removeClass('selected-img');
+			target.classList.add('selected-img');
+			input.value = target.dataset.imageSrc;
+			input.dispatchEvent(new Event('input'));
+		}, { passive: true });
+	});
+
 
 	Promise.resolve(new Worker('/js/imgWorker.js')).then(worker => {
 		$('#ad-image-file').change(({ target: { files }}) => {

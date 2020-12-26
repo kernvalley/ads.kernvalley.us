@@ -1,10 +1,10 @@
 {
   "name": "Kern Valley Ads",
   "short_name": "KRV Ads",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "start_url": "/",
   "lang": "en",
-  "description": "Advertise on websites throughout the Kern River Valley!",
+  "description": "Advertise on local websites throughout the Kern River Valley!",
   "theme_color": "#228282",
   "background_color": "#343434",
   "display": "standalone",
