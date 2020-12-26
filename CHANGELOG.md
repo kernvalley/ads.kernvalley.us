@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Delete unused analytics script
 - Remove unused constants in script
 - Remove unused / unnecessary entries in SW cache list
+- Remove unused icons for `svg-sprite-generator`
 
 ## [v1.2.1] - 2020-10-24
 
