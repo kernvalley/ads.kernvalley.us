@@ -5,8 +5,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="robots" content="follow,index" />
-		<meta name="description" content="Advertise on websites throughout the Kern River Valley!" />
-		<meta itemprop="description" content="Advertise on websites throughout the Kern River Valley!" />
+		<meta name="description" content="Advertise on local websites throughout the Kern River Valley!" />
+		<meta itemprop="description" content="Advertise on local websites throughout the Kern River Valley!" />
 		<meta name="keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
 		<meta itemprop="keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
 		<meta name="referrer" content="no-referrer"/>
@@ -17,7 +17,7 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="Kern Valley Ads" />
 		<meta property="og:url" content="https://ads.kernvalley.us" />
-		<meta property="og:description" content="Advertise on websites throughout the Kern River Valley!" />
+		<meta property="og:description" content="Advertise on local websites throughout the Kern River Valley!" />
 		<meta property="og:keywords" content="ads, advertise, kern valley, kern river valley, whiskey flat days" />
 		<meta property="og:image" content="https://i.imgur.com/i2OdlWJl.png" />
 		<meta property="og:image:height" content="360" />
@@ -26,7 +26,7 @@
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:creator" content="kern_valley" />
-		<meta name="twitter:description" content="Advertise on websites throughout the Kern River Valley!" />
+		<meta name="twitter:description" content="Advertise on local websites throughout the Kern River Valley!" />
 		<meta name="twitter:image" content="https://i.imgur.com/i2OdlWJl.png" />
 		<!-- /Twitter -->
 		<!-- /Social data -->
@@ -42,7 +42,7 @@
 		<!-- <link rel="preload" href="https://cdn.kernvalley.us/components/github/user.html" as="fetch" type="text/html" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" /> -->
 		<link rel="preload" href="https://cdn.kernvalley.us/components/github/user.css" as="style" type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer" importance="auto" />
 		<script src="https://cdn.polyfill.io/v3/polyfill.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" async="" defer=""></script>
-		<script src="https://unpkg.com/@webcomponents/custom-elements@1.4.2/custom-elements.min.js" async="" defer="" nomodule="" crossorigin="anonymous" referrerpolicy="noreferrer"></script>
+		<script src="https://unpkg.com/@webcomponents/custom-elements@1.4.2/custom-elements.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer" async="" defer="" nomodule=""></script>
 		<!-- <script type="module" src="/js/index.js" async=""></script> -->
 		<script src="/js/index.min.js" referrerpolicy="no-referrer" defer="" async=""></script>
 		<link rel="manifest" href="/manifest.json" />
@@ -203,30 +203,30 @@
 						<input type="text" id="ad-calltoaction" class="input" name="callToAction" minlength ="8" maxlength="26" autocomplete="off" autocapitalize="sentences" placeholder="E.g. &quot;Click to get started&quot; or &quot;View our menu&quot;" spellcheck="true" title="8 - 26 characters" required="" />
 						<div class="status-box alert">Please enter 8 - 26 characters</div>
 					</div>
-					<div class="form-group">
+					<div id="image-picker" class="form-group">
 						<label for="ad-image" class="block input-label required">
 							<b>Image URL</b>
 						</label>
 						<input type="url" id="ad-image" class="input" name="image" placeholder="https://example.com/img.jpg" autocomplete="off" title="Image URL beginning with https://" required="" />
 						<div class="status-box alert">Please enter a valid URL beginning with <q>https://</q></div>
 						<details class="stock-imgs accordion">
-							<summary>Pick Stock Image from Pexels</summary>
+							<summary><span class="mobile-hidden">Pick Stock </span>Image from Pexels</summary>
 							<p>Use one of these freely available stock images from <a href="https://www.pexels.com/" rel="noopener noreferrer external" target="_blank">Pexels</a>. No licensing or attribution required.</p>
 							<div class="grid" id="pexels-gallery">
-								<img src="https://i.imgur.com/1bMZzQit.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/1bMZzQim.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/SfIABnkt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/SfIABnkm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/QkZ1eIft.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/QkZ1eIfm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/2w2bdJlt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/2w2bdJlm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/sVskexWt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/sVskexWm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/Ar6QimIt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/Ar6QimIm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/2RjU8xXt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/2RjU8xXm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/JCUXmjut.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/JCUXmjum.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/HKM7F0Xt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/HKM7F0Xm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/23pNgKdt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/23pNgKdm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/GRFACy7t.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/GRFACy7m.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/8XIumS9t.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/8XIumS9m.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/IZr52bmt.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/IZr52bmm.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
-								<img src="https://i.imgur.com/Uoo2zGet.jpg" class="cursor-pointer card shadow" data-image-src="https://i.imgur.com/Uoo2zGem.jpg" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/1bMZzQit.jpg 160w, https://i.imgur.com/1bMZzQim.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/1bMZzQit.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/SfIABnkt.jpg 160w, https://i.imgur.com/SfIABnkm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/SfIABnkt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/QkZ1eIft.jpg 160w, https://i.imgur.com/QkZ1eIfm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/QkZ1eIft.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/2w2bdJlt.jpg 160w, https://i.imgur.com/2w2bdJlm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/2w2bdJlt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/sVskexWt.jpg 160w, https://i.imgur.com/sVskexWm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/sVskexWt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/Ar6QimIt.jpg 160w, https://i.imgur.com/Ar6QimIm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/Ar6QimIt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/2RjU8xXt.jpg 160w, https://i.imgur.com/2RjU8xXm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/2RjU8xXt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/JCUXmjut.jpg 160w, https://i.imgur.com/JCUXmjum.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/JCUXmjut.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/HKM7F0Xt.jpg 160w, https://i.imgur.com/HKM7F0Xm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/HKM7F0Xt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/23pNgKdt.jpg 160w, https://i.imgur.com/23pNgKdm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/23pNgKdt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/GRFACy7t.jpg 160w, https://i.imgur.com/GRFACy7m.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/GRFACy7t.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/8XIumS9t.jpg 160w, https://i.imgur.com/8XIumS9m.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/8XIumS9t.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/IZr52bmt.jpg 160w, https://i.imgur.com/IZr52bmm.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/IZr52bmt.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
+								<img srcset="https://i.imgur.com/Uoo2zGet.jpg 160w, https://i.imgur.com/Uoo2zGem.jpg 320w" sizes="(min-width: 500px) 160px, 80vw" src="https://i.imgur.com/Uoo2zGet.jpg" class="cursor-pointer card shadow" height="100" width="100" crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" decoding="async" alt="" />
 							</div>
 						</details>
 					</div>
