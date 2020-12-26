@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.2.2] - 2020-12-26
+
 ### Added
 - Add FAQ and help button
 - Add button to share ad files
@@ -19,14 +21,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update screenshots
 - Update mobile layout to ![screenshot](https://i.imgur.com/97KQRTg.png)
 - Update to use uuid-v6 instead of 4
+- Update Pexels gallery grid layout
+- Make Pexels images responsive images using `srcset`
 
 ### Fixed
 - Correctly set UUID/identifier/id of ad files
 - Remove debugging `console.*` calls
+- Fix setting `.selected-image` class on selected Pexels image
 
 ### Removed
 - Delete unused analytics script
 - Remove unused constants in script
+- Remove unused / unnecessary entries in SW cache list
+- Remove unused icons for `svg-sprite-generator`
 
 ## [v1.2.1] - 2020-10-24
 
