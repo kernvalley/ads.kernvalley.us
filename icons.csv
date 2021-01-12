@@ -3,6 +3,7 @@ repo,img/octicons/repo.svg
 issue-opened,img/octicons/issue-opened.svg
 linkedin,img/logos/linkedin.svg
 twitter,img/logos/twitter.svg
+facebook,img/logos/facebook.svg
 x,img/octicons/x.svg
 public-share,img/adwaita-icons/places/folder-publicshare.svg
 question,img/octicons/question.svg
@@ -16,3 +17,5 @@ document-save,img/adwaita-icons/actions/document-save.svg
 document-save-as,img/adwaita-icons/actions/document-save-as.svg
 open-menu,img/adwaita-icons/actions/open-menu.svg
 apps,img/apps.svg
+eye,img/octicons/eye.svg
+address-book,img/adwaita-icons/mimetypes/x-office-address-book.svg

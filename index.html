@@ -338,67 +338,100 @@
 			</div>
 		</aside>
 		<footer id="footer">
-			<div class="social-links cols-2">
-				<div class="cols inline-block">
-					<a class="block" href="https://github.com/kernvalley/" target="_blank" rel="external noreferrer noopener">
+			<div class="flex row wrap space-around footer-links">
+				<div class="inline-block footer-links">
+					<a href="https://kernvalley.us" class="block" rel="noopener external noreferrer">
+						<svg class="icon current-color" width="24" height="24" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#web-browser"></use>
+						</svg>
+						<span>KernValley.US</span>
+					</a>
+					<a href="https://kernvalley.us/privacy/" class="block" rel="noopener external noreferrer">
+						<svg class="icon current-color" width="24" height="24" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#eye"></use>
+						</svg>
+						<span>Privacy</span>
+					</a>
+					<a href="/contact" class="block">
+						<svg class="icon current-color" width="24" height="24" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#address-book"></use>
+						</svg>
+						<span>Contact</span>
+					</a>
+					<a href="https://apps.kernvalley.us" class="block" rel="noreferrer noopener external">
+						<svg class="icon current-color" width="24" height="24" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#apps"></use>
+						</svg>
+						<span>All Apps</span>
+					</a>
+				</div>
+				<div class="inline-block footer-links">
+						<a class="block" href="https://www.facebook.com/KernValley.us/" target="_blank" rel="external noopener" itemprop="sameAs">
+							<svg class="social-icon" width="24" height="24" fill="currentColor" role="img" aria-hidden="true">
+								<use xlink:href="/img/icons.svg#facebook"></use>
+							</svg>
+							<span>Facebook</span>
+						</a>
+						<a class="block" href="https://twitter.com/kern_valley" target="_blank" rel="external noopener" itemprop="sameAs">
+							<svg class="social-icon" width="24" height="24" fill="currentColor" role="img" aria-hidden="true">
+								<use xlink:href="/img/icons.svg#twitter"></use>
+							</svg>
+							<span>Twitter</span>
+						</a>
+						<a class="block" href="https://www.linkedin.com/company/18644791/" target="_blank" rel="external noopener" itemprop="sameAs">
+							<svg class="current-color icon social-icon" role="img" aria-hidden="true">
+								<use xlink:href="/img/icons.svg#linkedin"></use>
+							</svg>
+							<span>LinkedIn</span>
+						</a>
+				</div>
+				<div class="inline-block">
+					<a class="block" href="https://github.com/kernvalley/" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#mark-github"></use>
 						</svg>
 						<span>GitHub Profile</span>
 					</a>
-					<a class="block" href="https://github.com/kernvalley/ads.kernvalley.us" target="_blank" rel="external noreferrer noopener">
+					<a class="block" href="https://github.com/kernvalley/ads.kervalley.us" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#repo"></use>
 						</svg>
+
 						<span>GitHub Repo</span>
 					</a>
-					<a class="block" href="https://github.com/kernvalley/ads.kernvalley.us/issues" target="_blank" rel="external noreferrer noopener">
+					<a class="block" href="https://github.com/kernvalley/ads.kervalley.us/issues" target="_blank" rel="external noopener">
 						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
 							<use xlink:href="/img/icons.svg#issue-opened"></use>
 						</svg>
 						<span>Report a Problem</span>
 					</a>
 				</div>
-				<div class="cols inline-block">
-					<a class="block" href="https://kernvalley.us" target="_blank" rel="external noreferrer noopener" itemprop="sameAs">
-						<svg class="current-color icon social-icon" role="img" aria-hidden="true">
-							<use xlink:href="/img/icons.svg#web-browser"></use>
-						</svg>
-						<span>Website</span>
-					</a>
-					<a class="block" href="https://twitter.com/kern_valley" target="_blank" rel="external noreferrer noopener" itemprop="sameAs">
-						<svg class="icon social-icon" role="img" aria-hidden="true">
-							<use xlink:href="/img/icons.svg#twitter"></use>
-						</svg>
-						<span>On Twitter</span>
-					</a>
-					<a class="block" href="https://www.linkedin.com/company/kernvalley-us/" target="_blank" rel="external noreferrer noopener" itemprop="sameAs">
-						<svg class="icon social-icon" role="img" aria-hidden="true">
-							<use xlink:href="/img/icons.svg#linkedin"></use>
-						</svg>
-						<span>LinkedIn</span>
+			</div>
+			<div>
+				<hr />
+				<div class="flex row wrap app-stores">
+					<a href="https://play.google.com/store/apps/details?id=us.kernvalley.ads.twa" rel="noopener noreferrer" class="inline-block app-store">
+						<img src="https://cdn.kernvalley.us/img/logos/play-badge.svg" alt="Google Play" loading="lazy" decoding="async" crossorigin="anonymous" referrerpolicy="no-referrer" width="180" height="53" />
 					</a>
 				</div>
 			</div>
 			<hr />
-			<div class="copyright">
+			<div class="copyright flex wrap space-evenly">
 				<github-user user="kernvalley" loading="lazy">
 					<h3 slot="header" class="center">Created By</h3>
 					<div slot="footer">
 						<span>©</span>
-						<time itemprop="copyrightYear">2020</time>
+						<time itemprop="copyrightYear">2021</time>
 						<span itemprop="copyrightHolder" itemtype="https://schema.org/Organization" itemscope="" hidden="">
-							<a href="https://kernvalley.us" target="_blank" rel="external noreferrer noopener" itemprop="url">
+							<a href="https://kernvalley.us" target="_blank" rel="external noopener noreferrer" itemprop="url">
 								<span itemprop="name">KernValley.US</span>
 							</a>
 						</span>
 					</div>
 				</github-user>
-				<a href="https://www.kernriverconservancy.org/?utm_source=kern-valley-ads&amp;utm_medium=web&amp;utm_campaign=keep-kern-clean" target="_blank" rel="noopener noreferrer external" title="#KeepKernClean">
-<img src="https://cdn.kernvalley.us/img/keep-kern-clean.svg"
-alt="#KeepKernClean" decoding="async" loading="lazy" crossorigin="anonymous"
-referrerpolicy="no-referrer" width="256" height="282" />
-</a>
+				<a href="https://www.kernriverconservancy.org/?utm_source=kern-valley-maps&amp;utm_medium=web&amp;utm_campaign=keep-kern-clean" target="_blank" rel="noopener noreferrer external" id="keep-kern-clean-badge" class="inline-block" title="#KeepKernClean">
+				<img src="https://cdn.kernvalley.us/img/keep-kern-clean.svg" alt="#KeepKernClean" decoding="async" loading="lazy" crossorigin="anonymous" referrerpolicy="no-referrer" width="257" height="282" />
+				</a>
 			</div>
 		</footer>
 		<dialog id="help-dialog" class="animation-speed-normal fade-in animation-ease-in-out">
