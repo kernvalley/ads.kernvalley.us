@@ -8,8 +8,9 @@
   Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.kernvalley.us;
 
 /service-worker.js
-  Content-Security-Policy: default-src 'self'; connect-src *;
+  Content-Security-Policy: default-src 'self'; connect-src *; script-src 'self' https://cdn.kernvalley.us/service-worker.js;
   Link: </sw-config.js> rel=preload; as=script
+  Link: <https://cdn.kernvalley.us/service-worker.js> rel=preload as=script
 
 /img/*
   Access-Control-Allow-Origin: *

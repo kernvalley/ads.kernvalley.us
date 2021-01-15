@@ -9,6 +9,7 @@ import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/ad/block.js';
 import 'https://cdn.kernvalley.us/components/share-target.js';
 import 'https://cdn.kernvalley.us/components/app/list-button.js';
+import 'https://cdn.kernvalley.us/components/app/stores.js';
 import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
 import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
@@ -80,23 +81,6 @@ Promise.allSettled([
 	init(),
 ]).then(async ([HTMLAdBlockElement]) => {
 	const $ads = $('ad-block');
-
-	cookieStore.get({ name: 'wfd-notice' }).then(cookie => {
-		if (! cookie) {
-			const dialog = document.getElementById('wfd-dialog');
-			dialog.showModal();
-
-			dialog.addEventListener('close', () => {
-				cookieStore.set({
-					name: 'wfd-notice',
-					value: 'shown',
-					path: '/',
-					secure: true,
-					expires: new Date('2021-01-17T00:00'),
-				}).catch(console.error);
-			}, { once: true });
-		}
-	});
 
 	document.getElementById('uuid').value = history.state.identifier;
 

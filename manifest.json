@@ -99,8 +99,12 @@
       "application/krv-ad+json": [".krvad"]
     }
   }],
+  "prefer_related_applications": true,
   "related_applications":  [{
     "platform": "play",
     "id": "us.kernvalley.ads.twa"
+  }, {
+    "platform": "webapp",
+    "url": "https://ads.kernvalley.us/manifest.json"
   }]
 }

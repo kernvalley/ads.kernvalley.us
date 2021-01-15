@@ -13,12 +13,12 @@
 	padding: 0 1.5rem;
 }
 
-.footer-links a svg {
+.footer-links a svg, .footer-links a img {
 	display: inline-block;
 	transition: transform 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.footer-links a:hover svg {
+.footer-links a:hover svg, .footer-links a:hover img {
 	transform: rotate(1turn) scale(1.3);
 }
 
