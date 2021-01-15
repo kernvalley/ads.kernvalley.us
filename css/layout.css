@@ -4,3 +4,19 @@
 @import url("./main.css");
 @import url("./footer.css");
 @import url("https://cdn.kernvalley.us/css/core-css/layout/mobile-toggle-sidebar/index.css");
+
+#nav {
+	grid-area: nav;
+}
+
+#main {
+	grid-area: main;
+}
+
+#sidebar {
+	grid-area: sidebar;
+}
+
+#footer {
+	grid-area: footer;
+}

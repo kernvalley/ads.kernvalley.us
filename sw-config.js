@@ -3,6 +3,7 @@
 const config = {
 	version: '1.2.2',
 	fresh: [
+		'https://apps.kernvalley.us/apps.json',
 	].map(path => new URL(path, location.origin).href),
 	stale: [
 		'/',
@@ -19,7 +20,6 @@ const config = {
 		'/img/ad-layouts/stack.svg',
 		'/img/ad-layouts/text.svg',
 		'/img/ad-layouts/image.svg',
-		'https://cdn.polyfill.io/v3/polyfill.min.js',
 		'https://cdn.kernvalley.us/components/toast-message.html',
 		'https://cdn.kernvalley.us/components/toast-message.css',
 		'https://cdn.kernvalley.us/components/pwa/prompt.html',
