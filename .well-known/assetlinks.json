@@ -8,4 +8,10 @@
       "38:49:53:F5:D1:57:55:66:CD:F1:4E:8D:C0:10:DB:11:95:83:15:02:FA:05:1E:54:3E:63:E3:98:7F:33:70:13"
     ]
   }
+}, {
+  "relation": ["delegate_permission/common.query_webapk"],
+  "target": {
+    "namespace": "web",
+    "site": "https://ads.kernvalley.us/manifest.json"
+  }
 }]
