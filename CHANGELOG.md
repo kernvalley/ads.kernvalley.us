@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Update footer layout
+- Use Imgur uploads instead of `data:` URIs for uploading images
 
 ## [v1.2.2] - 2020-12-26
 

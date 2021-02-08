@@ -1,7 +1,9 @@
 /* eslint-env serviceworker */
 /* eslint no-unused-vars: 0 */
+/* 2021-02-08T11:47 */
+
 const config = {
-	version: '1.2.2',
+	version: '1.3.0',
 	fresh: [
 		'https://apps.kernvalley.us/apps.json',
 	].map(path => new URL(path, location.origin).href),
