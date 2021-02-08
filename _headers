@@ -1,19 +1,30 @@
 /
-  Content-Security-Policy: default-src 'self'; style-src 'self' https://cdn.kernvalley.us https://unpkg.com/@webcomponents/; script-src 'self' https://cdn.kernvalley.us https://cdn.polyfill.io/v3/polyfill.min.js https://unpkg.com/@webcomponents/ https://www.googletagmanager.com/gtag/js https://www.google-analytics.com/analytics.js; img-src https: blob: data:; font-src https://cdn.kernvalley.us/; connect-src 'self' https://cdn.kernvalley.us https://apps.kernvalley.us https://api.github.com/users/ https://www.google-analytics.com/*/  https://www.google-analytics.com/ https://baconipsum.com/api/; manifest-src 'self';
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Link: </css/index.min.css>; rel=preload; as=style; referrerpolicy=no-referrer;
+  Link: </js/index.min.js>; rel=preload; as=script; referrerpolicy=no-referrer;
+  Content-Security-Policy: default-src 'self'; style-src 'self' cdn.kernvalley.us unpkg.com/@webcomponents/; script-src 'self' cdn.kernvalley.us cdn.polyfill.io/v3/polyfill.min.js unpkg.com/@webcomponents/ www.googletagmanager.com/gtag/js www.google-analytics.com/analytics.js; img-src *; font-src cdn.kernvalley.us/fonts/; connect-src 'self' cdn.kernvalley.us/components/ apps.kernvalley.us/apps.json api.github.com/users/ api.imgur.com/3/image www.google-analytics.com/*/  www.google-analytics.com/; manifest-src 'self';
   X-Content-Type-Options: nosniff
   Origin-Trial: Aicd9vjSW7nobiASoyIM6EqUUcZPj8iveYNaeDmiQja/2HeB61gp0yP+FvpGp9oa2XA+hE1MyJ1jdzu0IvETSAwAAABkeyJvcmlnaW4iOiJodHRwczovL25ldGxpZnkubGl2ZTo0NDMiLCJmZWF0dXJlIjoiQ29va2llU3RvcmUiLCJleHBpcnkiOjE2MDc3OTM2MTEsImlzU3ViZG9tYWluIjp0cnVlfQ==
 
 /reset
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
   Clear-Site-Data: "cache", "cookies", "storage"
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.kernvalley.us;
+  Content-Security-Policy: default-src 'self'; script-src 'self' cdn.kernvalley.us;
 
 /service-worker.js
-  Content-Security-Policy: default-src 'self'; connect-src *; script-src 'self' https://cdn.kernvalley.us/service-worker.js;
-  Link: </sw-config.js> rel=preload; as=script
-  Link: <https://cdn.kernvalley.us/service-worker.js> rel=preload as=script
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; connect-src *; script-src 'self' cdn.kernvalley.us/service-worker.js;
+  Link: </sw-config.js> rel=preload; as=script;
+  Link: <//cdn.kernvalley.us/service-worker.js> rel=preload as=script;
 
 /img/*
+  Content-Security-Policy: default-src 'none';
   Access-Control-Allow-Origin: *
+  tk: N
 
 /*
   X-Content-Type-Options: nosniff

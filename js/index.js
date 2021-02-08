@@ -16,10 +16,12 @@ import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/no
 import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 import { $, ready, getCustomElement } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
+import { open } from 'https://cdn.kernvalley.us/js/std-js/filesystem.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
+import { upload } from 'https://cdn.kernvalley.us/js/std-js/imgur.js';
 import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm, enableAdvanced } from './functions.js';
 import { uuidv6 } from 'https://cdn.kernvalley.us/js/std-js/uuid.js';
-import { GA } from './consts.js';
+import { GA, ImgurClientId as clientId } from './consts.js';
 
 if ('launchQueue' in window) {
 	launchQueue.setConsumer(consumeHandler);
@@ -92,6 +94,25 @@ Promise.allSettled([
 			await setAd(ad);
 		}
 	});
+
+	$('#upload-image').click(async () => {
+		const [file] = await open({
+			accept: 'image/png,image/jpeg',
+			description: 'Select image to upload',
+			directory: false,
+			multiple: false,
+		});
+
+		if (file instanceof File) {
+			const { data: { link }} = await upload(file, { clientId });
+
+			if (typeof link === 'string' && link.startsWith('https://i.imgur.com')) {
+				const input = document.getElementById('ad-image');
+				input.value = link;
+				input.dispatchEvent(new Event('input'));
+			}
+		}
+	}, { passive: true });
 
 	$('#save-btn').click(() => saveAd(false));
 
@@ -174,24 +195,6 @@ Promise.allSettled([
 			input.value = target.dataset.imageSrc;
 			input.dispatchEvent(new Event('input'));
 		}, { passive: true });
-	});
-
-
-	Promise.resolve(new Worker('/js/imgWorker.js')).then(worker => {
-		$('#ad-image-file').change(({ target: { files }}) => {
-			if (files.length === 1) {
-				$('#ad-image').attr({ type: 'text' });
-
-				worker.postMessage({
-					type: 'update',
-					file: files.item(0),
-				});
-
-				worker.addEventListener('message', ({ data: { dataUri }}) => {
-					updatePage('image', dataUri, false);
-				});
-			}
-		});
 	});
 
 	$('input[name], textarea[name], select[name]', document.forms.ad).input(async ({ target: { name, value }}) => {
