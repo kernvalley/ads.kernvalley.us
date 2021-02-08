@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.3.0] - 2021-02-08
+
 ### Added
 - Add Play Store link in footer
 - Redirect for `/contact` -> `https://contact.kernvalley.us`
