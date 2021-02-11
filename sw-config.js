@@ -1,6 +1,6 @@
 /* eslint-env serviceworker */
 /* eslint no-unused-vars: 0 */
-/* 2021-02-08T11:47 */
+/* 2021-02-11T10:52 */
 
 const config = {
 	version: '1.3.0',

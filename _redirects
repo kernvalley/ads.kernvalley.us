@@ -1,1 +1,2 @@
 /contact	https://contact.kernvalley.us	301!
+/api/*		/.netlify/functions/:splat	200

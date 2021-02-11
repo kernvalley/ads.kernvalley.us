@@ -58,6 +58,8 @@
     "netlify:link": "netlify link"
   },
   "dependencies": {
+    "lambda-multipart": "^1.0.2",
+    "node-fetch": "^2.6.1",
     "svg-sprite-generator": "0.0.7"
   },
   "devDependencies": {
