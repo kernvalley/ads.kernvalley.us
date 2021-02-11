@@ -9,7 +9,6 @@ async function cloudinarySign(params, secret) {
 	} else if (typeof secret !== 'string') {
 		throw new TypeError('secret must be a string');
 	} else {
-		// const { URLSearchParams } = require('url');
 		const data = Object.entries(params).sort().map(([k, v]) => `${k}=${v}`).join('&') + secret;
 		const { createHash } = require('crypto');
 		return createHash('sha256').update(data).digest('hex');
