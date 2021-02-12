@@ -87,6 +87,21 @@ Promise.allSettled([
 
 	document.getElementById('uuid').value = history.state.identifier;
 
+	$(document.forms.submission).submit(async event => {
+		event.preventDefault();
+		const resp = await fetch('/api/slack', {
+			method: 'POST',
+			body: new FormData(event.target),
+		});
+
+		if (resp.ok) {
+			event.target.reset();
+			event.target.closest('dialog').close();
+		} else {
+			alert('Error submitting ad.');
+		}
+	});
+
 	$('#upload-btn').click(async () =>{
 		const el = document.getElementById('main-preview');
 		const ad = await el.toFile();

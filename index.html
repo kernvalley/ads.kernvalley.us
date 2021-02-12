@@ -88,7 +88,7 @@
 				</svg>
 				<span class="mobile-hidden">Save As</span>
 			</button>
-			<button type="button" class="btn btn-default grow-1" title="Submit Ad" id="upload-btn">
+			<button type="button" class="btn btn-default grow-1" title="Submit Ad" data-show-modal="#submit-dialog">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
 					<use xlink:href="/img/icons.svg#cloud-upload"></use>
 				</svg>
@@ -565,6 +565,43 @@
 					</button>
 				</div>
 			</div>
+		</dialog>
+		<dialog id="submit-dialog">
+			<form name="submission" id="submission">
+				<fieldset id="contact-info" class="no-border">
+					<legend>Contact Info</legend>
+					<div class="form-group">
+						<label for="submit-name" class="input-label required">Name</label>
+						<input type="text" name="name" id="submit-name" class="input" autocomplete="name" placeholder="First Last" required="" />
+					</div>
+					<div class="form-group">
+						<label for="submit-email" class="input-label required">Email</label>
+						<input type="email" name="email" id="submit-email" class="input" autocomplete="email" placeholder="user@example.com" required="" />
+					</div>
+					<div class="form-group">
+						<label for="submit-tel" class="input-label">Phone</label>
+						<input type="tel" name="phone" id="submit-tel" class="input" autocomplete="telephone" placeholder="555-555-5555" />
+					</div>
+					<div class="form-group">
+						<label for="submit-file" class="input-label required">KRV Ad File</label>
+						<input type="file" accept=".krvad" name="file" id="submit-file" class="input" required=""/>
+					</div>
+				</fieldset>
+				<div class="flex row wrap space-evenly">
+					<button type="submit" class="btn btn-accept">
+						<svg class="icon" width="20" height="20" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#check"></use>
+						</svg>
+						<span>Submit</span>
+					</button>
+					<button type="reset" class="btn btn-reject" data-close="#contact-dialog">
+						<svg class="icon" width="20" height="20" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#x"></use>
+						</svg>
+						<span>Cancel</span>
+					</button>
+				</div>
+			</form>
 		</dialog>
 		<button type="button" is="share-button" class="btn btn-primary round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App and websites throughout the Kern River Valley" url="/" source="krv-ads" medium="social" content="share-button">
 			<svg class="current-color icon" role="img" aria-hidden="true">

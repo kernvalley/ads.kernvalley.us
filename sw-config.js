@@ -6,10 +6,10 @@ const config = {
 	version: '1.3.0',
 	fresh: [
 		'https://apps.kernvalley.us/apps.json',
+		'/',
 	].map(path => new URL(path, location.origin).href),
 	stale: [
 		/* HTML */
-		'/',
 
 		/* JavaScript */
 		'/js/index.min.js',

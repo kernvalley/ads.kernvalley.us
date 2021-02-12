@@ -1,5 +1,13 @@
 /* eslint-env node */
-const WEBHOOK = process.env.SLACK_WEBHOOK;
+function base64Encode(buffer, contentType = 'application/octet-stream') {
+	if (buffer instanceof Buffer) {
+		return `data:${contentType};base64,${buffer.toString('base64')}`;
+	} else if (buffer.read instanceof Function) {
+		return base64Encode(buffer.read(), contentType);
+	} else {
+		return base64Encode(Buffer.from(buffer), contentType);
+	}
+}
 
 async function cloudinarySign(params, secret) {
 	if (typeof params !== 'object') {
@@ -24,39 +32,45 @@ async function uploadToCloudinary(file, { type = 'raw', v = 'v1_1', name = 'kern
 	const FormData = require('form-data');
 	const folder = '/KRV Ads';
 	const url = `https://api.cloudinary.com/${v}/${name}/${type}/upload`;
+	const timestamp = Date.now();
+	const sig = await cloudinarySign({ folder, timestamp }, secret);
+	const body = new FormData();
 
-	try {
-		const timestamp = Date.now();
-		const sig = await cloudinarySign({ folder, timestamp }, secret);
-		const body = new FormData();
+	body.append('file', file);
+	body.append('folder', folder);
+	body.append('api_key', api_key);
+	body.append('timestamp', timestamp);
+	body.append('signature', sig);
 
-		body.append('file', file);
-		body.append('folder', folder);
-		body.append('api_key', api_key);
-		body.append('timestamp', timestamp);
-		body.append('signature', sig);
-		const resp = await fetch(url, { body, method: 'POST' });
-		return resp;
-	} catch(err) {
-		console.error(err);
-		return { status: 500, text: () => Promise.resolve(null), url, ok : false };
+	const resp = await fetch(url, { body, method: 'POST' });
+	if (resp.ok) {
+		return await resp.json();
+	} else {
+		throw new Error(`${resp.url} [${resp.status} ${resp.statusText}]`);
 	}
 }
 
 exports.handler = async function(event/*, context*/) {
 	if (event.httpMethod === 'POST') {
 		try {
-			const ad = JSON.parse(event.body);
-			if (ad['@context'] !== 'https://schema.org' || ad['@type'] !== 'WPAdBlock') {
-				throw new TypeError('Invalid ad submitted');
+			const { files = [], fields: { name, email, phone } = {} } = await new Promise((resolve, reject) => {
+				const Multipart = require('lambda-multipart');
+				const req = new Multipart(event);
+				req.on('finish', resolve);
+				req.on('error', reject);
+			});
+
+			const adFile = files.find(({ filename }) => filename.endsWith('.krvad'));
+
+			if (! [email, name].every(i => typeof i === 'string' && i.length !== 0)) {
+				throw new TypeError('Email and name required');
+			} else if (typeof adFile === 'undefined') {
+				throw new Error('Missing ad file');
 			}
-			const file = `data:application/json;base64,${Buffer.from(JSON.stringify(ad)).toString('base64')}`;
-			const upload = await uploadToCloudinary(file).catch(console.error);
-			if (! upload.ok) {
-				throw new Error('Error uploading file');
-			}
-			const { url, asset_id } = await upload.json();
+			const { secure_url, asset_id } = await uploadToCloudinary(base64Encode(adFile, 'text/plain'), { type: 'auto' });
+
 			const fetch = require('node-fetch');
+			const WEBHOOK = process.env.SLACK_WEBHOOK;
 			const { URL } = require('url');
 			const resp = await fetch(new URL(WEBHOOK), {
 				method: 'POST',
@@ -70,14 +84,17 @@ exports.handler = async function(event/*, context*/) {
 						type: 'header',
 						text: {
 							type: 'plain_text',
-							text: 'Ad submitted for Kern Valley Ads',
+							text:`Ad from: ${name}`
 						}
 					}, {
 						type: 'section',
-						text: {
-							type: 'plain_text',
-							text: ad.label,
-						},
+						fields: [{
+							type: 'mrkdwn',
+							text: `Email: ${email}`
+						}, {
+							type: 'mrkdwn',
+							text: `Phone: ${phone || 'Not given'}`
+						}],
 						accessory: {
 							type: 'button',
 							text: {
@@ -85,7 +102,7 @@ exports.handler = async function(event/*, context*/) {
 								text: 'View File',
 								emoji: true
 							},
-							url,
+							url: secure_url,
 							action_id: asset_id
 						}
 					}]
