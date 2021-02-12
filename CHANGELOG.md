@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.4.0] - 2021-02-11
+
+### Added
+- Submitting of ads via Slack and Cloudinary
+
+### Removed
+- No more share buttin in `<nav>`
+
 ## [v1.3.0] - 2021-02-08
 
 ### Added

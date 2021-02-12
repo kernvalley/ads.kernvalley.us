@@ -3,13 +3,14 @@
 /* 2021-02-11T10:52 */
 
 const config = {
-	version: '1.3.0',
+	version: '1.4.0',
 	fresh: [
+		'/manifest.json',
 		'https://apps.kernvalley.us/apps.json',
-		'/',
 	].map(path => new URL(path, location.origin).href),
 	stale: [
 		/* HTML */
+		'/',
 
 		/* JavaScript */
 		'/js/index.min.js',
@@ -46,7 +47,6 @@ const config = {
 		'https://cdn.kernvalley.us/fonts/roboto.woff2',
 
 		/* Other */
-		'/manifest.json',
 	].map(path => new URL(path, location.origin).href),
 	allowed: [
 		'https://www.google-analytics.com/analytics.js',
