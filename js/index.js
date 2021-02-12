@@ -131,13 +131,12 @@ Promise.allSettled([
 		});
 
 		if (file instanceof File) {
-			const { data: { link }} = await upload(file, { clientId });
+			const body = new FormData();
+			body.set('upload', file, file.name);
+			const resp = await fetch('/api/upload', { method: 'POST', body });
 
-			if (typeof link === 'string' && link.startsWith('https://i.imgur.com')) {
-				const input = document.getElementById('ad-image');
-				input.value = link;
-				input.dispatchEvent(new Event('input'));
-			}
+			const json = await resp.json();
+			alert(JSON.stringify(json, null, 4));
 		}
 	}, { passive: true });
 
