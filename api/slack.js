@@ -204,7 +204,16 @@ exports.handler = async function(event/*, context*/) {
 		if (err instanceof HTTPError) {
 			return err.resonse;
 		} else {
-			return HTTPError.getResponse('An unknown error occured', 500);
+			return {
+				statusCode: 500,
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					error: {
+						status: 500,
+						message: 'An unknown error occured',
+					}
+				})
+			};
 		}
 	}
 };
