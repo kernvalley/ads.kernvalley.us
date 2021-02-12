@@ -17,9 +17,10 @@ import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 import { $, ready, getCustomElement } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { open } from 'https://cdn.kernvalley.us/js/std-js/filesystem.js';
+import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 import { upload } from 'https://cdn.kernvalley.us/js/std-js/imgur.js';
-import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm, enableAdvanced } from './functions.js';
+import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm, enableAdvanced, uploadFile } from './functions.js';
 import { uuidv6 } from 'https://cdn.kernvalley.us/js/std-js/uuid.js';
 import { GA, ImgurClientId as clientId } from './consts.js';
 
@@ -85,6 +86,32 @@ Promise.allSettled([
 	const $ads = $('ad-block');
 
 	document.getElementById('uuid').value = history.state.identifier;
+
+	$(document.forms.submission).submit(async event => {
+		event.preventDefault();
+		const resp = await fetch('/api/slack', {
+			method: 'POST',
+			body: new FormData(event.target),
+		});
+
+		if (resp.ok) {
+			event.target.reset();
+			event.target.closest('dialog').close();
+		} else {
+			alert('Error submitting ad.');
+		}
+	});
+
+	$('#upload-btn').click(async () =>{
+		const el = document.getElementById('main-preview');
+		const ad = await el.toFile();
+
+		if (await uploadFile(ad)) {
+			alert('Ad submitted');
+		} else {
+			alert('Error submitting ad');
+		}
+	});
 
 	$('#open-btn').click(async () => {
 		const file = await getFile();

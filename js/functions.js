@@ -1,8 +1,26 @@
 import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
 import { confirm } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 import { save, open } from 'https://cdn.kernvalley.us/js/std-js/filesystem.js';
+import { send, hasGa } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 let fileHandle = null;
 let legacyFileName = null;
+
+export async function uploadFile(file) {
+	if (file instanceof File) {
+		try {
+			const resp = await fetch(new URL('/api/slack', location.origin), {
+				method: 'POST',
+				body: file,
+			});
+			return resp.ok;
+		} catch(err) {
+			console.error(err);
+			return false;
+		}
+	} else {
+		throw new TypeError('uploadFile expects a valid File');
+	}
+}
 
 export function updateRequired(form) {
 	$('.input', form).each(({ labels, required, disabled}) =>
@@ -183,8 +201,8 @@ export async function getFile() {
 }
 
 export async function saveAd(saveAs = false) {
-	if (window.ga instanceof Function) {
-		window.ga('send', {
+	if (hasGa()) {
+		send({
 			hitType: 'event',
 			eventCategory: 'ad-save',
 			eventAction: 'save',
@@ -226,12 +244,18 @@ export async function saveAd(saveAs = false) {
 	} else if (typeof legacyFileName === 'string' && legacyFileName.endsWith('.krvad')) {
 		const file = new File([json], legacyFileName, { type: 'application/krvad+json' });
 		await save(file);
+		if (await confirm('Submit ad?')) {
+			uploadFile(file);
+		}
 	} else {
 		const label = await ad.label;
 		const date = new Date();
 		const fname = `${sluggify(label || 'ad')}-${date.toISOString()}.krvad`;
 		const file = new File([json], fname, { type: 'application/krvad+json' });
 		await save(file);
+		if (await confirm('Submit ad?')) {
+			uploadFile(file);
+		}
 		legacyFileName = file.name;
 	}
 }

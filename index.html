@@ -88,11 +88,11 @@
 				</svg>
 				<span class="mobile-hidden">Save As</span>
 			</button>
-			<button type="button" class="btn btn-default grow-1" title="Share/export" id="share-ad-btn">
+			<button type="button" class="btn btn-default grow-1" title="Submit Ad" data-show-modal="#submit-dialog">
 				<svg class="icon" fill="currentColor" height="18" width="18" role="img" aria-hidden="true">
-					<use xlink:href="/img/icons.svg#public-share"></use>
+					<use xlink:href="/img/icons.svg#cloud-upload"></use>
 				</svg>
-				<span class="mobile-hidden">Share</span>
+				<span class="mobile-hidden">Submit Ad</span>
 			</button>
 			<button type="button" class="btn btn-default grow-1" id="help-btn" accesskey="?" data-show-modal="#help-dialog" title="help">
 				<svg class="icon" fill="currentColor" width="18" height="18" role="img" aria-hidden="true">
@@ -454,10 +454,7 @@
 							<span>Where do I submit my ad?</span>
 						</dt>
 						<dd class="faq-answer" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope="">
-							<p itemprop="text">For Whiskey Flat Days vendors, please attach the <code>.krvad</code> file along with the <q>Promotional Add-on</q> application in an email to the Kernville Chamber of Commerce.</p>
-							<p itemprop="text">If you were directed to this site to create an ad, you should have been provided with an email address or a link to upload to. Please contact whomever referreed you to this site for more detailed instructions.</p>
-							<p itemprop="text">If you did not receive any instructions but were referred to this app to create an ad, please ask the referring party where to submit the file to.</p>
-							<p itemprop="text">For all others, advertising is currently available by invite only. Check back soon.</p>
+							<p itemprop="text">Click on the <q>Submit Ad</q> button (<i>Cloud upload icon</i>), fill out your basic contact info, select the <code>.krvad</code> file, and hit <q>Submit</q></p>
 						</dd>
 					</dl>
 					<dl aria-role="list" class="faq-group" itemtype="https://schema.org/Question" itemscope="">
@@ -565,6 +562,44 @@
 					</button>
 				</div>
 			</div>
+		</dialog>
+		<dialog id="submit-dialog">
+			<form name="submission" id="submission">
+				<fieldset id="contact-info" class="no-border">
+					<legend>Contact Info</legend>
+					<div class="form-group">
+						<label for="submit-name" class="input-label required">Name</label>
+						<input type="text" name="name" id="submit-name" class="input" autocomplete="name" placeholder="First Last" required="" />
+					</div>
+					<div class="form-group">
+						<label for="submit-email" class="input-label required">Email</label>
+						<input type="email" name="email" id="submit-email" class="input" autocomplete="email" placeholder="user@example.com" required="" />
+					</div>
+					<div class="form-group">
+						<label for="submit-tel" class="input-label">Phone</label>
+						<input type="tel" name="phone" id="submit-tel" class="input" autocomplete="telephone" placeholder="555-555-5555" />
+					</div>
+					<div class="form-group">
+						<label for="submit-file" class="input-label required">KRV Ad File</label>
+						<input type="file" accept=".krvad" name="file" id="submit-file" class="input" required=""/>
+					</div>
+				</fieldset>
+				<hr />
+				<div class="flex row wrap space-evenly">
+					<button type="submit" class="btn btn-accept">
+						<svg class="icon" width="20" height="20" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#check"></use>
+						</svg>
+						<span>Submit</span>
+					</button>
+					<button type="reset" class="btn btn-reject" data-close="#contact-dialog">
+						<svg class="icon" width="20" height="20" fill="currentColor" role="img" aria-hidden="true">
+							<use xlink:href="/img/icons.svg#x"></use>
+						</svg>
+						<span>Cancel</span>
+					</button>
+				</div>
+			</form>
 		</dialog>
 		<button type="button" is="share-button" class="btn btn-primary round shadow fixed z-top" aria-label="Share" text="Advertise on Whiskey Flat Days App and websites throughout the Kern River Valley" url="/" source="krv-ads" medium="social" content="share-button">
 			<svg class="current-color icon" role="img" aria-hidden="true">
