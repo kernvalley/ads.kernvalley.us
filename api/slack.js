@@ -136,9 +136,9 @@ exports.handler = async function(event/*, context*/) {
 			const adFile = files.find(({ filename }) => filename.endsWith('.krvad'));
 
 			if (! [email, name].every(i => typeof i === 'string' && i.length !== 0)) {
-				throw new HTTPError('Email and name required', 404);
+				throw new HTTPError('Email and name required', 400);
 			} else if (typeof adFile === 'undefined') {
-				throw new HTTPError('Missing ad file', 404);
+				throw new HTTPError('Missing ad file', 400);
 			}
 			const { secure_url, asset_id } = await uploadToCloudinary(base64Encode(adFile, 'text/plain'), { type: 'auto' });
 
