@@ -1,4 +1,73 @@
 /* eslint-env node */
+
+class HTTPError extends Error {
+	constructor(message, status = 500) {
+		super(message);
+
+		if (! Number.isInteger(status) || status < 100 || status > 600) {
+			throw new HTTPError('Invalid HTTP Status Code', 500);
+		} else {
+			this.status = status;
+		}
+	}
+
+	get body() {
+		return {
+			error: {
+				status: this.status,
+				message: this.message,
+			}
+		};
+	}
+
+	get headers() {
+		switch(this.status) {
+			case 405:
+				return {
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*',
+					'Access-Control-Allow-Methods': 'GET, OPTIONS',
+					'Options': 'GET, OPTIONS',
+				};
+
+			default:
+				return {
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*',
+				};
+		}
+	}
+
+	get response() {
+		return {
+			statusCode: this.status,
+			headers: this.headers,
+			body: JSON.stringify(this),
+		};
+	}
+
+	toJSON() {
+		return this.body;
+	}
+
+	toString() {
+		return JSON.stringify(this);
+	}
+
+	static createResponse(message, status) {
+		try {
+			const err = new HTTPError(message, status);
+			return err.response;
+		} catch(err) {
+			if (err instanceof HTTPError) {
+				return err.response;
+			} else {
+				return new HTTPError('An unknown error occured', 500);
+			}
+		}
+	}
+}
+
 function base64Encode(buffer, contentType = 'application/octet-stream') {
 	if (buffer instanceof Buffer) {
 		return `data:${contentType};base64,${buffer.toString('base64')}`;
@@ -25,8 +94,9 @@ async function cloudinarySign(params, secret) {
 
 async function uploadToCloudinary(file, { type = 'raw', v = 'v1_1', name = 'kernvalley-us' } = {}) {
 	if (typeof process.env.CLOUDINARY !== 'string') {
-		throw new Error('Not configured');
+		throw new Error('Not configured', 501);
 	}
+
 	const { KEY: api_key = null, SECRET: secret = null } = JSON.parse(process.env.CLOUDINARY) || {};
 	const fetch = require('node-fetch');
 	const FormData = require('form-data');
@@ -51,8 +121,11 @@ async function uploadToCloudinary(file, { type = 'raw', v = 'v1_1', name = 'kern
 }
 
 exports.handler = async function(event/*, context*/) {
-	if (event.httpMethod === 'POST') {
-		try {
+	try {
+		if (event.httpMethod === 'POST') {
+			if (typeof process.env.SLACK_WEBHOOK !== 'string') {
+				throw new HTTPError('Not configured', 501);
+			}
 			const { files = [], fields: { name, email, phone } = {} } = await new Promise((resolve, reject) => {
 				const Multipart = require('lambda-multipart');
 				const req = new Multipart(event);
@@ -63,16 +136,14 @@ exports.handler = async function(event/*, context*/) {
 			const adFile = files.find(({ filename }) => filename.endsWith('.krvad'));
 
 			if (! [email, name].every(i => typeof i === 'string' && i.length !== 0)) {
-				throw new TypeError('Email and name required');
+				throw new HTTPError('Email and name required', 400);
 			} else if (typeof adFile === 'undefined') {
-				throw new Error('Missing ad file');
+				throw new HTTPError('Missing ad file', 400);
 			}
 			const { secure_url, asset_id } = await uploadToCloudinary(base64Encode(adFile, 'text/plain'), { type: 'auto' });
 
 			const fetch = require('node-fetch');
-			const WEBHOOK = process.env.SLACK_WEBHOOK;
-			const { URL } = require('url');
-			const resp = await fetch(new URL(WEBHOOK), {
+			const resp = await fetch(process.env.SLACK_WEBHOOK, {
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',
@@ -80,6 +151,7 @@ exports.handler = async function(event/*, context*/) {
 				},
 				body: JSON.stringify({
 					text: 'New Ad submitted on <https://ads.kernvalley.us|Kern Valley Ads>',
+					channel: '#advertising',
 					blocks: [{
 						type: 'header',
 						text: {
@@ -108,19 +180,40 @@ exports.handler = async function(event/*, context*/) {
 					}]
 				}),
 			});
-			const json = await resp.text();
+
+			if (resp.ok) {
+				return { statusCode: 204, body: null };
+			} else {
+				throw new HTTPError('Error sending ad', 500);
+			}
+		} else if (event.httpMethod === 'OPTIONS') {
 			return {
-				statusCode: 200,
-				body: json,
+				statusCode: 204,
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+					'Access-Control-Allow-Methods': 'POST, OPTIONS',
+					'Options': 'POST, OPTIONS',
+				}
 			};
-		} catch(err) {
-			console.error(err);
+		} else {
+			throw new HTTPError('Unsupported method', 405);
+		}
+	} catch(err) {
+		console.error(err);
+
+		if (err instanceof HTTPError) {
+			return err.resonse;
+		} else {
 			return {
 				statusCode: 500,
-				body: err.message,
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					error: {
+						status: 500,
+						message: 'An unknown error occured',
+					}
+				})
 			};
 		}
-	} else {
-		return { statusCode: 405 };
 	}
 };
