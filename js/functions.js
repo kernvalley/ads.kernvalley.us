@@ -244,18 +244,12 @@ export async function saveAd(saveAs = false) {
 	} else if (typeof legacyFileName === 'string' && legacyFileName.endsWith('.krvad')) {
 		const file = new File([json], legacyFileName, { type: 'application/krvad+json' });
 		await save(file);
-		if (await confirm('Submit ad?')) {
-			uploadFile(file);
-		}
 	} else {
 		const label = await ad.label;
 		const date = new Date();
 		const fname = `${sluggify(label || 'ad')}-${date.toISOString()}.krvad`;
 		const file = new File([json], fname, { type: 'application/krvad+json' });
 		await save(file);
-		if (await confirm('Submit ad?')) {
-			uploadFile(file);
-		}
 		legacyFileName = file.name;
 	}
 }
