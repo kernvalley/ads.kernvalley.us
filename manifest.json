@@ -100,7 +100,7 @@
       "application/krv-ad+json": [".krvad"]
     }
   }],
-  "prefer_related_applications": true,
+  "prefer_related_applications": false,
   "related_applications":  [{
     "platform": "play",
     "id": "us.kernvalley.ads.twa"
