@@ -62,6 +62,8 @@
     "version:bump:major": "npm version --no-git-tag-version patch"
   },
   "dependencies": {
-    "netlify-js-app": "^1.0.12"
+    "lambda-multipart": "^1.0.2",
+    "netlify-js-app": "^1.0.12",
+    "node-fetch": "^2.6.1"
   }
 }
