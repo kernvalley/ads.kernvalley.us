@@ -14,7 +14,6 @@ const config = {
 
 		/* JavaScript */
 		'/js/index.min.js',
-		'/js/imgWorker.js',
 
 		/* Styles */
 		'/css/index.min.css',
