@@ -14,5 +14,6 @@
 		--sidebar-max-width: 30vw;
 		--scrollbar-width: auto;
 		--header-height: 0;
+		--button-background: var(--button-primary-background);
 	}
 }
