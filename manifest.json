@@ -103,6 +103,7 @@
   "prefer_related_applications": false,
   "related_applications":  [{
     "platform": "play",
+    "url": "https://play.google.com/store/apps/details?id=us.kernvalley.ads.twa",
     "id": "us.kernvalley.ads.twa"
   }, {
     "platform": "webapp",
