@@ -40,6 +40,7 @@ const config = {
 		'https://cdn.kernvalley.us/components/ad/block.html',
 		'https://cdn.kernvalley.us/img/keep-kern-clean.svg',
 		'https://cdn.kernvalley.us/img/logos/play-badge.svg',
+		'https://cdn.kernvalley.us/img/logos/pwa-badge.svg',
 		'https://cdn.kernvalley.us/img/logos/instagram.svg',
 
 		/* Fonts */
