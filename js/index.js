@@ -4,7 +4,7 @@ import 'https://cdn.kernvalley.us/js/std-js/theme-cookie.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
 import 'https://cdn.kernvalley.us/components/current-year.js';
 import 'https://cdn.kernvalley.us/components/toast-message.js';
-import 'https://cdn.kernvalley.us/components/pwa/install.js';
+import 'https://cdn.kernvalley.us/components/install/prompt.js';
 import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/ad/block.js';
 import 'https://cdn.kernvalley.us/components/share-target.js';
@@ -14,13 +14,16 @@ import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
 import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
 import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
 import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
-import { $, ready, getCustomElement } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
-import { loadImage } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
+import { ready } from 'https://cdn.kernvalley.us/js/std-js/dom.js';
+import { getCustomElement } from 'https://cdn.kernvalley.us/js/std-js/custom-elements.js';
+import { $ } from 'https://cdn.kernvalley.us/js/std-js/esQuery.js';
+import { loadImage, preload } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
 import { open } from 'https://cdn.kernvalley.us/js/std-js/filesystem.js';
 import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 import { upload } from 'https://cdn.kernvalley.us/js/std-js/imgur.js';
-import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm, enableAdvanced, uploadFile } from './functions.js';
+import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler,
+	updatePage, updateForm, enableAdvanced, uploadFile } from './functions.js';
 import { uuidv6 } from 'https://cdn.kernvalley.us/js/std-js/uuid.js';
 import { GA, ImgurClientId as clientId } from './consts.js';
 
@@ -84,6 +87,17 @@ Promise.allSettled([
 	init(),
 ]).then(async ([HTMLAdBlockElement]) => {
 	const $ads = $('ad-block');
+
+	customElements.whenDefined('install-prompt').then(() => {
+		preload('https://cdn.kernvalley.us/components/install/prompt.html', { as: 'fetch' , type: 'text/html '});
+		preload('https://cdn.kernvalley.us/components/install/prompt.css', { as: 'style' , type: 'text/css '});
+
+		$('#install-btn').click(() => {
+			const HTMLInstallPromptElement = customElements.get('install-prompt');
+			const prompt = new HTMLInstallPromptElement();
+			prompt.show();
+		}).then($btns => $btns.unhide());
+	});
 
 	document.getElementById('uuid').value = history.state.identifier;
 
@@ -171,6 +185,7 @@ Promise.allSettled([
 						throw new Error('Unable to share ad file. Not supported');
 					}
 				}
+
 				$(`#${container.id}`).remove();
 			} catch(err) {
 				console.error(err);

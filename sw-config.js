@@ -3,7 +3,7 @@
 /* 2021-02-11T18:09 */
 
 const config = {
-	version: '1.4.0',
+	version: '1.4.1',
 	fresh: [
 		'/manifest.json',
 		'https://apps.kernvalley.us/apps.json',
@@ -19,7 +19,7 @@ const config = {
 		'/css/index.min.css',
 		'https://cdn.kernvalley.us/components/toast-message.css',
 		'https://cdn.kernvalley.us/components/github/user.css',
-		'https://cdn.kernvalley.us/components/pwa/prompt.css',
+		'https://cdn.kernvalley.us/components/install/prompt.css',
 		'https://cdn.kernvalley.us/components/ad/block.css',
 
 		/* Images */
@@ -36,7 +36,7 @@ const config = {
 		/* HTML / Templates */
 		'https://cdn.kernvalley.us/components/toast-message.html',
 		'https://cdn.kernvalley.us/components/github/user.html',
-		'https://cdn.kernvalley.us/components/pwa/prompt.html',
+		'https://cdn.kernvalley.us/components/install/prompt.html',
 		'https://cdn.kernvalley.us/components/ad/block.html',
 		'https://cdn.kernvalley.us/img/keep-kern-clean.svg',
 		'https://cdn.kernvalley.us/img/logos/play-badge.svg',

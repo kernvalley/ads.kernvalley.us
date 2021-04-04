@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Switch from `<pwa-install>` to `<install-prompt>`
+
 ### Fixed
 - Selected layout now highlighted again
 
@@ -79,7 +82,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Include ad identifier / UUID
 - Implement experimental file handler API
-- `fileInfo` constant for file extension and type 
+- `fileInfo` constant for file extension and type
 
 ### Changed
 - Download/share as custom JSON format(`application/krv-ad+json`) with ext: `".krvad"`
