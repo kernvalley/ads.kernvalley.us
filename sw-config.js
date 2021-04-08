@@ -53,9 +53,9 @@ const config = {
 		'https://www.googletagmanager.com/gtag/js',
 		'https://i.imgur.com/',
 		/https:\/\/\w+\.githubusercontent\.com\/u\/*/,
-		/\.(png|jpg|gif|js|css|html|svg|json)$/,
 	],
 	allowedFresh: [
 		'https://api.github.com/user/',
+		/\.(png|jpg|gif|js|css|html|svg|json)$/,
 	],
 };
