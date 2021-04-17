@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.4.2] - 2021-04-17
+
+### Added
+- New `deps.js` to handle all modules/dependencies. All scripts should import from this.
+
 ### Changed
+- Better use of modules from CDN
+- Update `netlify-js-app`
 - Switch from `<pwa-install>` to `<install-prompt>`
 
 ### Fixed
@@ -19,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Submitting of ads via Slack and Cloudinary
 
 ### Removed
-- No more share buttin in `<nav>`
+- No more share button in `<nav>`
 
 ## [v1.3.0] - 2021-02-08
 

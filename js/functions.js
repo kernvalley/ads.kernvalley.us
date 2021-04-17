@@ -1,7 +1,5 @@
-import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
-import { confirm } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
-import { save, open } from 'https://cdn.kernvalley.us/js/std-js/filesystem.js';
-import { send, hasGa } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
+import { $, ready, confirm, save, open, importAd, send, hasGa } from './deps.js';
+
 let fileHandle = null;
 let legacyFileName = null;
 
@@ -125,23 +123,6 @@ async function verifyPermission(fileHandle, readWrite) {
 	return false;
 }
 
-export async function importAd(file) {
-	if (file instanceof Promise) {
-		return importAd(await file);
-	} else if (file.text instanceof Function) {
-		return JSON.parse(await file.text());
-	} else {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.addEventListener('load', event => {
-				resolve(JSON.parse(event.target.result));
-			});
-			reader.addEventListener('error', () => reject(new Error('Error reading file')));
-			reader.readAsText(file);
-		});
-	}
-}
-
 export async function setAd(ad) {
 	Object.entries(ad).forEach(([key, value]) => {
 		updatePage(key, value);
@@ -194,7 +175,7 @@ export async function getFile() {
 
 		return file;
 	} else {
-		const [file] = await open({ accept: ['.krvad'], description: 'Select .krvad file' });
+		const [file] = await open({ accept: ['.krvad', 'application/krvad+json'], description: 'Select .krvad file' });
 		legacyFileName = file.name;
 		return file;
 	}
