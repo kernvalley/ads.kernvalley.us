@@ -1,6 +1,6 @@
 {
   "name": "ads.kernvalley.us",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": true,
   "description": "Advertise on websites throughout the Kern River Valley",
   "config": {
@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "lambda-multipart": "^1.0.2",
-    "netlify-js-app": "^1.0.13",
+    "netlify-js-app": "^1.1.0",
     "node-fetch": "^2.6.1"
   }
 }

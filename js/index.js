@@ -1,31 +1,9 @@
-import 'https://cdn.kernvalley.us/js/std-js/deprefixer.js';
-import 'https://cdn.kernvalley.us/js/std-js/shims.js';
-import 'https://cdn.kernvalley.us/js/std-js/theme-cookie.js';
-import 'https://cdn.kernvalley.us/components/share-button.js';
-import 'https://cdn.kernvalley.us/components/current-year.js';
-import 'https://cdn.kernvalley.us/components/toast-message.js';
-import 'https://cdn.kernvalley.us/components/install/prompt.js';
-import 'https://cdn.kernvalley.us/components/github/user.js';
-import 'https://cdn.kernvalley.us/components/ad/block.js';
-import 'https://cdn.kernvalley.us/components/share-target.js';
-import 'https://cdn.kernvalley.us/components/app/list-button.js';
-import 'https://cdn.kernvalley.us/components/app/stores.js';
-import konami from 'https://cdn.kernvalley.us/js/std-js/konami.js';
-import { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
-import { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
-import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
-import { ready } from 'https://cdn.kernvalley.us/js/std-js/dom.js';
-import { getCustomElement } from 'https://cdn.kernvalley.us/js/std-js/custom-elements.js';
-import { $ } from 'https://cdn.kernvalley.us/js/std-js/esQuery.js';
-import { loadImage, preload } from 'https://cdn.kernvalley.us/js/std-js/loader.js';
-import { open } from 'https://cdn.kernvalley.us/js/std-js/filesystem.js';
-import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
-import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
-import { upload } from 'https://cdn.kernvalley.us/js/std-js/imgur.js';
-import { importAd, setAd, getFile, saveAd, sluggify, createHandler, consumeHandler,
-	updatePage, updateForm, enableAdvanced, uploadFile } from './functions.js';
-import { uuidv6 } from 'https://cdn.kernvalley.us/js/std-js/uuid.js';
-import { GA, ImgurClientId as clientId } from './consts.js';
+import { konami, DAYS, HTMLNotificationElement, init, ready, getCustomElement, $,
+	loadImage, preload, open, importAd, alert, upload, setAd,
+	getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm,
+	enableAdvanced, uploadFile, uuidv6, GA, importGa, telHandler, mailtoHandler,
+	externalHandler, clientId,
+} from './deps.js';
 
 if ('launchQueue' in window) {
 	launchQueue.setConsumer(consumeHandler);
@@ -51,6 +29,7 @@ if (typeof GA === 'string' && GA.length !== 0) {
 		if (! navigator.onLine) {
 			await new Promise(resolve => window.addEventListener('online', () => resolve(), { once: true }));
 		}
+
 		importGa(GA).then(async ({ ga }) => {
 			ga('create', GA, 'auto');
 			ga('set', 'transport', 'beacon');
