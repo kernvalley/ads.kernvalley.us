@@ -2,11 +2,12 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block
+  Referrer-Policy: no-referrer
   Link: </css/index.min.css>; rel=preload; as=style; referrerpolicy=no-referrer;
   Link: </js/index.min.js>; rel=preload; as=script; referrerpolicy=no-referrer;
   Content-Security-Policy: default-src 'self'; style-src 'self' cdn.kernvalley.us unpkg.com/@webcomponents/; script-src 'self' cdn.kernvalley.us cdn.polyfill.io/v3/polyfill.min.js unpkg.com/@webcomponents/ www.googletagmanager.com/gtag/js www.google-analytics.com/analytics.js; img-src *; font-src cdn.kernvalley.us/fonts/; connect-src 'self' cdn.kernvalley.us/components/ apps.kernvalley.us/apps.json api.github.com/users/ api.imgur.com/3/image www.google-analytics.com/*/  www.google-analytics.com/; manifest-src 'self';
   X-Content-Type-Options: nosniff
-  Origin-Trial: Aicd9vjSW7nobiASoyIM6EqUUcZPj8iveYNaeDmiQja/2HeB61gp0yP+FvpGp9oa2XA+hE1MyJ1jdzu0IvETSAwAAABkeyJvcmlnaW4iOiJodHRwczovL25ldGxpZnkubGl2ZTo0NDMiLCJmZWF0dXJlIjoiQ29va2llU3RvcmUiLCJleHBpcnkiOjE2MDc3OTM2MTEsImlzU3ViZG9tYWluIjp0cnVlfQ==
+  Origin-Trial: AkVQe7J+Qns6ZiBCdW5utwq9L9hXP+WEPA52hKLfsnocY2UmNHH4mQdXlP/JP0zojwNsZQOMTFAXMOUpa9Whow8AAABXeyJvcmlnaW4iOiJodHRwczovL2Fkcy5rZXJudmFsbGV5LnVzOjQ0MyIsImZlYXR1cmUiOiJGaWxlSGFuZGxpbmciLCJleHBpcnkiOjE2MzQwODMxOTl9
 
 /reset
   X-Content-Type-Options: nosniff
