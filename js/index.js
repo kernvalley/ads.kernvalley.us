@@ -1,7 +1,7 @@
 import { konami, DAYS, HTMLNotificationElement, init, ready, getCustomElement, $,
 	loadImage, preload, open, importAd, alert, upload, setAd,
 	getFile, saveAd, sluggify, createHandler, consumeHandler, updatePage, updateForm,
-	enableAdvanced, uploadFile, uuidv6, GA, importGa, telHandler, mailtoHandler,
+	enableAdvanced, uploadFile, GA, importGa, telHandler, mailtoHandler,
 	externalHandler, clientId,
 } from './deps.js';
 
@@ -10,7 +10,7 @@ if ('launchQueue' in window) {
 }
 
 if (history.state === null) {
-	history.replaceState({ identifier: uuidv6() }, document.title, location.href);
+	history.replaceState({ identifier: crypto.randomUUID() }, document.title, location.href);
 } else {
 	Object.entries(history.state).forEach(([key, value]) => {
 		updatePage(key, value, false);
@@ -223,7 +223,7 @@ Promise.allSettled([
 	});
 
 	$('form[name="ad"]').reset(() => {
-		const uuid = uuidv6();
+		const uuid = crypto.randomUUID();
 		$('.ad-preview > [slot]').remove();
 		$('#light-preview').attr({ theme: 'light' });
 		$('#dark-preview').attr({ theme: 'dark' });

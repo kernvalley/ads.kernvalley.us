@@ -25,7 +25,6 @@ export { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 export { importGa, externalHandler, telHandler, mailtoHandler, hasGa, send }
 	from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 export { upload } from 'https://cdn.kernvalley.us/js/std-js/imgur.js';
-export { uuidv6 } from 'https://cdn.kernvalley.us/js/std-js/uuid.js';
 export { confirm } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 export { setAd, getFile, saveAd, sluggify, createHandler, consumeHandler,
 	updatePage, updateForm, enableAdvanced, uploadFile } from './functions.js';
