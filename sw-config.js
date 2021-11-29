@@ -5,7 +5,7 @@
 const config = {
 	version: '1.4.2',
 	fresh: [
-		'/manifest.json',
+		'/webapp.webmanifest',
 		'https://apps.kernvalley.us/apps.json',
 	].map(path => new URL(path, location.origin).href),
 	stale: [
