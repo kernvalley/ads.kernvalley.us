@@ -3,7 +3,7 @@
 /* 2021-02-11T18:09 */
 
 const config = {
-	version: '1.4.2',
+	version: '1.4.3',
 	fresh: [
 		'/webapp.webmanifest',
 		'https://apps.kernvalley.us/apps.json',
@@ -53,9 +53,10 @@ const config = {
 		'https://www.googletagmanager.com/gtag/js',
 		'https://i.imgur.com/',
 		/https:\/\/\w+\.githubusercontent\.com\/u\/*/,
+		/\.(jpg|png|gif|webp|svg|woff2|woff)$/,
 	],
 	allowedFresh: [
 		'https://api.github.com/user/',
-		/\.(png|jpg|gif|js|css|html|svg|json)$/,
+		/\.(js|css|html|json)$/,
 	],
 };
