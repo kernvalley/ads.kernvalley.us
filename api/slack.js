@@ -142,7 +142,7 @@ exports.handler = async function(event/*, context*/) {
 			}
 			const { secure_url, asset_id } = await uploadToCloudinary(base64Encode(adFile, 'text/plain'), { type: 'auto' });
 
-			const fetch = require('node-fetch');
+			const { fetch } = require('./http');
 			const resp = await fetch(process.env.SLACK_WEBHOOK, {
 				method: 'POST',
 				headers: {
