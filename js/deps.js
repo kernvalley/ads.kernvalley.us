@@ -11,8 +11,8 @@ import 'https://cdn.kernvalley.us/components/share-target.js';
 import 'https://cdn.kernvalley.us/components/app/list-button.js';
 import 'https://cdn.kernvalley.us/components/app/stores.js';
 
-export { default as konami } from 'https://cdn.kernvalley.us/js/std-js/konami.js';
-export { DAYS } from 'https://cdn.kernvalley.us/js/std-js/timeIntervals.js';
+export { konami } from 'https://cdn.kernvalley.us/js/konami/konami.js';
+export { DAYS } from 'https://cdn.kernvalley.us/js/std-js/date-consts.js';
 export { HTMLNotificationElement } from 'https://cdn.kernvalley.us/components/notification/html-notification.js';
 export { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 export { ready } from 'https://cdn.kernvalley.us/js/std-js/dom.js';
