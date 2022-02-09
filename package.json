@@ -63,7 +63,6 @@
   },
   "dependencies": {
     "lambda-multipart": "^1.0.2",
-    "netlify-js-app": "^1.1.0",
-    "node-fetch": "^3.2.0"
+    "netlify-js-app": "^1.1.0"
   }
 }

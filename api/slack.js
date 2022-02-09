@@ -98,7 +98,7 @@ async function uploadToCloudinary(file, { type = 'raw', v = 'v1_1', name = 'kern
 	}
 
 	const { KEY: api_key = null, SECRET: secret = null } = JSON.parse(process.env.CLOUDINARY) || {};
-	const fetch = require('node-fetch');
+	const { fetch } = require('./http');
 	const FormData = require('form-data');
 	const folder = '/KRV Ads';
 	const url = `https://api.cloudinary.com/${v}/${name}/${type}/upload`;
@@ -142,7 +142,7 @@ exports.handler = async function(event/*, context*/) {
 			}
 			const { secure_url, asset_id } = await uploadToCloudinary(base64Encode(adFile, 'text/plain'), { type: 'auto' });
 
-			const fetch = require('node-fetch');
+			const { fetch } = require('./http');
 			const resp = await fetch(process.env.SLACK_WEBHOOK, {
 				method: 'POST',
 				headers: {
