@@ -106,6 +106,8 @@ exports.fetch = function fetch(url, { method = 'GET', headers = {}, body, signal
 
 		if (typeof body === 'string') {
 			req.write(body);
+		} else if (typeof body === 'object' && body.pipe instanceof Function) {
+			body.pipe(req);
 		}
 
 		req.end();

@@ -98,7 +98,7 @@ async function uploadToCloudinary(file, { type = 'raw', v = 'v1_1', name = 'kern
 	}
 
 	const { KEY: api_key = null, SECRET: secret = null } = JSON.parse(process.env.CLOUDINARY) || {};
-	const fetch = require('node-fetch');
+	const { fetch } = require('./http');
 	const FormData = require('form-data');
 	const folder = '/KRV Ads';
 	const url = `https://api.cloudinary.com/${v}/${name}/${type}/upload`;
