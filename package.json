@@ -62,6 +62,7 @@
     "version:bump:major": "npm version --no-git-tag-version patch"
   },
   "dependencies": {
+    "form-data": "^4.0.0",
     "lambda-multipart": "^1.0.2",
     "netlify-js-app": "^2.0.0"
   }
