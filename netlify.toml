@@ -4,3 +4,10 @@
   publish = "./"
   command = "npm run build"
   functions = "api"
+[dev]
+  base = "./"
+  publish = "./"
+  command = "npm run serve:dev"
+  targetPort = 4000
+[functions]
+  included_files = []

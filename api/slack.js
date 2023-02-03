@@ -202,7 +202,7 @@ exports.handler = async function(event/*, context*/) {
 		console.error(err);
 
 		if (err instanceof HTTPError) {
-			return err.resonse;
+			return err.response;
 		} else {
 			return {
 				statusCode: 500,

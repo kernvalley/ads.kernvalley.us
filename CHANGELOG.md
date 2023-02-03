@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.4.4] - 2023-02-02
+
+### Added
+- Install `firebase-admin`
+- Create new `/api/events` endpoint
+
+### Changed
+- Numerous package updates
+- Update to Node v18.13.0
+
 ## [v1.4.2] - 2021-04-17
 
 ### Added
