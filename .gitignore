@@ -1,4 +1,5 @@
 *.sql
+.buildconfig
 /img/icons.svg
 *.min.*
 *.map

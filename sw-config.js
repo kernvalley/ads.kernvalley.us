@@ -3,7 +3,7 @@
 /* 2021-02-11T18:09 */
 
 const config = {
-	version: '1.4.3 2021-11-29',
+	version: '1.4.4',
 	fresh: [
 		'/',
 		'/webapp.webmanifest',
