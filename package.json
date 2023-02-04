@@ -8,7 +8,7 @@
     "serve": {
       "domain": "localhost",
       "path": "./",
-      "port": 8000
+      "port": 4000
     },
     "dir": {
       "css": "css/",
@@ -53,6 +53,7 @@
     "build:icons": "if [ -f ${npm_package_config_icons} ]; then $(svg-sprite-generate -c ${npm_package_config_icons} -o 'img/icons.svg'); fi",
     "build:js": "if [ -f 'rollup.config.js' ]; then rollup --config; fi",
     "netlify": "if [ -f '.netlify/state.json' ]; then npm run netlify:live; else npm run netlify:serve; fi",
+    "serve": "http-server ${npm_package_config_serve_path} -p ${npm_package_config_serve_port}",
     "netlify:deploy": "netlify deploy",
     "netlify:serve": "netlify dev",
     "netlify:live": "netlify dev --live",
@@ -67,5 +68,8 @@
     "form-data": "^4.0.0",
     "lambda-multipart": "^1.0.2",
     "netlify-js-app": "^2.1.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }

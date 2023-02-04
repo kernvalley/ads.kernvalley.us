@@ -46,7 +46,6 @@ exports.handler = async function({ httpMethod, headers, body }) {
 						error: {
 							message: 'Missing required fields',
 							status: status.BAD_REQUEST,
-							body: '{}',
 						}
 					})
 				};

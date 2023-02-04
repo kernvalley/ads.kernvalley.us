@@ -24,6 +24,22 @@ if (history.state === null) {
 	});
 }
 
+$('#main-preview [slot]').input(async ({ target: { slot, textContent }}) => {
+	switch(slot) {
+		case 'label':
+			$('#light-preview, #dark-preview').each(ad => ad.label = textContent);
+			break;
+
+		case 'description':
+			$('#light-preview, #dark-preview').each(ad => ad.description = textContent);
+			break;
+
+		case 'calltoaction':
+			$('#light-preview, #dark-preview').each(ad => ad.callToAction = textContent);
+			break;
+	}
+});
+
 if (typeof GA === 'string' && GA.length !== 0) {
 	requestIdleCallback(async () => {
 		if (! navigator.onLine) {

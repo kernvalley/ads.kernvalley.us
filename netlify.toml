@@ -7,7 +7,7 @@
 [dev]
   base = "./"
   publish = "./"
-  command = "npm run serve:dev"
+  command = "npm run serve"
   targetPort = 4000
 [functions]
   included_files = []
