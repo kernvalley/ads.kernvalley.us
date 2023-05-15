@@ -2,6 +2,7 @@
   "name": "ads.kernvalley.us",
   "version": "1.4.4",
   "private": true,
+  "type": "module",
   "description": "Advertise on websites throughout the Kern River Valley",
   "config": {
     "icons": "./icons.csv",
