@@ -2,6 +2,7 @@
   "name": "ads.kernvalley.us",
   "version": "1.4.4",
   "private": true,
+  "type": "module",
   "description": "Advertise on websites throughout the Kern River Valley",
   "config": {
     "icons": "./icons.csv",
@@ -66,6 +67,6 @@
     "firebase-admin": "^11.8.0",
     "form-data": "^4.0.0",
     "lambda-multipart": "^1.0.2",
-    "netlify-js-app": "^2.1.2"
+    "netlify-js-app": "^3.0.4"
   }
 }
