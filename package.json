@@ -67,6 +67,6 @@
     "firebase-admin": "^11.9.0",
     "form-data": "^4.0.0",
     "lambda-multipart": "^1.0.2",
-    "netlify-js-app": "^3.0.4"
+    "netlify-js-app": "^3.3.0"
   }
 }
