@@ -161,7 +161,7 @@ Promise.allSettled([
 						await navigator.share({ title, files: [file] });
 					} catch(err) {
 						console.error(err);
-						throw new Error('Unable to share ad file. Not supported');
+						throw new Error('Unable to share ad file. Not supported', { cause: err });
 					}
 				}
 
