@@ -46,12 +46,12 @@
     "git:submodules": "if [ -f '.gitmodules' ]; then git submodule update --init --recursive; fi",
     "lint:css": "if [ -f '.stylelintrc.json' ]; then stylelint ${npm_package_config_dir_css}; fi",
     "lint:html": "if [ -f '.htmlhintrc' ]; then htmlhint ${npm_package_config_dir_html}; fi",
-    "lint:js": "if [ -f '.eslintrc.json' ]; then eslint .; fi",
+    "lint:js": "if [ -f 'eslint.config.js' ]; then eslint .; fi",
     "fix:css": "if [ -f './stylelintrc.json' ]; then stylelint ${npm_package_config_dir_css} --fix; fi",
-    "fix:js": "if [ -f '.eslintrc.json' ]; then eslint. --fix; fi",
+    "fix:js": "if [ -f 'eslint.config.js' ]; then eslint . --fix; fi",
     "build": "npm run build:icons && npm run build:css && npm run build:js",
     "build:css": "if [ -f 'postcss.config.js' ]; then postcss ${npm_package_config_dir_css}index.css -o ${npm_package_config_dir_css}index.min.css; fi",
-    "build:icons": "if [ -f ${npm_package_config_icons} ]; then $(svg-sprite-generate -c ${npm_package_config_icons} -o 'img/icons.svg'); fi",
+    "build:icons": "if [ -f ${npm_package_config_icons} ]; then svg-use-symbols -c ${npm_package_config_icons} -o 'img/icons.svg'; fi",
     "build:js": "if [ -f 'rollup.config.js' ]; then rollup --config; fi",
     "netlify": "if [ -f '.netlify/state.json' ]; then npm run netlify:live; else npm run netlify:serve; fi",
     "netlify:deploy": "netlify deploy",
@@ -64,9 +64,12 @@
     "version:bump:major": "npm version --no-git-tag-version major"
   },
   "dependencies": {
-    "firebase-admin": "^13.5.0",
-    "form-data": "^4.0.4",
+    "firebase-admin": "^13.7.0",
+    "form-data": "^4.0.5",
     "lambda-multipart": "^1.0.2",
-    "netlify-js-app": "^3.0.4"
+    "netlify-js-app": "^3.3.10"
+  },
+  "devDependencies": {
+    "@shgysk8zer0/eslint-config": "^1.0.7"
   }
 }

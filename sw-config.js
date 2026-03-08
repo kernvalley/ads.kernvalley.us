@@ -1,4 +1,3 @@
-/* eslint-env serviceworker */
 /* eslint no-unused-vars: 0 */
 /* 2021-02-11T18:09 */
 
