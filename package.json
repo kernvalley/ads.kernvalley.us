@@ -70,6 +70,6 @@
     "netlify-js-app": "^3.3.11"
   },
   "devDependencies": {
-    "@shgysk8zer0/eslint-config": "^1.0.7"
+    "@shgysk8zer0/eslint-config": "^1.0.9"
   }
 }
