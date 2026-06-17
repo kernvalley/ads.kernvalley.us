@@ -67,7 +67,7 @@
     "firebase-admin": "^13.10.0",
     "form-data": "^4.0.6",
     "lambda-multipart": "^1.0.2",
-    "netlify-js-app": "^3.3.13"
+    "netlify-js-app": "^3.4.0"
   },
   "devDependencies": {
     "@shgysk8zer0/eslint-config": "^1.0.7"
